@@ -41,8 +41,13 @@ function help() {
     .usage('<name> [options] <args ...>')
     .description('Call frame destroy method');
 
-  // $FlowFixMe
-  program.help(chalk.red);
+  const isHelp = process.argv.indexOf('--help') !== -1 || process.argv.indexOf('-h') !== -1;
+  if (isHelp) {
+    program.help();
+  } else {
+    // $FlowFixMe
+    program.help(chalk.red);
+  }
 }
 
 if (actionName === 'new' || actionName === 'n') {
@@ -61,7 +66,10 @@ const frameClass = require(`${workingDirectory}/reframed/frames/${frameName}/${f
 const frame = new frameClass();
 
 const method = frame[methodName];
-if (!method) throw new Error(`Method ${methodName} not found in frame ${frameName}`);
+if (!method) {
+  console.log(chalk.red(`Method ${methodName} not found in frame ${frameName}`));
+  process.exit(1);
+}
 
 method();
 
