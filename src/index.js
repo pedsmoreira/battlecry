@@ -1,77 +1,9 @@
 #!/usr/bin/env node
 
-// @flow
+const Reframed = require('./Reframed');
 
-const program = require('commander');
-const chalk = require('chalk');
-
-// $FlowFixMe
-const workingDirectory = process.cwd();
-const methodAliases = { generate: 'g', rename: 'r', move: 'm', destroy: 'd' };
-const actionName = process.argv[2];
-
-function help() {
-  program
-    .command('new')
-    .alias('n')
-    .usage('<name>')
-    .description('Create a new frame under reframed/');
-
-  program
-    .command('generate')
-    .alias(methodAliases.generate)
-    .usage('<name> [options] <args ...>')
-    .description('Call frame generate method');
-
-  program
-    .command('rename')
-    .alias(methodAliases.rename)
-    .usage('<name> [options] <args ...>')
-    .description('Call frame rename method');
-
-  program
-    .command('move')
-    .alias(methodAliases.move)
-    .usage('<name> [options] <args ...>')
-    .description('Call frame move method');
-
-  program
-    .command('destroy')
-    .alias(methodAliases.destroy)
-    .usage('<name> [options] <args ...>')
-    .description('Call frame destroy method');
-
-  const isHelp = process.argv.indexOf('--help') !== -1 || process.argv.indexOf('-h') !== -1;
-  if (isHelp) {
-    program.help();
-  } else {
-    // $FlowFixMe
-    program.help(chalk.red);
-  }
-}
-
-if (actionName === 'new' || actionName === 'n') {
-  const frameName = process.argv[3];
-  if (!frameName) help();
-}
-
-const frameName = process.argv[3];
-if (!frameName) help();
-
-const aliasIndex = Object.values(methodAliases).indexOf(actionName);
-let methodName = aliasIndex === -1 ? actionName : Object.keys(methodAliases)[aliasIndex];
-
-// $FlowFixMe
-const frameClass = require(`${workingDirectory}/reframed/frames/${frameName}/${frameName}.frame.js`);
-const frame = new frameClass();
-
-const method = frame[methodName];
-if (!method) {
-  console.log(chalk.red(`Method ${methodName} not found in frame ${frameName}`));
-  process.exit(1);
-}
-
-method();
+const reframed = new Reframed();
+reframed.execute();
 
 // program
 //   .version(pkg.version)
