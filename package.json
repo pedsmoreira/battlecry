@@ -1,0 +1,33 @@
+{
+  "name": "reframed",
+  "version": "0.0.0",
+  "description": "NodeJS CLI for scaffolding after you generated your project",
+  "main": "index.js",
+  "repository": "https://pedsmoreira@github.com/pedsmoreira/reframed.git",
+  "author": "Pedro S. Moreira <pedsmoreira@gmail.com>",
+  "license": "MIT",
+  "bin": "./lib/index.js",
+  "scripts": {
+    "start": "npm run flow:build && node ./build/",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write src/**/*.js",
+    "flow": "flow",
+    "flow:check": "flow check ./src/",
+    "flow:deps": "flow-typed install",
+    "build": "flow-remove-types ./src/ -d ./build/ --all --pretty"
+  },
+  "dependencies": {
+    "commander": "^2.15.1"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.69.0",
+    "flow-remove-types": "^1.2.3",
+    "flow-typed": "^2.4.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.2",
+    "prettier": "^1.11.1"
+  },
+  "lint-staged": {
+    "src/**/*.js": ["prettier --write", "git add"]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  // Flow
+  "javascript.validate.enable": false,
+
+  // Prettier
+  "editor.formatOnSave": true,
+
+  "editor.tabSize": 2
+}
