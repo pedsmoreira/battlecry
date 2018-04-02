@@ -34,7 +34,7 @@ class File {
 
   move(newPath: string): void {}
 
-  destroy(): void {}
+  delete(): void {}
 
   /*
    * Text helpers

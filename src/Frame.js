@@ -17,7 +17,11 @@ class Frame {
   }
 
   rename() {
-    this.throwMethodUndefined('rename');
+    this.move();
+  }
+
+  move() {
+    this.throwMethodUndefined('move');
   }
 
   destroy() {

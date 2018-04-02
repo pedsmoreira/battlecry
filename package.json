@@ -6,20 +6,21 @@
   "repository": "https://pedsmoreira@github.com/pedsmoreira/reframed.git",
   "author": "Pedro S. Moreira <pedsmoreira@gmail.com>",
   "license": "MIT",
-  "bin": "./lib/index.js",
+  "bin": "./build/index.js",
   "scripts": {
-    "start": "npm run flow:build && node ./build/",
+    "start": "npm run build && node ./build/",
+    "build": "flow-remove-types ./src/ -d ./build/ --pretty",
     "precommit": "lint-staged",
     "prettier": "prettier --write src/**/*.js",
     "flow": "flow",
     "flow:check": "flow check ./src/",
-    "flow:deps": "flow-typed install",
-    "build": "flow-remove-types ./src/ -d ./build/ --all --pretty"
+    "flow:deps": "flow-typed install"
   },
   "dependencies": {
     "commander": "^2.15.1"
   },
   "devDependencies": {
+    "chalk": "^2.3.2",
     "flow-bin": "^0.69.0",
     "flow-remove-types": "^1.2.3",
     "flow-typed": "^2.4.0",
@@ -28,6 +29,9 @@
     "prettier": "^1.11.1"
   },
   "lint-staged": {
-    "src/**/*.js": ["prettier --write", "git add"]
+    "src/**/*.js": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
