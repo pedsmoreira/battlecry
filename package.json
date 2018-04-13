@@ -1,30 +1,51 @@
 {
-  "name": "reframed",
+  "name": "samba",
   "version": "0.0.0",
   "description": "NodeJS CLI for scaffolding after you generated your project",
   "main": "index.js",
-  "repository": "https://pedsmoreira@github.com/pedsmoreira/reframed.git",
+  "repository": "https://pedsmoreira@github.com/pedsmoreira/samba.git",
   "author": "Pedro S. Moreira <pedsmoreira@gmail.com>",
   "license": "MIT",
-  "bin": "./build/index.js",
+  "bin": {
+    "sb": "./build/index.js",
+    "samba": "./build/index.js"
+  },
   "scripts": {
-    "start": "npm run build && node ./build/",
-    "build": "flow-remove-types ./src/ -d ./build/ --pretty",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:ci": "npm run build && npm run test:coverage",
+    "start": "watch 'npm run build:watch' ./src/",
+    "build": "npm-run-all build:clean build:babel",
+    "build:watch": "npm-run-all build:babel",
+    "build:clean": "rm -f build/*",
+    "build:babel": "babel src --out-dir=build",
     "precommit": "lint-staged",
     "prettier": "prettier --write src/**/*.js",
     "flow": "flow",
     "flow:check": "flow check ./src/",
-    "flow:deps": "flow-typed install"
+    "flow:deps": "flow-typed install",
+    "preversion": "npm test",
+    "version": "npm run build && git add package.json",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "commander": "^2.15.1"
+    "casex": "^0.0.3",
+    "commander": "^2.15.1",
+    "glob": "^7.1.2"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
     "chalk": "^2.3.2",
     "flow-bin": "^0.69.0",
     "flow-remove-types": "^1.2.3",
     "flow-typed": "^2.4.0",
     "husky": "^0.14.3",
+    "jest": "^22.4.3",
     "lint-staged": "^7.0.2",
     "prettier": "^1.11.1"
   },

@@ -1,9 +1,9 @@
 // @flow
 
-const program = require('commander');
-const chalk = require('chalk');
+import program from 'commander';
+import chalk from 'chalk';
 
-const aliases = require('./aliases');
+import aliases from 'aliases';
 
 function hasHelpOption(): boolean {
   return process.argv.indexOf('--help') !== -1 || process.argv.indexOf('-h') !== -1;

@@ -1,26 +1,12 @@
-#!/usr/bin/env node
+// @flow
 
-const Reframed = require('./Reframed');
+import File from 'classes/File';
+import Generator from 'classes/Generator';
+import Parser from 'classes/Parser';
+import Samba from 'classes/Samba';
 
-const reframed = new Reframed();
-reframed.execute();
+import action from 'helpers/action';
+import help from 'helpers/help';
+import namedCasex from 'helpers/namedCasex';
 
-// program
-//   .version(pkg.version)
-//   usage('<action> <name> [options] <args ...>');
-//   .option('-p, --peppers', 'Add peppers')
-//   .option('-P, --pineapple', 'Add pineapple')
-//   .option('-b, --bbq-sauce', 'Add bbq sauce')
-//   // .option('-n, --namespace <n>', 'Namespace')
-//   .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
-//   .parse(process.argv);
-
-// console.log(program.args);
-// console.log(program);
-
-// console.log('you ordered a pizza with:');
-// if (program.peppers) console.log('  - peppers');
-// if (program.pineapple) console.log('  - pineapple');
-// if (program.bbqSauce) console.log('  - bbq');
-// if (program.namespace) console.log('  - %s', program.namespace);
-// console.log('  - %s cheese', program.cheese);
+export { File, Generator, Parser, Samba, action, help, namedCasex };

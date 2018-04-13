@@ -1,14 +1,20 @@
 // @flow
 
-const Parser = require('./Parser');
+import namedCasex from 'helpers/namedCasex';
+import Parser from 'classes/Parser';
 
-class File {
+export default class File {
   path: string;
   autoSave: boolean = false;
+  text: string;
+
+  constructor(path: string) {
+    this.path = path;
+    this.load();
+  }
 
   static src(path: string): File {
-    // $FlowFixMe
-    return '';
+    return new File(path);
   }
 
   static edit(path: string): File {
@@ -26,6 +32,10 @@ class File {
    * Actions
    */
 
+  load(): void {
+    this.text = '';
+  }
+
   duplicate(path: string): File {
     return File.edit(path);
   }
@@ -35,6 +45,8 @@ class File {
   move(newPath: string): void {}
 
   delete(): void {}
+
+  save() {}
 
   /*
    * Text helpers
@@ -50,6 +62,10 @@ class File {
 
   getTextAsLines(): string[] {
     return [];
+  }
+
+  getFilename(): string {
+    return '';
   }
 
   getExtension(): string {
@@ -78,7 +94,8 @@ class File {
 
   addLineAfterLast(search: string, newLine: number) {}
 
-  replaceNames(name: string) {}
+  applyCasex(name: string) {
+    this.rename(namedCasex(this.getFilename(), name));
+    this.text = namedCasex(this.text, name);
+  }
 }
-
-module.exports = File;

@@ -1,0 +1,15 @@
+{
+  "presets": ["flow", "env"],
+  "plugins": [
+    "transform-class-properties",
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "test": "./test"
+        }
+      }
+    ]
+  ]
+}

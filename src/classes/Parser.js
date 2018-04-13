@@ -1,8 +1,8 @@
 // @flow
 
-const File = require('./File');
+import File from 'classes/File';
 
-class Parser {
+export default class Parser {
   file: File;
 
   static connectedParsers: { [extension: string]: Parser } = {};
@@ -26,5 +26,3 @@ class Parser {
     return '';
   }
 }
-
-module.exports = Parser;
