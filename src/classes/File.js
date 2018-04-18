@@ -1,101 +1,122 @@
 // @flow
 
+import fs from 'fs';
+import mkdirp from 'mkdirp';
+import { basename, dirname, extname } from 'path';
+
 import namedCasex from 'helpers/namedCasex';
-import Parser from 'classes/Parser';
 
 export default class File {
   path: string;
-  autoSave: boolean = false;
-  text: string;
+  contents: string;
 
   constructor(path: string) {
     this.path = path;
-    this.load();
-  }
-
-  static src(path: string): File {
-    return new File(path);
-  }
-
-  static edit(path: string): File {
-    const file = this.src(path);
-    file.autoSave = true;
-
-    return file;
-  }
-
-  static copy(from: string, to: string): File {
-    return this.src(from).duplicate(to);
+    this.read();
   }
 
   /*
    * Actions
    */
 
-  load(): void {
-    this.text = '';
+  read(): void {
+    this.contents = fs.readFileSync(this.path, 'utf8');
   }
 
-  duplicate(path: string): File {
-    return File.edit(path);
+  save() {
+    this.saveAs(this.path);
   }
 
-  rename(newName: string): void {}
+  saveAs(path: string, name?: string): File {
+    path = namedCasex(path, name);
+    const contents = namedCasex(this.contents, name);
 
-  move(newPath: string): void {}
+    mkdirp.sync(dirname(path));
+    fs.writeFileSync(path, contents);
 
-  delete(): void {}
+    return new File(path);
+  }
 
-  save() {}
+  delete(): void {
+    fs.unlink(this.path);
+  }
 
   /*
    * Text helpers
    */
 
-  parse(): Parser {
-    return Parser.parseFile(this);
+  static joinLines(lines: string[]): string {
+    return lines.join('\r\n');
   }
 
-  getText(): string {
-    return '';
+  setLines(lines: string[]): void {
+    this.contents = File.joinLines(lines);
   }
 
-  getTextAsLines(): string[] {
-    return [];
+  getLine(lineNumber: number): string {
+    return this.getLines()[lineNumber];
+  }
+
+  getLines(): string[] {
+    return this.contents.match(/[^\r\n]+/g) || [];
   }
 
   getFilename(): string {
-    return '';
+    return basename(this.path);
+  }
+
+  getDirectory(): string {
+    return dirname(this.path);
   }
 
   getExtension(): string {
-    return '';
+    return extname(this.path);
   }
 
-  searchLine(str: string): number {
-    return 0;
+  replace(search: string | RegExp, replace: string, name?: string): void {
+    this.contents.replace(search, namedCasex(replace, name));
   }
 
-  searchLastLine(str: string): number {
-    return 0;
+  replaceAll(search: string, replace: string, name?: string): void {
+    this.replace(new RegExp(search, 'g'), replace, name);
   }
 
-  replaceLine(line: number, str: string): void {}
+  searchLine(str: string, lines: string[] = this.getLines()): ?number {
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line.indexOf(str) !== -1) return i;
+    }
+  }
 
-  searchReplaceLine(search: string, newLine: string): void {}
+  searchLastLine(str: string): ?number {
+    return this.searchLine(str, this.getLines().reverse());
+  }
 
-  replaceAll(search: string, replace: string): void {}
+  addLineBefore(lineNumber: number, contents: string, name?: string) {
+    const lines = this.getLines();
+    lines.splice(lineNumber, 0, namedCasex(contents, name));
 
-  removeLine(number: number): void {}
+    this.setLines(lines);
+  }
 
-  searcRemoveLine(search: string): void {}
+  addLineAfter(lineNumber: number, contents: string, name?: string) {
+    const lines = this.getLines();
+    lines.splice(lineNumber - 1, 0, namedCasex(contents, name));
 
-  addLineAfter(search: string, newLine: number) {}
+    this.setLines(lines);
+  }
 
-  addLineAfterLast(search: string, newLine: number) {}
+  replaceLine(lineNumber: number, contents: string, name?: string): void {
+    const lines = this.getLines();
+    lines[lineNumber] = namedCasex(contents, name);
 
-  applyCasex(name: string) {
-    this.rename(namedCasex(this.getFilename(), name));
-    this.text = namedCasex(this.text, name);
+    this.setLines(lines);
+  }
+
+  removeLine(number: number): void {
+    const lines = this.getLines();
+    delete lines[number];
+
+    this.setLines(lines);
   }
 }

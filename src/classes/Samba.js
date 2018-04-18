@@ -1,65 +1,39 @@
 // @flow
 
 import program from 'commander';
-import chalk from 'chalk';
 import glob from 'glob';
+import babel from 'babel-core';
+import { join, basename } from 'path';
 
-import help from 'helpers/help';
-import action from 'helpers/action';
+import aliasedAction from 'helpers/aliasedAction';
+
+import Generator from 'classes/Generator';
 
 export default class Samba {
-  action: string;
-  generator: string;
+  args: string[] = [];
+  namedArgs: { [name: string]: string } = {};
 
-  generators: { [name: string]: string };
-  parsers: { [name: string]: string };
-
-  constructor() {
-    this.action = action();
-    this.generator = process.argv[3];
-  }
+  generators: { [name: string]: string } = {};
 
   load(path: string) {
-    this.loadGenerators(`${path}/generators`);
-    this.loadParsers(`${path}/parsers`);
+    glob.sync(`${path}/generators/*/*.generator.js`).forEach(path => {
+      const name = basename(path);
+
+      // $FlowFixMe
+      this.generators[name] = require(path);
+    });
   }
 
-  loadGenerators(dir: string) {
-    glob
-      .sync(`${dir}/**/*.generator.js`, { ignore: '**/templates/**' })
-      .forEach(({ name, path }) => (this.generators[name] = path));
+  generator(name: string): Generator {
+    return new Generator();
   }
 
-  loadParsers(dir: string) {
-    glob
-      .sync(`${dir}/**/*.parser.js`, { ignore: '**/templates/**' })
-      .forEach(({ name, path }) => (this.parsers[name] = path));
-  }
+  registerCommands() {}
 
-  hasHelpOption(): boolean {
-    return process.argv.indexOf('--help') !== -1 || process.argv.indexOf('-h') !== -1;
-  }
-
-  createGenerator() {}
-
-  callGeneratorMethod() {
-    // $FlowFixMe
-    const generatorClass = require(`${this.path}/samba/generators/${this.generator}/${this.generator}.generator.js`);
-    const generator = new generatorClass();
-
-    const method = generator[this.action];
-    if (!method) {
-      console.log(chalk.red(`Method ${this.action} not found in generator ${this.generator}`));
-      process.exit(1);
-    }
-
-    method();
-  }
+  onCommand() {}
 
   play() {
-    if (!this.generator) help();
-
-    if (this.action === 'new') this.createGenerator();
-    else this.callGeneratorMethod();
+    this.registerCommands();
+    // this.createGenerator(this.generator).play(this.action);
   }
 }

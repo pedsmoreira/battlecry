@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
-import Reframed from 'classes/Reframed';
+// const es6bin = require('./es6bin');
+// es6bin();
 
-const reframed = new Reframed();
-reframed.load(`${__dirname}/../reframed`);
-reframed.load(`${process.cwd()}/reframed`);
-reframed.execute();
+console.log('hi');
 
 // program
 //   .version(pkg.version)

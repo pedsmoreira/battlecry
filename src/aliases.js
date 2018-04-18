@@ -1,4 +1,4 @@
 // @flow
 
-const aliases = { new: 'n', generate: 'g', rename: 'r', move: 'm', destroy: 'd' };
+const aliases = { new: 'n', generate: 'g', destroy: 'd' };
 export default aliases;

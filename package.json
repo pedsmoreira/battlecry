@@ -2,13 +2,13 @@
   "name": "samba",
   "version": "0.0.0",
   "description": "NodeJS CLI for scaffolding after you generated your project",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://pedsmoreira@github.com/pedsmoreira/samba.git",
   "author": "Pedro S. Moreira <pedsmoreira@gmail.com>",
   "license": "MIT",
   "bin": {
-    "sb": "./build/index.js",
-    "samba": "./build/index.js"
+    "sb": "./bin/bin.js",
+    "samba": "./bin/bin.js"
   },
   "scripts": {
     "test": "jest",
@@ -17,7 +17,7 @@
     "start": "watch 'npm run build:watch' ./src/",
     "build": "npm-run-all build:clean build:babel",
     "build:watch": "npm-run-all build:babel",
-    "build:clean": "rm -f build/*",
+    "build:clean": "rm -rf ./build",
     "build:babel": "babel src --out-dir=build",
     "precommit": "lint-staged",
     "prettier": "prettier --write src/**/*.js",
@@ -29,6 +29,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
+    "babel-register": "^6.26.0",
     "casex": "^0.0.3",
     "commander": "^2.15.1",
     "glob": "^7.1.2"
@@ -47,6 +48,7 @@
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "lint-staged": "^7.0.2",
+    "npm-run-all": "^4.1.2",
     "prettier": "^1.11.1"
   },
   "lint-staged": {
