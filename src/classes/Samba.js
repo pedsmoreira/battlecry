@@ -2,7 +2,6 @@
 
 import program from 'commander';
 import glob from 'glob';
-import babel from 'babel-core';
 import { join, basename } from 'path';
 
 import aliasedAction from 'helpers/aliasedAction';
@@ -23,6 +22,8 @@ export default class Samba {
       this.generators[name] = require(path);
     });
   }
+
+  setup(path: string) {}
 
   generator(name: string): Generator {
     return new Generator();
