@@ -16,11 +16,13 @@ export default class Samba {
 
   load(path: string) {
     this.setup(path);
-    glob.sync(`${path}/generators/*/*.generator.js`).forEach(path => {
+    glob.sync(`${path}/samba/generators/*/*.generator.js`).forEach(path => {
       const name = basename(path);
 
       // $FlowFixMe
       this.generators[name] = require(path);
+
+      // console.log(this.generators[name].default.config.generate.args);
     });
   }
 

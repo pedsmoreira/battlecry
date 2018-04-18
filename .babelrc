@@ -1,7 +1,7 @@
 {
-  "presets": ["flow", "env"],
+  "presets": ["flow", "env", "stage-0"],
   "plugins": [
-    "transform-class-properties",
+    "transform-decorators-legacy",
     [
       "module-resolver",
       {
