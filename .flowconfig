@@ -1,4 +1,6 @@
 [ignore]
+<PROJECT_ROOT>/samba/generators/.*
+<PROJECT_ROOT>/swifter-samba/generators/.*
 
 [include]
 
