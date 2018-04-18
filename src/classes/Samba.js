@@ -15,6 +15,7 @@ export default class Samba {
   generators: { [name: string]: string } = {};
 
   load(path: string) {
+    this.setup(path);
     glob.sync(`${path}/generators/*/*.generator.js`).forEach(path => {
       const name = basename(path);
 

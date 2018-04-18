@@ -28,11 +28,11 @@ export default class File {
   }
 
   saveAs(path: string, name?: string): File {
+    if (path.endsWith('/')) path += this.getFilename();
     path = namedCasex(path, name);
-    const contents = namedCasex(this.contents, name);
 
     mkdirp.sync(dirname(path));
-    fs.writeFileSync(path, contents);
+    fs.writeFileSync(path, namedCasex(this.contents, name));
 
     return new File(path);
   }

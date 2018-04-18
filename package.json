@@ -7,8 +7,8 @@
   "author": "Pedro S. Moreira <pedsmoreira@gmail.com>",
   "license": "MIT",
   "bin": {
-    "sb": "./bin/bin.js",
-    "samba": "./bin/bin.js"
+    "sb": "./bin/samba.js",
+    "samba": "./bin/samba.js"
   },
   "scripts": {
     "test": "jest",

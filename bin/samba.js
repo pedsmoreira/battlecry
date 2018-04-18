@@ -8,8 +8,7 @@ const program = require('commander');
 const Samba = require('samba').Samba;
 const samba = new Samba();
 
-samba.load(`${__dirname}/../samba`);
-samba.load(`${process.cwd()}/samba`);
-samba.setup(`${process.cwd()}/samba/samba-setup.js`);
+samba.load(`${__dirname}/..`);
+samba.load(process.cwd());
 
 program.parse(process.argv);

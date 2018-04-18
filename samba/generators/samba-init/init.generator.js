@@ -6,8 +6,6 @@ export default class InitGenerator extends Generator {
       .args('simple-generator')
       .generate();
 
-    this.generator('parser')
-      .args('simple-parser')
-      .generate();
+    this.template('samba-setup.js').saveAs('samba/');
   }
 }
