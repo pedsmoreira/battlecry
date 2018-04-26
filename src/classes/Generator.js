@@ -70,6 +70,8 @@ export default class Generator {
           .setArgsArray(method, this.parent.args)
           .setOptions(this.opts())
           .play(method);
+
+        console.log(chalk.green(`${method} ${generator.name} executed successfully`));
       });
 
     const methodConfig = this.config[method];
