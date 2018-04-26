@@ -9,6 +9,8 @@ import pkg from '../../package.json';
 
 import Generator from 'classes/Generator';
 
+import log from 'log';
+
 export default class Samba {
   executed: boolean;
 
@@ -17,23 +19,26 @@ export default class Samba {
 
   load(path: string) {
     this.setup(path);
-    glob.sync(`${path}/samba/generators/*/*.generator.js`).forEach(path => {
+    glob.sync(`${path}/generators/*/*.generator.js`).forEach(path => {
       // $FlowFixMe
       const generatorClass = require(path).default;
-
       const name = basename(path, '.generator.js');
-      this.generators[name] = this.createGenerator(name, dirname(path), generatorClass);
+
+      if (!generatorClass) return log.warn(`Missing default export on generator ${basename(path)}`);
+      this.generators[name] = this.createGenerator(name, path, generatorClass);
     });
   }
 
   setup(path: string) {
-    const setupPath = `${path}/samba/samba-setup.js`;
+    const setupPath = `${path}/samba-setup.js`;
     const setupExists = fs.existsSync(`${setupPath}`);
 
     if (setupExists) {
       // $FlowFixMe
       const fn: Function = require(setupPath).default;
-      fn(this);
+
+      if (fn) fn(this);
+      else log.warn(`Empty samba-setup.js in folder ${basename(path)}`);
     }
   }
 
@@ -92,7 +97,9 @@ export default class Samba {
       console.log();
 
       // $FlowFixMe
-      console.log(chalk.keyword('orange')('Command not found. Check the commands available above'));
+      log.warn('Command not found. Check the commands available above');
     }
+
+    log.emptyLine();
   }
 }

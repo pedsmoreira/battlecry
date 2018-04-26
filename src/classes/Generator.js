@@ -2,12 +2,14 @@
 
 import fs from 'fs';
 import glob from 'glob';
-import { join, basename } from 'path';
+import { join, basename, dirname } from 'path';
 import chalk from 'chalk';
 import program from 'commander';
 
 import File from 'classes/File';
 import Samba from 'classes/Samba';
+
+import log from 'log';
 
 type Args = { [name: string]: string | string[] };
 type Options = { [name: string]: string };
@@ -53,7 +55,7 @@ export default class Generator {
   }
 
   register(): void {
-    if (!this.methods.length) console.warn(`Generator ${this.name} has no methods in its config property.`);
+    if (!this.methods.length) log.warn(`Missing config methods in generator ${basename(this.path)}`);
     this.methods.forEach(method => this.registerMethod(method));
   }
 
@@ -66,12 +68,19 @@ export default class Generator {
       .action(function() {
         generator.samba.executed = true;
 
+        log.emptyLine();
+        log.success(`🥁  Starting ${method} ${generator.name}`);
+        log.emptyLine();
+        log.addIndentation();
+
         generator
           .setArgsArray(method, this.parent.args)
           .setOptions(this.opts())
           .play(method);
 
-        console.log(chalk.green(`${method} ${generator.name} executed successfully`));
+        log.emptyLine();
+        log.success('👍  All good!');
+        log.removeIndentation();
       });
 
     const methodConfig = this.config[method];
@@ -126,7 +135,7 @@ export default class Generator {
    */
 
   get templatesPath(): string {
-    return join(this.path, 'templates');
+    return join(dirname(this.path), 'templates');
   }
 
   templates(pattern?: string) {

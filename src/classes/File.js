@@ -6,6 +6,8 @@ import { basename, dirname, extname } from 'path';
 
 import namedCasex from 'helpers/namedCasex';
 
+import log from 'log';
+
 export default class File {
   path: string;
   contents: string;
@@ -33,6 +35,8 @@ export default class File {
 
     mkdirp.sync(dirname(path));
     fs.writeFileSync(path, namedCasex(this.contents, name));
+
+    log.success(`💾  File saved: ${path}`);
 
     return new File(path);
   }
