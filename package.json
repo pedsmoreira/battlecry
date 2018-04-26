@@ -13,19 +13,14 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:ci": "npm run build && npm run test:coverage",
-    "start": "watch 'npm run build:watch' ./src/",
-    "build": "npm-run-all build:clean build:babel",
-    "build:watch": "npm-run-all build:babel",
-    "build:clean": "rm -rf ./build",
-    "build:babel": "babel src --out-dir=build",
+    "test:ci": "npm run test:coverage",
     "precommit": "lint-staged",
     "prettier": "prettier --write src/**/*.js",
     "flow": "flow",
     "flow:check": "flow check ./src/",
     "flow:deps": "flow-typed install",
     "preversion": "npm test",
-    "version": "npm run build && git add package.json",
+    "version": "git add package.json",
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
@@ -37,18 +32,17 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "casex": "^0.0.3",
+    "chalk": "^2.4.1",
     "commander": "^2.15.1",
     "glob": "^7.1.2"
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
-    "chalk": "^2.3.2",
     "flow-bin": "^0.69.0",
     "flow-typed": "^2.4.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "lint-staged": "^7.0.2",
-    "npm-run-all": "^4.1.2",
     "prettier": "^1.11.1"
   },
   "lint-staged": {
