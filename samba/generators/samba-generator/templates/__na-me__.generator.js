@@ -11,6 +11,6 @@ export default class __NaMe__Generator extends Generator {
   };
 
   generate() {
-    this.templates().forEach(file => file.saveAs(`src/__na-me__s/${this.args.name}`, this.args.name));
+    this.templates().forEach(file => file.saveAs(`src/__na-me__s/${this.args.name}/`, this.args.name));
   }
 }
