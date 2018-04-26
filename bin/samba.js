@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const dirname = require('path').dirname;
+
 require('babel-register')({
   ignore: function(filename) {
     const folder = dirname(__dirname);
@@ -24,8 +26,6 @@ require('babel-register')({
     ]
   ]
 });
-
-const join = require('path').join;
 
 const Samba = require('samba').Samba;
 const samba = new Samba();
