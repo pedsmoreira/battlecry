@@ -5,11 +5,7 @@ import { Generator } from 'samba';
 export default class GeneratorGenerator extends Generator {
   config = {
     generate: {
-      args: 'name ...surnames?',
-      options: {
-        namespace: { description: 'Name it', arg: 'required' },
-        test: { description: 'Name it', arg: 'optional' }
-      }
+      args: 'name'
     }
   };
 

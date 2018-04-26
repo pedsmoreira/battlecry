@@ -70,14 +70,22 @@ export default class Samba {
     });
   }
 
+  get transmutedArgv(): string[] {
+    const [node, bin, method, generator, ...rest] = process.argv;
+
+    const aliasedMethod = this.aliases[method] || method;
+    return [node, bin, `${aliasedMethod}-${generator}`, ...rest];
+  }
+
   play() {
     this.register();
 
     program
+      // $FlowFixMe
       .version(pkg.version)
       .usage('<method> <generator> [args]')
       .on('--help', () => this.help())
-      .parse(process.argv);
+      .parse(this.transmutedArgv);
 
     if (!this.executed) {
       program.outputHelp();

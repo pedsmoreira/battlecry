@@ -1,7 +1,9 @@
+// @flow
+
 import { Generator } from 'samba';
 import { join } from 'path';
 
-import { namespaced } from 'samba/helpers';
+import namespaced from '../../helpers/namespaced';
 
 export default class ComponentGenerator extends Generator {
   static config = {
@@ -20,12 +22,12 @@ export default class ComponentGenerator extends Generator {
 
   generate() {
     this.generator('model')
-      .args(this.args)
+      .setArgs(this.args)
       .generate();
 
     this.generator('resource-pages')
-      .args({ name: this.args.name })
-      .options(this.options)
+      .setArgs({ name: this.args.name })
+      .setOptions(this.options)
       .generate();
 
     this.addRouteToFile();
