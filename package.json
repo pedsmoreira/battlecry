@@ -1,6 +1,6 @@
 {
   "name": "samba",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "NodeJS CLI for scaffolding after you generated your project",
   "main": "src/index.js",
   "repository": "https://pedsmoreira@github.com/pedsmoreira/samba.git",
