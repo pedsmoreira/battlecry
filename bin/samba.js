@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
 require('babel-register')({
+  ignore: function(filename) {
+    const folder = dirname(__dirname);
+    if (!filename.startsWith(folder) && filename.indexOf('node_modules/')) return false;
+
+    return !filename.startsWith(`${folder}/src`) && !filename.startsWith(`${folder}/samba`);
+  },
   presets: [
     `${__dirname}/../node_modules/babel-preset-flow`,
     `${__dirname}/../node_modules/babel-preset-env`,
