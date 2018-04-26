@@ -1,9 +1,16 @@
 import { Generator } from 'samba';
 
-class __NaMe__Generator extends Generator {
+export default class __NaMe__Generator extends Generator {
+  config = {
+    generate: {
+      args: 'name',
+      options: {
+        special: { description: 'Special option' }
+      }
+    }
+  };
+
   generate() {
-    this.templates().forEach(file => file.saveAs('src/__na-me__s'));
+    this.templates().forEach(file => file.saveAs(`src/__na-me__s/${this.args.name}`, this.args.name));
   }
 }
-
-module.exports = __NaMe__Generator;

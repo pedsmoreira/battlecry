@@ -25,11 +25,12 @@ export default class Generator {
    */
 
   name: string;
+  path: string;
   samba: Samba;
   config: { [method: string]: MethodConfig };
 
   get methods(): string[] {
-    return Object.keys(this.config);
+    return Object.keys(this.config || {});
   }
 
   getMethodArgs(method: string): string {
@@ -39,8 +40,8 @@ export default class Generator {
     return args
       .map(arg => {
         const argName = arg.replace(/[.?]/g, '');
-        const optional = arg.startsWith('?') || arg.endsWith('?');
-        const variadic = arg.startsWith('...') || arg.endsWith('...');
+        const optional = arg.includes('?');
+        const variadic = arg.includes('...');
 
         let argsString = argName;
         if (variadic) argsString += '...';
@@ -57,11 +58,19 @@ export default class Generator {
   }
 
   registerMethod(method: string): void {
+    const generator = this;
+
     const cmd = program
       // $FlowFixMe
       .command(`${method}-${this.name} ${this.getMethodArgs(method)}`, '', { noHelp: true })
-      // $FlowFixMe
-      .action(this[method].bind(this));
+      .action(function() {
+        generator.samba.executed = true;
+
+        generator
+          .setArgsArray(method, this.parent.args)
+          .setOptions(this.opts())
+          .play(method);
+      });
 
     const methodConfig = this.config[method];
     if (methodConfig.options) {
@@ -87,7 +96,7 @@ export default class Generator {
     const method: Function = this[methodName];
     if (!method) this.throwMethodNotImplemented(method);
 
-    method();
+    method.bind(this)();
   }
 
   /*
@@ -95,7 +104,12 @@ export default class Generator {
    */
 
   src(pattern: string): File[] {
-    return glob.sync(pattern).map(path => new File(path));
+    const files = [];
+    glob.sync(pattern).forEach(path => {
+      if (basename(path).includes('.')) files.push(new File(path));
+    });
+
+    return files;
   }
 
   delete(path: string) {
@@ -109,19 +123,19 @@ export default class Generator {
    * Template Helpers
    */
 
-  getTemplatesPath(): string {
-    return '';
+  get templatesPath(): string {
+    return join(this.path, 'templates');
   }
 
   templates(pattern?: string) {
-    const values = [this.getTemplatesPath(), '**'];
+    const values = [this.templatesPath, '**'];
     if (pattern) values.push(pattern);
 
     return this.src(join(...values));
   }
 
   template(path: string): File {
-    return new File(join(this.getTemplatesPath(), path));
+    return this.templates(path)[0];
   }
 
   /*
@@ -132,14 +146,27 @@ export default class Generator {
     return this.samba.generator(name);
   }
 
-  options(options: Options): this {
+  setOptions(options: Options): this {
     this.options = options;
     return this;
   }
 
-  args(args: Args): this {
+  setArgs(args: Args): this {
     this.args = args;
     return this;
+  }
+
+  setArgsArray(method: string, values: string[]): this {
+    const argsConfig = this.config[method].args;
+    if (!argsConfig) return this;
+
+    const args = {};
+    argsConfig.split(' ').forEach((argString, index) => {
+      const argName = argString.replace('?', '').replace(/[.?]/g, '');
+      args[argName] = values[index];
+    });
+
+    return this.setArgs(args);
   }
 
   /*

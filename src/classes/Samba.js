@@ -2,12 +2,16 @@
 
 import program from 'commander';
 import glob from 'glob';
-import { join, basename } from 'path';
+import { join, basename, dirname } from 'path';
 import fs from 'fs';
+import chalk from 'chalk';
+import pkg from '../../package.json';
 
 import Generator from 'classes/Generator';
 
 export default class Samba {
+  executed: boolean;
+
   aliases: { [alias: string]: string } = {};
   generators: { [name: string]: Generator } = {};
 
@@ -18,7 +22,7 @@ export default class Samba {
       const generatorClass = require(path).default;
 
       const name = basename(path, '.generator.js');
-      this.generators[name] = this.createGenerator(name, generatorClass);
+      this.generators[name] = this.createGenerator(name, dirname(path), generatorClass);
     });
   }
 
@@ -41,13 +45,14 @@ export default class Samba {
   }
 
   generator(name: string): Generator {
-    return this.createGenerator(name, this.generators[name].constructor);
+    return this.createGenerator(name, this.generators[name].path, this.generators[name].constructor);
   }
 
-  createGenerator(name: string, generatorClass: typeof Generator): Generator {
+  createGenerator(name: string, path: string, generatorClass: typeof Generator): Generator {
     const generator = new generatorClass();
     generator.name = name;
     generator.samba = this;
+    generator.path = path;
 
     return generator;
   }
@@ -56,19 +61,30 @@ export default class Samba {
     Object.keys(this.generators).forEach(name => this.generators[name].register());
   }
 
+  help() {
+    console.log(chalk.white('Generators:'));
+
+    Object.keys(this.generators).forEach(name => {
+      console.log();
+      this.generators[name].help();
+    });
+  }
+
   play() {
     this.register();
 
     program
+      .version(pkg.version)
       .usage('<method> <generator> [args]')
-      .on('--help', () => {
-        console.log('Generators:');
-
-        Object.keys(this.generators).forEach(name => {
-          console.log();
-          this.generators[name].help();
-        });
-      })
+      .on('--help', () => this.help())
       .parse(process.argv);
+
+    if (!this.executed) {
+      program.outputHelp();
+      console.log();
+
+      // $FlowFixMe
+      console.log(chalk.keyword('orange')('Command not found. Check the commands available above'));
+    }
   }
 }
