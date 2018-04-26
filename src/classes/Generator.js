@@ -6,10 +6,10 @@ import { join, basename, dirname } from 'path';
 import chalk from 'chalk';
 import program from 'commander';
 
-import File from 'classes/File';
-import Samba from 'classes/Samba';
+import File from './File';
+import Samba from './Samba';
 
-import log from 'log';
+import log from '../log';
 
 type Args = { [name: string]: string | string[] };
 type Options = { [name: string]: string };

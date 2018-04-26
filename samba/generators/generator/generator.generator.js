@@ -21,7 +21,7 @@ export default class GeneratorGenerator extends Generator {
   generate() {
     const folder = this.getFolder();
     this.template('*.generator.js').saveAs(folder, this.nameArg);
-    this.templates('templates/**').forEach(file => file.saveAs(`${folder}/templates/`));
+    this.templates('templates/**').forEach(file => file.saveAs(`${folder}templates/`));
   }
 
   destroy() {

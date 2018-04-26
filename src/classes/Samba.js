@@ -7,9 +7,9 @@ import fs from 'fs';
 import chalk from 'chalk';
 import pkg from '../../package.json';
 
-import Generator from 'classes/Generator';
+import Generator from './Generator';
 
-import log from 'log';
+import log from '../log';
 
 export default class Samba {
   executed: boolean;
@@ -77,6 +77,7 @@ export default class Samba {
 
   get transmutedArgv(): string[] {
     const [node, bin, method, generator, ...rest] = process.argv;
+    if (method === '--help' || method === '-h') return process.argv;
 
     const aliasedMethod = this.aliases[method] || method;
     return [node, bin, `${aliasedMethod}-${generator}`, ...rest];

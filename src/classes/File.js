@@ -4,9 +4,8 @@ import fs from 'fs';
 import mkdirp from 'mkdirp';
 import { basename, dirname, extname } from 'path';
 
-import namedCasex from 'helpers/namedCasex';
-
-import log from 'log';
+import namedCasex from '../helpers/namedCasex';
+import log from '../log';
 
 export default class File {
   path: string;
