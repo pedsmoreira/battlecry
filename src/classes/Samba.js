@@ -24,7 +24,7 @@ export default class Samba {
       const generatorClass = require(path).default;
       const name = basename(path, '.generator.js');
 
-      if (!generatorClass) return log.warn(`Missing default export on generator ${basename(path)}`);
+      if (!generatorClass) return log.warn(`Skipping generator ${basename(path)} - missing export default`);
       this.generators[name] = this.createGenerator(name, path, generatorClass);
     });
   }
@@ -38,7 +38,7 @@ export default class Samba {
       const fn: Function = require(setupPath).default;
 
       if (fn) fn(this);
-      else log.warn(`Empty samba-setup.js in folder ${basename(path)}`);
+      else log.warn(`Skipping samba-setup.js in folder ${basename(path)} - empty file`);
     }
   }
 

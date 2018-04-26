@@ -55,7 +55,9 @@ export default class Generator {
   }
 
   register(): void {
-    if (!this.methods.length) log.warn(`Missing config methods in generator ${basename(this.path)}`);
+    if (!this.methods.length) {
+      log.warn(`Skipping generator ${basename(this.path)} - no methods in 'config'`);
+    }
     this.methods.forEach(method => this.registerMethod(method));
   }
 
