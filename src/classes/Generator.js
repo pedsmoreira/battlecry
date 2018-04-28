@@ -59,7 +59,10 @@ export default class Generator {
    */
 
   src(pattern: string, name?: string): File {
-    return this.srcAll(pattern, name)[0];
+    const files = this.srcAll(pattern, name);
+    if (!files.length) throw new Error(`No file found for ${namedCasex(pattern, name)}`);
+
+    return files[0];
   }
 
   srcAll(pattern: string, name?: string): File[] {
