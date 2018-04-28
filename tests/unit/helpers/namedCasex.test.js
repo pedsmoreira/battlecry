@@ -1,4 +1,4 @@
-import namedCasex from 'helpers/namedCasex';
+import { namedCasex } from 'samba';
 
 describe('namedCasex', () => {
   it('replaces all __name__ occurrences', () => {

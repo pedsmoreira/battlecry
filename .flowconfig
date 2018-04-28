@@ -1,5 +1,4 @@
 [ignore]
-<PROJECT_ROOT>/swifter-samba/generators/.*
 
 [include]
 
@@ -8,4 +7,3 @@ flow-typed
 
 [options]
 module.system.node.resolve_dirname=node_modules
-module.system.node.resolve_dirname=./src

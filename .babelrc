@@ -5,9 +5,8 @@
     [
       "module-resolver",
       {
-        "root": ["./src"],
         "alias": {
-          "test": "./test"
+          "samba": "./src"
         }
       }
     ]
