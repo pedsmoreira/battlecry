@@ -6,7 +6,7 @@ import { basename, dirname, extname } from 'path';
 import fileChecker from 'istextorbinary';
 
 import namedCasex from '../helpers/namedCasex';
-import log from '../log';
+import log from '../helpers/log';
 
 export default class File {
   path: string;

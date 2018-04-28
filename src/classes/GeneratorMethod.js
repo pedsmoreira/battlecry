@@ -7,7 +7,7 @@ import Generator from './Generator';
 import OptionBuilder, { type OptionProperties } from './OptionBuilder';
 import ArgBuilder from './ArgBuilder';
 
-import log from '../log';
+import log from '../helpers/log';
 
 export type MethodConfig = { options?: OptionProperties, args?: string };
 

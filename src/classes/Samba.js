@@ -8,7 +8,7 @@ import pkg from '../../package.json';
 
 import Generator from './Generator';
 
-import log from '../log';
+import log from '../helpers/log';
 
 export default class Samba {
   executed: boolean;

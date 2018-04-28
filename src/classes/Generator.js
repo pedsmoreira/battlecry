@@ -12,7 +12,7 @@ import Samba from './Samba';
 import namedCasex from '../helpers/namedCasex';
 import GeneratorMethod, { type MethodConfig } from './GeneratorMethod';
 
-import log from '../log';
+import log from '../helpers/log';
 
 type Args = { [name: string]: string | string[] };
 type Options = { [name: string]: string };
