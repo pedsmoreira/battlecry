@@ -116,7 +116,11 @@ export default class Generator {
    * File Helpers
    */
 
-  src(pattern: string): File[] {
+  src(pattern: string): File {
+    return this.srcAll(pattern)[0];
+  }
+
+  srcAll(pattern: string): File[] {
     const files = [];
     glob.sync(pattern).forEach(path => {
       if (basename(path).includes('.')) files.push(new File(path));
@@ -125,7 +129,7 @@ export default class Generator {
     return files;
   }
 
-  delete(path: string) {
+  delete(path: string): void {
     const isDirectory = fs.lstatSync(path).isDirectory();
 
     if (isDirectory) fs.rmdir(path);
@@ -140,11 +144,11 @@ export default class Generator {
     return join(dirname(this.path), 'templates');
   }
 
-  templates(pattern?: string) {
+  templates(pattern?: string): File[] {
     const values = [this.templatesPath, '**'];
     if (pattern) values.push(pattern);
 
-    return this.src(join(...values));
+    return this.srcAll(join(...values));
   }
 
   template(path: string): File {

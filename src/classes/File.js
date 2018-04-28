@@ -3,39 +3,74 @@
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import { basename, dirname, extname } from 'path';
+import fileChecker from 'istextorbinary';
 
 import namedCasex from '../helpers/namedCasex';
 import log from '../log';
 
 export default class File {
   path: string;
-  contents: string;
+  __text: string;
 
   constructor(path: string) {
     this.path = path;
-    this.read();
   }
 
   /*
-   * Actions
+   * File management
    */
 
-  read(): void {
-    this.contents = fs.readFileSync(this.path, 'utf8');
+  get binary(): boolean {
+    return !fileChecker.isTextSync(this.path);
   }
 
-  save() {
+  get text(): string {
+    if (this.binary) throw new Error('Attempting to treat binary file as text');
+    return this.__text || fs.readFileSync(this.path, 'utf8');
+  }
+
+  set text(text: string): void {
+    this.__text = text;
+  }
+
+  get persisted(): boolean {
+    return fs.existsSync(this.path);
+  }
+
+  get filename(): string {
+    return basename(this.path);
+  }
+
+  get dirname(): string {
+    return dirname(this.path);
+  }
+
+  get extension(): string {
+    return extname(this.path);
+  }
+
+  ensureDirectoryExists(): void {
+    mkdirp.sync(this.dirname);
+  }
+
+  save(): void {
     this.saveAs(this.path);
   }
 
   saveAs(path: string, name?: string): File {
-    if (path.endsWith('/')) path += this.getFilename();
+    if (path.endsWith('/')) path += this.filename;
     path = namedCasex(path, name);
 
-    mkdirp.sync(dirname(path));
-    fs.writeFileSync(path, namedCasex(this.contents, name));
+    const action = this.persisted ? `updated` : `created`;
+    this.ensureDirectoryExists();
 
-    log.success(`💾  File saved: ${path}`);
+    if (this.binary) {
+      fs.createReadStream(this.path).pipe(fs.createWriteStream(path));
+    } else {
+      fs.writeFileSync(path, namedCasex(this.text, name));
+    }
+
+    log.success(`💾  File ${action}: ${path}`);
 
     return new File(path);
   }
@@ -52,74 +87,75 @@ export default class File {
     return lines.join('\r\n');
   }
 
-  setLines(lines: string[]): void {
-    this.contents = File.joinLines(lines);
+  get lines(): string[] {
+    return this.text.split(/\r?\n/) || [];
   }
 
-  getLine(lineNumber: number): string {
-    return this.getLines()[lineNumber];
+  set lines(lines: string[]): void {
+    this.text = File.joinLines(lines);
   }
 
-  getLines(): string[] {
-    return this.contents.match(/[^\r\n]+/g) || [];
+  replaceText(search: string | RegExp, replace: string, name?: string): this {
+    this.text = this.text.replace(search, namedCasex(replace, name));
+    return this;
   }
 
-  getFilename(): string {
-    return basename(this.path);
+  replaceAllText(search: string, replace: string, name?: string): this {
+    return this.replaceText(new RegExp(search, 'g'), replace, name);
   }
 
-  getDirectory(): string {
-    return dirname(this.path);
-  }
+  search(search: string | number, lines: string[] = this.lines): number {
+    if (typeof search === 'number') return search;
 
-  getExtension(): string {
-    return extname(this.path);
-  }
-
-  replace(search: string | RegExp, replace: string, name?: string): void {
-    this.contents.replace(search, namedCasex(replace, name));
-  }
-
-  replaceAll(search: string, replace: string, name?: string): void {
-    this.replace(new RegExp(search, 'g'), replace, name);
-  }
-
-  searchLine(str: string, lines: string[] = this.getLines()): ?number {
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      if (line.indexOf(str) !== -1) return i;
+      if (line.indexOf(search) !== -1) return i;
     }
+
+    throw new Error(`'${search}' not found on file ${this.path}`);
   }
 
-  searchLastLine(str: string): ?number {
-    return this.searchLine(str, this.getLines().reverse());
+  last(search: string | number, lines: string[] = this.lines): number {
+    return lines.length - this.search(search, lines.reverse()) - 1;
   }
 
-  addLineBefore(lineNumber: number, contents: string, name?: string) {
-    const lines = this.getLines();
-    lines.splice(lineNumber, 0, namedCasex(contents, name));
+  before(search: string | number, contents: string, name?: string): this {
+    const lines = this.lines;
+    lines.splice(this.search(search), 0, namedCasex(contents, name));
 
-    this.setLines(lines);
+    this.lines = lines;
+    return this;
   }
 
-  addLineAfter(lineNumber: number, contents: string, name?: string) {
-    const lines = this.getLines();
-    lines.splice(lineNumber - 1, 0, namedCasex(contents, name));
-
-    this.setLines(lines);
+  beforeLast(search: string | number, contents: string, name?: string): this {
+    return this.before(this.last(search), contents, name);
   }
 
-  replaceLine(lineNumber: number, contents: string, name?: string): void {
-    const lines = this.getLines();
-    lines[lineNumber] = namedCasex(contents, name);
-
-    this.setLines(lines);
+  after(search: number | string, contents: string, name?: string): this {
+    return this.before(this.search(search) + 1, contents, name);
   }
 
-  removeLine(number: number): void {
-    const lines = this.getLines();
-    delete lines[number];
+  afterLast(search: number | string, contents: string, name?: string): this {
+    return this.after(this.last(search), contents, name);
+  }
 
-    this.setLines(lines);
+  add(contents: string, name?: string): this {
+    return this.before(this.lines.length, contents, name);
+  }
+
+  replace(search: string | number, contents: string, name?: string): this {
+    const lines = this.lines;
+    lines[this.search(search)] = namedCasex(contents, name);
+
+    this.lines = lines;
+    return this;
+  }
+
+  remove(search: string | number): this {
+    const lines = this.lines;
+    delete lines[this.search(search)];
+
+    this.lines = lines;
+    return this;
   }
 }
