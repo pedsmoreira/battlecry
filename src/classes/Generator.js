@@ -10,15 +10,12 @@ import { execSync } from 'child_process';
 import File from './File';
 import Samba from './Samba';
 import namedCasex from '../helpers/namedCasex';
+import GeneratorMethod, { type MethodConfig } from './GeneratorMethod';
 
 import log from '../log';
 
 type Args = { [name: string]: string | string[] };
 type Options = { [name: string]: string };
-
-type ConfigArgs = string;
-type ConfigOptions = { [name: string]: { description: string, arg?: 'required' | 'optional', shortcut?: string } };
-type MethodConfig = { options?: ConfigOptions, args?: ConfigArgs };
 
 export default class Generator {
   options: Options;
@@ -33,73 +30,16 @@ export default class Generator {
   samba: Samba;
   config: { [method: string]: MethodConfig };
 
-  get methods(): string[] {
-    return Object.keys(this.config || {});
-  }
-
-  getMethodArgs(method: string): string {
-    const config = this.config[method];
-    const args = config.args ? config.args.split(' ') : [];
-
-    return args
-      .map(arg => {
-        const argName = arg.replace(/[.?]/g, '');
-        const optional = arg.includes('?');
-        const variadic = arg.includes('...');
-
-        let argsString = argName;
-        if (variadic) argsString += '...';
-        argsString = optional ? `[${argsString}]` : `<${argsString}>`;
-
-        return argsString;
-      })
-      .join(' ');
+  get methods(): GeneratorMethod[] {
+    return Object.keys(this.config || {}).map(method => new GeneratorMethod(this, method));
   }
 
   register(): void {
     if (!this.methods.length) {
       log.warn(`Skipping generator ${basename(this.path)} - no methods in 'config'`);
     }
-    this.methods.forEach(method => this.registerMethod(method));
-  }
 
-  registerMethod(method: string): void {
-    const generator = this;
-
-    const cmd = program
-      // $FlowFixMe
-      .command(`${method}-${this.name} ${this.getMethodArgs(method)}`, '', { noHelp: true })
-      .action(function() {
-        generator.samba.executed = true;
-
-        log.emptyLine();
-        log.success(`🥁  Starting ${method} ${generator.name}`);
-        log.emptyLine();
-        log.addIndentation();
-
-        generator
-          .setArgsArray(method, this.parent.args)
-          .setOptions(this.opts())
-          .play(method);
-
-        log.emptyLine();
-        log.success('👍  All good!');
-        log.removeIndentation();
-      });
-
-    const methodConfig = this.config[method];
-    if (methodConfig.options) {
-      Object.keys(methodConfig.options).forEach(optionName => {
-        // $FlowFixMe
-        const option = methodConfig.options[optionName];
-
-        let arg = '';
-        if (option.arg === 'required') arg = '<value>';
-        else if (option.arg === 'optional') arg = '[value]';
-
-        cmd.option(`-${option.shortcut || optionName[0]}, --${optionName} ${arg}`, option.description);
-      });
-    }
+    this.methods.forEach(method => method.register());
   }
 
   /*
@@ -206,41 +146,8 @@ export default class Generator {
 
   help() {
     console.log(chalk.yellow(this.name));
-
-    this.methods.forEach(method => {
-      const methodConfig = this.config[method];
-      const alias = this.samba.alias(method);
-
-      let text = chalk.green(`  ${method}`);
-      if (alias) text += chalk.greenBright(`|${alias}`);
-
-      text += ` ${this.name}`;
-      if (methodConfig.args) text += ` ${methodConfig.args}`;
-
-      console.log(text);
-
-      if (methodConfig.options) {
-        Object.keys(methodConfig.options).forEach(optionName => {
-          console.log();
-
-          // $FlowFixMe
-          const option = methodConfig.options[optionName];
-
-          let optionText = '    ';
-          optionText += chalk.blueBright(`-${option.shortcut || optionName[0]} --${optionName}`);
-
-          if (option.arg === 'required') {
-            optionText += chalk.cyanBright(` value`);
-          } else if (option.arg === 'optional') {
-            // $FlowFixMe
-            optionText += chalk.hex('#99C')(` value?`);
-          }
-
-          console.log(optionText);
-          console.log(`      ${option.description}`);
-        });
-      }
-    });
+    this.methods.forEach(method => method.help());
+    console.log();
   }
 
   /*

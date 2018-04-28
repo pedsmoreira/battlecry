@@ -73,7 +73,7 @@ export default class File {
   }
 
   delete(): void {
-    fs.unlink(this.path);
+    fs.unlinkSync(this.path);
     log.success(`🔥  File deleted: ${this.path}`);
   }
 
