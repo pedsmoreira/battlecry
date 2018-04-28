@@ -5,9 +5,11 @@ import glob from 'glob';
 import { join, basename, dirname } from 'path';
 import chalk from 'chalk';
 import program from 'commander';
+import { execSync } from 'child_process';
 
 import File from './File';
 import Samba from './Samba';
+import namedCasex from '../helpers/namedCasex';
 
 import log from '../log';
 
@@ -116,13 +118,13 @@ export default class Generator {
    * File Helpers
    */
 
-  src(pattern: string): File {
-    return this.srcAll(pattern)[0];
+  src(pattern: string, name?: string): File {
+    return this.srcAll(pattern, name)[0];
   }
 
-  srcAll(pattern: string): File[] {
+  srcAll(pattern: string, name?: string): File[] {
     const files = [];
-    glob.sync(pattern).forEach(path => {
+    glob.sync(namedCasex(pattern, name)).forEach(path => {
       if (basename(path).includes('.')) files.push(new File(path));
     });
 
@@ -187,8 +189,21 @@ export default class Generator {
   }
 
   /*
+   * Other helpers
+   */
+
+  exec(command: string): string | Buffer {
+    log.success(`🏃  Exec command: ${command}`);
+    log.addIndentation();
+    const result = execSync(command);
+    log.removeIndentation();
+    return result;
+  }
+
+  /*
    * Help
    */
+
   help() {
     console.log(chalk.yellow(this.name));
 

@@ -49,10 +49,6 @@ export default class File {
     return extname(this.path);
   }
 
-  ensureDirectoryExists(): void {
-    mkdirp.sync(this.dirname);
-  }
-
   save(): void {
     this.saveAs(this.path);
   }
@@ -61,8 +57,8 @@ export default class File {
     if (path.endsWith('/')) path += this.filename;
     path = namedCasex(path, name);
 
-    const action = this.persisted ? `updated` : `created`;
-    this.ensureDirectoryExists();
+    const creating = !fs.existsSync(path);
+    mkdirp.sync(dirname(path));
 
     if (this.binary) {
       fs.createReadStream(this.path).pipe(fs.createWriteStream(path));
@@ -70,13 +66,15 @@ export default class File {
       fs.writeFileSync(path, namedCasex(this.text, name));
     }
 
-    log.success(`💾  File ${action}: ${path}`);
+    if (creating) log.success(`✅  File created: ${path}`);
+    else log.success(`☑️  File updated: ${path}`);
 
     return new File(path);
   }
 
   delete(): void {
     fs.unlink(this.path);
+    log.success(`🔥  File deleted: ${this.path}`);
   }
 
   /*
