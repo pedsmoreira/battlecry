@@ -145,9 +145,8 @@ export default class Generator {
    */
 
   help() {
-    console.log(chalk.yellow(this.name));
+    console.log(chalk.white(`🥁  ${this.name}`));
     this.methods.forEach(method => method.help());
-    console.log();
   }
 
   /*

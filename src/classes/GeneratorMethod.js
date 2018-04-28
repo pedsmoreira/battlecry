@@ -84,12 +84,12 @@ export default class GeneratorMethod {
   }
 
   helpTitle() {
-    let text = chalk.green(`  ${this.name}`);
+    let text = chalk.green(this.name);
 
     const alias = this.alias;
     if (alias) text += chalk.green(`|${alias}`);
 
-    text += ` ${this.name} ${this.config.args || ''}`;
+    text += ` ${chalk.yellow(this.generator.name)} ${this.config.args || ''}`;
     console.log(text);
   }
 }

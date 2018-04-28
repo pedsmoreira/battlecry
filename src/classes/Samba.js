@@ -4,7 +4,6 @@ import program from 'commander';
 import glob from 'glob';
 import { join, basename, dirname } from 'path';
 import fs from 'fs';
-import chalk from 'chalk';
 import pkg from '../../package.json';
 
 import Generator from './Generator';
@@ -67,11 +66,9 @@ export default class Samba {
   }
 
   help() {
-    console.log(chalk.white('Generators:'));
-
     Object.keys(this.generators).forEach(name => {
-      console.log();
       this.generators[name].help();
+      console.log();
     });
   }
 
@@ -95,7 +92,6 @@ export default class Samba {
 
     if (!this.executed) {
       program.outputHelp();
-      console.log();
 
       // $FlowFixMe
       log.warn('Command not found. Check the commands available above');
