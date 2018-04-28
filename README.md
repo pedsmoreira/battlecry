@@ -1,4 +1,4 @@
-# samba
+# 🥁 Samba
 
 > Simple and customizable scaffolding tool
 
