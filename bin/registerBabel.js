@@ -24,6 +24,7 @@ function buildModuleResolver() {
   return [
     buildPath('plugin', 'module-resolver'),
     {
+      root: [`${process.cwd()}/samba`],
       alias: {
         samba: `${__dirname}/..`
       }
