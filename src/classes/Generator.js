@@ -51,7 +51,14 @@ export default class Generator {
     const method: Function = this[methodName];
     if (!method) this.throwMethodNotImplemented(method);
 
+    log.emptyLine();
+    log.success(`🥁  Playing: ${methodName} ${this.name}`);
+    log.addIndentation();
+
     method.bind(this)();
+
+    log.removeIndentation();
+    log.emptyLine();
   }
 
   /*

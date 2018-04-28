@@ -74,7 +74,7 @@ export default class Samba {
 
   get transmutedArgv(): string[] {
     const [node, bin, method, generator, ...rest] = process.argv;
-    if (method === '--help' || method === '-h') return process.argv;
+    if (['--help', '-h', '--version', '-V'].includes(method)) return process.argv;
 
     const aliasedMethod = this.aliases[method] || method;
     return [node, bin, `${aliasedMethod}-${generator}`, ...rest];
@@ -95,8 +95,7 @@ export default class Samba {
 
       // $FlowFixMe
       log.warn('Command not found. Check the commands available above');
+      log.emptyLine();
     }
-
-    log.emptyLine();
   }
 }

@@ -53,19 +53,10 @@ export default class GeneratorMethod {
     return function() {
       method.generator.samba.executed = true;
 
-      log.emptyLine();
-      log.success(`🥁  Starting ${method.name} ${method.generator.name}`);
-      log.emptyLine();
-      log.addIndentation();
-
       method.generator
         .setArgsArray(method.name, this.parent.args)
         .setOptions(this.opts())
         .play(method.name);
-
-      log.emptyLine();
-      log.success('👍  All good!');
-      log.removeIndentation();
     };
   }
 
