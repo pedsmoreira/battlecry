@@ -1,3 +1,5 @@
+// $Flow
+
 import { Generator } from 'samba';
 
 export default class InitGenerator extends Generator {

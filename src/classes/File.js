@@ -33,7 +33,7 @@ export default class File {
     this.__text = text;
   }
 
-  get persisted(): boolean {
+  get exists(): boolean {
     return fs.existsSync(this.path);
   }
 
