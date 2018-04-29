@@ -75,7 +75,7 @@ export default class GeneratorMethod {
   }
 
   helpTitle() {
-    let text = chalk.green(this.name);
+    let text = `sb ${chalk.green(this.name)}`;
 
     const alias = this.alias;
     if (alias) text += chalk.green(`|${alias}`);
