@@ -65,14 +65,14 @@ export default class Generator {
    * File Helpers
    */
 
-  src(pattern: string, name?: string): File {
-    const files = this.srcAll(pattern, name);
+  file(pattern: string, name?: string): File {
+    const files = this.files(pattern, name);
     if (!files.length) throw new Error(`No file found for ${namedCasex(pattern, name)}`);
 
     return files[0];
   }
 
-  srcAll(pattern: string, name?: string): File[] {
+  files(pattern: string, name?: string): File[] {
     const files = [];
     glob.sync(namedCasex(pattern, name)).forEach(path => {
       if (basename(path).includes('.')) files.push(new File(path));
@@ -100,7 +100,7 @@ export default class Generator {
     const values = [this.templatesPath, '**'];
     if (pattern) values.push(pattern);
 
-    return this.srcAll(join(...values));
+    return this.files(join(...values));
   }
 
   template(path: string): File {
