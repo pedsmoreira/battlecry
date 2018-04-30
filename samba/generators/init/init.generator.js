@@ -13,5 +13,10 @@ export default class InitGenerator extends Generator {
       .play('generate');
 
     this.template('samba-setup.js').saveAs('samba/');
+
+    this.samba.load(`${process.cwd()}/samba`);
+    this.generator('component')
+      .setArgs({ name: 'test-abc' })
+      .play('generate');
   }
 }
