@@ -15,7 +15,7 @@ export default class GitDownload {
   constructor(repository: string, dir: ?string) {
     this.repository = repository;
     this.dir = dir;
-    this.tmpPath = tmp.fileSync().name;
+    this.tmpPath = tmp.tmpNameSync();
   }
 
   async handle() {
