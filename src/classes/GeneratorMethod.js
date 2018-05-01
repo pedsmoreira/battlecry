@@ -9,7 +9,11 @@ import ArgBuilder from './ArgBuilder';
 
 import log from '../helpers/log';
 
-export type MethodConfig = { options?: OptionProperties, args?: string };
+export type MethodConfig = {
+  options?: OptionProperties,
+  args?: string,
+  description?: string
+};
 
 export default class GeneratorMethod {
   generator: Generator;
@@ -70,17 +74,20 @@ export default class GeneratorMethod {
   }
 
   help(): void {
+    console.log();
     this.helpTitle();
+
     this.options.forEach(option => option.help());
   }
 
   helpTitle() {
-    let text = `sb ${chalk.green(this.name)}`;
+    const { args, description } = this.config;
 
-    const alias = this.alias;
-    if (alias) text += chalk.green(`|${alias}`);
+    let text = `  sb ${chalk.green(this.alias || this.name)}`;
+    text += ` ${chalk.yellow(this.generator.name)} ${args || ''}`;
 
-    text += ` ${chalk.yellow(this.generator.name)} ${this.config.args || ''}`;
     console.log(text);
+
+    if (description) console.log(chalk.hex('#AAA')(`    ${description}`));
   }
 }

@@ -35,8 +35,7 @@ export default class OptionBuilder {
   }
 
   help() {
-    let optionText = '    ';
-    optionText += chalk.blueBright(`-${this.shortcut} --${this.name}`);
+    let optionText = chalk.blueBright(`    -${this.shortcut} --${this.name}`);
 
     if (this.arg === 'required') {
       optionText += chalk.cyanBright(` value`);
@@ -44,6 +43,6 @@ export default class OptionBuilder {
       optionText += chalk.hex('#99C')(` value?`);
     }
 
-    console.log(`${optionText} \t${this.description}`);
+    console.log(`${optionText} \t${chalk.hex('#AAA')(this.description)}`);
   }
 }

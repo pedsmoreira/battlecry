@@ -34,6 +34,10 @@ export default class Generator {
     return Object.keys(this.config || {}).map(method => new GeneratorMethod(this, method));
   }
 
+  /*
+   * Actions
+   */
+
   register(): void {
     if (!this.methods.length) {
       log.warn(`Skipping generator ${basename(this.path)} - no methods in 'config'`);
@@ -46,7 +50,7 @@ export default class Generator {
    * Actions
    */
 
-  play(methodName: string) {
+  async play(methodName: string) {
     // $FlowFixMe
     const method: Function = this[methodName];
     if (!method) this.throwMethodNotImplemented(method);
@@ -55,7 +59,7 @@ export default class Generator {
     log.success(`🥁  Playing: ${methodName} ${this.name}`);
     log.addIndentation();
 
-    method.bind(this)();
+    await method.bind(this)();
 
     log.removeIndentation();
     log.emptyLine();

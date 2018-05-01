@@ -1,11 +1,24 @@
 // @flow
 
 import { Generator } from 'samba';
+import GitDownload from './GitDownload';
 
 export default class GeneratorGenerator extends Generator {
   config = {
     generate: {
-      args: 'name'
+      args: 'name',
+      description: 'Generate a new generator'
+    },
+    download: {
+      args: 'repository',
+      options: {
+        dir: { description: 'The repository directory where the generators are located', arg: 'required' }
+      },
+      description: 'Download one or more generators from GitHub'
+    },
+    destroy: {
+      args: 'name',
+      description: 'Destroy an existing generator'
     }
   };
 
@@ -14,17 +27,21 @@ export default class GeneratorGenerator extends Generator {
     return this.args.name;
   }
 
-  getFolder() {
+  get folder(): string {
     return `samba/generators/${this.nameArg}/`;
   }
 
   generate() {
-    const folder = this.getFolder();
-    this.template('*.generator.js').saveAs(folder, this.nameArg);
-    this.templates('templates/**').forEach(file => file.saveAs(`${folder}templates/`));
+    this.template('*.generator.js').saveAs(this.folder, this.nameArg);
+    this.templates('templates/**').forEach(file => file.saveAs(`${this.folder}templates/`));
+  }
+
+  download() {
+    // $FlowFixMe
+    return new GitDownload(this.args.repository, this.options.dir).handle();
   }
 
   destroy() {
-    this.delete(this.getFolder());
+    this.delete(this.folder);
   }
 }
