@@ -43,7 +43,7 @@ export default class GitDownload {
     return fs.existsSync(this.sambaPath) && fs.lstatSync(this.sambaPath).isDirectory();
   }
 
-  copyGenerators() {
+  copyGenerators(): void {
     const globPath = this.hasSamba ? this.sambaPath : this.path;
 
     File.glob(`${globPath}/**`).forEach(file => {

@@ -58,7 +58,8 @@ export default class Generator {
     log.success(`🥁  Playing: ${methodName} ${this.name}`);
     log.addIndentation();
 
-    await method.bind(this)();
+    const response = method.bind(this)();
+    if (response) await response;
 
     log.removeIndentation();
     log.emptyLine();

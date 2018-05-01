@@ -4,6 +4,7 @@ import chalk from 'chalk';
 
 class Log {
   indentation: string = '';
+  hasEmptyLine: boolean = false;
 
   addIndentation() {
     this.indentation += '  ';
@@ -14,6 +15,7 @@ class Log {
   }
 
   log(chalker: Function, message: string) {
+    this.hasEmptyLine = false;
     console.log(chalker(this.indentation + message));
   }
 
@@ -31,6 +33,9 @@ class Log {
   }
 
   emptyLine() {
+    if (this.hasEmptyLine) return;
+
+    this.hasEmptyLine = true;
     console.log();
   }
 }
