@@ -1,11 +1,10 @@
 // @flow
 
 import fs from 'fs';
-import glob from 'glob';
 import tmp from 'tmp';
 import downloadGitRepo from 'download-git-repo';
-import { File } from 'samba';
 import { basename, join } from 'path';
+import { log, File } from 'samba';
 
 export default class GitDownload {
   repository: string;
@@ -21,6 +20,7 @@ export default class GitDownload {
   async handle() {
     // $FlowFixMe
     return new Promise((resolve, reject) => {
+      log.success('☁️  Downloading GitHub project');
       downloadGitRepo(this.repository, this.tmpPath, err => {
         if (err) return reject(err);
 
@@ -32,7 +32,7 @@ export default class GitDownload {
 
   get path(): string {
     if (!this.dir) return this.tmpPath;
-    return `${this.tmpPath}/${this.dir}`;
+    return join(this.tmpPath, this.dir);
   }
 
   get sambaPath(): string {
@@ -44,11 +44,30 @@ export default class GitDownload {
   }
 
   copyGenerators(): void {
-    const globPath = this.hasSamba ? this.sambaPath : this.path;
+    this.logSambaFolderGuessed();
+    this.logCopyingPath();
 
-    File.glob(`${globPath}/**`).forEach(file => {
-      const newPath = join(process.cwd(), 'samba', file.path.substring(globPath.length));
+    log.addIndentation();
+
+    const globPath = this.hasSamba ? this.sambaPath : this.path;
+    File.glob(join(globPath, '**')).forEach(file => {
+      const newPath = join('samba', file.path.substring(globPath.length));
       file.saveAs(newPath);
     });
+
+    log.removeIndentation();
+  }
+
+  logSambaFolderGuessed() {
+    if (this.hasSamba) log.success('🧠  Found a samba/ folder at the selected directory');
+  }
+
+  logCopyingPath() {
+    let logPath = '';
+    if (this.dir) logPath = join(logPath, this.dir);
+    if (this.hasSamba) logPath = join(logPath, 'samba');
+    if (!logPath.endsWith('/')) logPath += '/';
+
+    log.success(`📋  Copying all files from: ${logPath}`);
   }
 }
