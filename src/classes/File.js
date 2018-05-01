@@ -1,6 +1,7 @@
 // @flow
 
 import fs from 'fs';
+import glob from 'glob';
 import mkdirp from 'mkdirp';
 import { basename, dirname, extname } from 'path';
 import fileChecker from 'istextorbinary';
@@ -14,6 +15,16 @@ export default class File {
 
   constructor(path: string) {
     this.path = path;
+  }
+
+  static glob(pattern: string, name?: string): File[] {
+    const files = [];
+
+    glob.sync(namedCasex(pattern, name)).forEach(path => {
+      if (basename(path).includes('.')) files.push(new File(path));
+    });
+
+    return files;
   }
 
   /*

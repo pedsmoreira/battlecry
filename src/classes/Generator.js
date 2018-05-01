@@ -1,7 +1,6 @@
 // @flow
 
 import fs from 'fs';
-import glob from 'glob';
 import { join, basename, dirname } from 'path';
 import chalk from 'chalk';
 import program from 'commander';
@@ -77,12 +76,7 @@ export default class Generator {
   }
 
   files(pattern: string, name?: string): File[] {
-    const files = [];
-    glob.sync(namedCasex(pattern, name)).forEach(path => {
-      if (basename(path).includes('.')) files.push(new File(path));
-    });
-
-    return files;
+    return File.glob(pattern, name);
   }
 
   delete(path: string): void {

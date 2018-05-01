@@ -46,10 +46,7 @@ export default class GitDownload {
   copyGenerators() {
     const globPath = this.hasSamba ? this.sambaPath : this.path;
 
-    glob.sync(`${globPath}/**`).forEach(path => {
-      if (!basename(path).includes('.')) return;
-
-      const file = new File(path);
+    File.glob(`${globPath}/**`).forEach(file => {
       const newPath = join(process.cwd(), 'samba', file.path.substring(globPath.length));
       file.saveAs(newPath);
     });
