@@ -32,6 +32,7 @@ export default class File {
    */
 
   get binary(): boolean {
+    if (this.extension === '.log') return false;
     return !fileChecker.isTextSync(this.path);
   }
 

@@ -4,7 +4,7 @@ import File from '../classes/File';
 
 import log from './log';
 
-export default function displayError(error: Error) {
+export default function dd(error: Error) {
   log.error(`❌  Error: ${error.message}`);
   log.emptyLine();
 

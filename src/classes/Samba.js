@@ -9,7 +9,7 @@ import pkg from '../../package.json';
 import Generator from './Generator';
 
 import log from '../helpers/log';
-import displayError from '../helpers/displayError';
+import dd from '../helpers/dd';
 
 export default class Samba {
   executed: boolean;
@@ -28,7 +28,7 @@ export default class Samba {
         if (!generatorClass) return log.warn(`Skipping generator ${basename(path)} - missing export default`);
         this.generators[name] = this.createGenerator(name, path, generatorClass);
       } catch (error) {
-        displayError(error);
+        dd(error);
       }
     });
   }
@@ -38,11 +38,15 @@ export default class Samba {
     const setupExists = fs.existsSync(`${setupPath}`);
 
     if (setupExists) {
-      // $FlowFixMe
-      const fn: Function = require(setupPath).default;
+      try {
+        // $FlowFixMe
+        const fn: Function = require(setupPath).default;
 
-      if (fn) fn(this);
-      else log.warn(`Skipping samba-setup.js in folder ${basename(path)} - empty file`);
+        if (fn) fn(this);
+        else log.warn(`Skipping samba-setup.js in folder ${basename(path)} - empty file`);
+      } catch (error) {
+        dd(error);
+      }
     }
   }
 

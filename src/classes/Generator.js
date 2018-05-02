@@ -11,7 +11,7 @@ import Samba from './Samba';
 import GeneratorMethod, { type MethodConfig } from './GeneratorMethod';
 
 import namedCasex from '../helpers/namedCasex';
-import displayError from '../helpers/displayError';
+import dd from '../helpers/dd';
 import log from '../helpers/log';
 
 type Args = { [name: string]: string | string[] };
@@ -63,7 +63,7 @@ export default class Generator {
       const response = method.bind(this)();
       if (response) await response;
     } catch (error) {
-      displayError(error);
+      dd(error);
     }
 
     log.removeIndentation();
