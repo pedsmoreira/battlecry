@@ -9,6 +9,10 @@
 
 <!-- [![Test Coverage](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/test_coverage)](https://codeclimate.com/github/pedsmoreira/samba/test_coverage) -->
 
+<p align="center">
+  <img src="./docs/screencast.gif" g/>
+</p>
+
 ## Why Samba?
 
 * ✅ Perfect for creating new modules, components and even new projects
