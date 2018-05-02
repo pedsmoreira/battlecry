@@ -35,15 +35,6 @@ export default class File {
     return !fileChecker.isTextSync(this.path);
   }
 
-  get text(): string {
-    if (this.binary) throw new Error('Attempting to treat binary file as text');
-    return this.__text || fs.readFileSync(this.path, 'utf8');
-  }
-
-  set text(text: string): void {
-    this.__text = text;
-  }
-
   get exists(): boolean {
     return fs.existsSync(this.path);
   }
@@ -96,6 +87,15 @@ export default class File {
     return lines.join('\r\n');
   }
 
+  get text(): string {
+    if (this.binary) throw new Error('Attempting to treat binary file as text');
+    return this.__text || fs.readFileSync(this.path, 'utf8');
+  }
+
+  set text(text: string): void {
+    this.__text = text;
+  }
+
   get lines(): string[] {
     return this.text.split(/\r?\n/) || [];
   }
@@ -128,36 +128,40 @@ export default class File {
     return lines.length - this.search(search, lines.reverse()) - 1;
   }
 
-  before(search: string | number, contents: string, name?: string): this {
+  before(search: string | number, text: string, name?: string): this {
     const lines = this.lines;
-    lines.splice(this.search(search), 0, namedCasex(contents, name));
+    lines.splice(this.search(search), 0, namedCasex(text, name));
 
     this.lines = lines;
     return this;
   }
 
-  beforeLast(search: string | number, contents: string, name?: string): this {
-    return this.before(this.last(search), contents, name);
+  beforeLast(search: string | number, text: string, name?: string): this {
+    return this.before(this.last(search), text, name);
   }
 
-  after(search: number | string, contents: string, name?: string): this {
-    return this.before(this.search(search) + 1, contents, name);
+  after(search: number | string, text: string, name?: string): this {
+    return this.before(this.search(search) + 1, text, name);
   }
 
-  afterLast(search: number | string, contents: string, name?: string): this {
-    return this.after(this.last(search), contents, name);
+  afterLast(search: number | string, text: string, name?: string): this {
+    return this.after(this.last(search), text, name);
   }
 
-  add(contents: string, name?: string): this {
-    return this.before(this.lines.length, contents, name);
+  add(text: string, name?: string): this {
+    return this.before(this.lines.length, text, name);
   }
 
-  replace(search: string | number, contents: string, name?: string): this {
+  replace(search: string | number, text: string, name?: string): this {
     const lines = this.lines;
-    lines[this.search(search)] = namedCasex(contents, name);
+    lines[this.search(search)] = namedCasex(text, name);
 
     this.lines = lines;
     return this;
+  }
+
+  replaceLast(search: string | number, text: string, name?: string): this {
+    return this.replace(this.last(search), text, name);
   }
 
   remove(search: string | number): this {
@@ -166,5 +170,9 @@ export default class File {
 
     this.lines = lines;
     return this;
+  }
+
+  removeLast(search: string | number): this {
+    return this.remove(this.last(search));
   }
 }

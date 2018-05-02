@@ -10,6 +10,12 @@
     "sb": "./bin/samba.js",
     "samba": "./bin/samba.js"
   },
+  "files": [
+    "bin",
+    "samba",
+    "src",
+    ".babelrc"
+  ],
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",

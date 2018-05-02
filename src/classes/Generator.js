@@ -49,7 +49,7 @@ export default class Generator {
    * Actions
    */
 
-  async play(methodName: string) {
+  async play(methodName: string): Promise<*> {
     // $FlowFixMe
     const method: Function = this[methodName];
     if (!method) this.throwMethodNotImplemented(method);
@@ -102,8 +102,8 @@ export default class Generator {
     return this.files(join(...values));
   }
 
-  template(path: string): File {
-    return this.templates(path)[0];
+  template(pattern: string): File {
+    return this.templates(pattern)[0];
   }
 
   /*

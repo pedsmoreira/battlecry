@@ -15,7 +15,6 @@
 ✅ Use it with all languages and frameworks
 ✅ Plug'n play customizable generators
 ✅ Simple & Powerful API
-✅ Type less, accomplish more
 
 ## Requirements
 
@@ -29,19 +28,19 @@
 npm install -g samba
 ```
 
-## Usage
+## Getting Started
 
 Samba has a very simple structure.
 
 `sb <method> <generator> arguments --options`
 
-Samba can be used through both `samba` and it's short verion `sb`
+Samba can be used through both `samba` and it's short verion `sb`.
 
 ### Initialize Samba on you project
 
 With Samba installed, go to your project folder and run:
 
-```js
+```bash
 sb g init
 ```
 
@@ -54,23 +53,174 @@ This will perform four actions:
 
 You should now be able to see a file called `it-worked/components/test-abc.txt`. This file was created using the generator at `samba/generators/component.generator.js` folder. Check out the generator to see how it works.
 
-### Creating your own generator
+_Note_: Samba uses ES6 with lots of polyfill, so most things should ✨ _just work_ ✨ on your generator class.
 
-### Generator Methods
+### Help
 
-### Handling files
+If you need to check how your methods are registered, you can do so with:
+
+```bash
+sb --help
+```
+
+### Casex naming
+
+This project uses [Casex](https://github.com/pedsmoreira/casex), an open source library designed to be an `All in one function for transforming word casings`. You may see many functions that can optinally receive `name?: string`. This means that all occurrences of the `__name__` pattern will be substituted using `casex`.
+
+Here are a few examples of how it works, considering you're using the name `John Doe`:
+
+* `__name__`: `johndoe`
+* `__naMe__`: `johnDoe`
+* `__NaMe__`: `JohnDoe`
+* `__na-me__`: `john-doe`
+* `__na me__`: `john doe`
+
+🎩 This may sound complicated, but get started, play with Samba and check out a few examples. I'm sure you'll get the hang of it
+
+### Creating your own generators
+
+```bash
+sb g generator your_generator_name_here
+```
+
+This command will create a `samba/generators/component`
+
+### Generator API
+
+### Configuring your methods
+
+Each generator must have a `config` variable defining all samba methods.
+
+```js
+config = {
+  options?: {
+    [name: string]: {
+      description: string,
+      arg?: 'required' | 'optional', // An option may receive an argument
+      shortcut?: string // Defaults to the first letter of the option name
+    }
+  },
+  args?: string, // name ...surnames?
+  description?: string
+}
+```
+
+#### File helpers
+
+* `files(pattern: string, name?: string): File[]`: Get files that match `pattern`
+* `file(pattern: string, name?: string): File`: Get first file that matches `pattern`
+* `delete(path: string): void`: Delete a file or directory
+
+* `templates(pattern?: string): File[]`: Get files inside the generator's `templates/` subdirectory
+* `template(pattern: string): File`: Get first file that matches the pattern
+
+As you may have noticed, most of these methods return one or an array of File(s). For more details about the `File` class API, please check the [File API](#File API) section below.
+
+_Note: Samba performs all IO operations are performed synchronously_
+
+### Helpers to call other generators
+
+There may be cases when you may want to call multiple generators from one generators. Samba provides nice helpers for you to accomplish that in you `Generator` class.
+
+* `generator(name: string): Generator`: Get a new generator instance by name
+* `setArgs(args: Object): this`: Setup generator arguments to be consumed when `play` is called
+* `setOptions(options: Object): this`: Setup generator options to be consumed when `play` is called
+* `play(methodName: string)`: Play a generator method
+
+### Executing command line directly
+
+In some cases you may wanna call command lines directly.
+
+* `exec(command: string): string | Buffer`: Execute command line
+
+### File API
+
+#### Cool shortcuts
+
+* `get binary(): boolean`: Check if it's a binary or text file
+* `get exists(): boolean`: Check if the file exists
+* `get filename(): string`: Get file name
+* `get dirname(): string`: Get file directory path
+* `get extension(): string`: Get file extension
+
+#### Persistence
+
+* `save(): void`: Save file changes on it's current path
+* `saveAs(path: string, name?: string): File`: Save file on a different path
+* `delete(): void`: Delete file
+
+#### Text helpers
+
+Lot's of `text` helpers receive `search: number | string`. This means that if a number is provided it assumes it as being a line number, otherwise it wil search for a line with the given string or throw an error.
+
+* `get text(): string`: Get content as text
+* `set text(text: string): void`: Set content as string (Eg. `file.text = 'abc'`)
+
+* `get lines(): string[]`: Return file text split by line
+* `set lines(lines: string[]): void`: Set file text from an array of lines (Eg. `file.lines = ['a', 'b', 'c']`)
+
+* `replaceText(search: string | RegExp, replace: string, name?: string): this`: Replace one ocurrence of a text in the file
+* `replaceAllText(search: string, replace: string, name?: string): this`: Replace all occurrences of a text in the file
+
+* `search(search: string | number, lines: string[] = this.lines): number`: Get line number of the first line including `search`
+* `last(search: string | number, lines: string[] = this.lines): number`: Like `search`, but with search starting from the last line
+
+* `before(search: string | number, text: string, name?: string): this`: Add text before given line
+* `beforeLast(search: string | number, text: string, name?: string): this`: Like `before`, but using `last`
+
+* `after(search: number | string, text: string, name?: string): this`: Add text after given line
+* `afterLast(search: number | string, text: string, name?: string): this`: Like `after`, but using `last`
+
+* `add(text: string, name?: string): this`: Add text at the end of the file
+
+* `replace(search: string | number, text: string, name?: string): this`: Replace line with a given text
+* `replaceLast(search: string | number, text: string, name?: string): this`: Like `replace`, but using `last`
+
+* `remove(search: string | number): this`: Remove line (`search` method is called to resolve line number)
+* `removeLast(search: string | number): this`: Like `remove`, but using `last`
+
+### Sharing helpers across generators
+
+It's not uncommon to have multiple generators share similar helpers. To facilitate you doing that, you can include files from your samba directory directly, without navigating with `..`.
+
+If you have a `testHelper.js` file under `samba/helpers/testHelper.js` for instance, you could include it as:
+
+```javascript
+import testHelper from 'helpers/testHelper';
+```
 
 ### Downloading generators
 
+By default Samba looks for a GitHub repository to download. If you want to use another service provider, please check the [download-git-repo examples](https://github.com/flipxfx/download-git-repo#examples)
+
+```
+sb download generator owner/path
+```
+
+Samba looks for a `samba/` folder in the repository root. If none is found it defaults to the repository root. You may also set a custom directory to start Samba's search with `--dir`.
+
+```
+sb download generator owner/path --dir test-samba
+```
+
 ### Customizing your samba-setup.js
 
-#### Shortcuts
+#### Loading generators from other folders
 
-Since you may be using Samba many times throughout your work day, it comes with handy shortcuts and setup process.
+```js
+export default function setup(samba) {
+  samba.load('node_modules/samba-generatores-from-node-modules');
+}
+```
 
-#### External packages
+#### Adding new aliases
 
-### Examples
+```js
+export default function setup(samba) {
+  samba.aliases.s = 'strike';
+  // You can now use `sb s component` and it will be translated to `sb strike component`
+}
+```
 
 ## Resources
 

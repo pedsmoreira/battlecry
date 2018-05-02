@@ -68,6 +68,6 @@ export default class GitDownload {
     if (this.hasSamba) logPath = join(logPath, 'samba');
     if (!logPath.endsWith('/')) logPath += '/';
 
-    log.success(`📋  Copying all files from: ${logPath}`);
+    log.success(`📋  Copying all files from repository dir: ${logPath}`);
   }
 }
