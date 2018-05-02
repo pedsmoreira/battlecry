@@ -11,13 +11,10 @@
 
 ## Why Samba?
 
-✅ Perfect for creating new modules, components and even new projects
-
-✅ Use it with all languages and frameworks
-
-✅ Plug'n play customizable generators
-
-✅ Simple & Powerful API
+* ✅ Perfect for creating new modules, components and even new projects
+* ✅ Use it with all languages and frameworks
+* ✅ Plug'n play customizable generators
+* ✅ Simple & Powerful API
 
 # Getting Started
 
@@ -86,7 +83,7 @@ Here are a few examples of how it works, considering you're using the name `John
 sb g generator your_generator_name_here
 ```
 
-This command will create a `samba/generators/component`
+This command will create a `samba/generators/your_generator_name_here`
 
 # Generator API
 
@@ -114,8 +111,8 @@ config = {
 * `file(pattern: string, name?: string): File`: Get first file that matches `pattern`
 * `delete(path: string): void`: Delete a file or directory
 
-* `templates(pattern?: string): File[]`: Get files inside the generator's `templates/` subdirectory
-* `template(pattern: string): File`: Get first file that matches the pattern
+- `templates(pattern?: string): File[]`: Get files inside the generator's `templates/` subdirectory
+- `template(pattern: string): File`: Get first file that matches the pattern
 
 As you may have noticed, most of these methods return one or an array of File(s). For more details about the `File` class API, please check the [File API](#File API) section below.
 
@@ -159,25 +156,25 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 * `get text(): string`: Get content as text
 * `set text(text: string): void`: Set content as string (Eg. `file.text = 'abc'`)
 
-* `get lines(): string[]`: Return file text split by line
-* `set lines(lines: string[]): void`: Set file text from an array of lines (Eg. `file.lines = ['a', 'b', 'c']`)
+- `get lines(): string[]`: Return file text split by line
+- `set lines(lines: string[]): void`: Set file text from an array of lines (Eg. `file.lines = ['a', 'b', 'c']`)
 
-* `replaceText(search: string | RegExp, replace: string, name?: string): this`: Replace one ocurrence of a text in the file
-* `replaceAllText(search: string, replace: string, name?: string): this`: Replace all occurrences of a text in the file
+* `replaceText(search: string | RegExp, replace: string, name?: string): this`: Replace one text ocurrence
+* `replaceAllText(search: string, replace: string, name?: string): this`: Replace all text occurrences
 
-* `search(search: string | number, lines: string[] = this.lines): number`: Get line number of the first line including `search`
-* `last(search: string | number, lines: string[] = this.lines): number`: Like `search`, but with search starting from the last line
+- `search(search: string | number): number`: Get line number of the first line including `search`
+- `last(search: string | number): number`: Like `search`, but starting from the last line
 
 * `before(search: string | number, text: string, name?: string): this`: Add text before given line
 * `beforeLast(search: string | number, text: string, name?: string): this`: Like `before`, but using `last`
 
-* `after(search: number | string, text: string, name?: string): this`: Add text after given line
-* `afterLast(search: number | string, text: string, name?: string): this`: Like `after`, but using `last`
+- `after(search: number | string, text: string, name?: string): this`: Add text after given line
+- `afterLast(search: number | string, text: string, name?: string): this`: Like `after`, but using `last`
 
 * `add(text: string, name?: string): this`: Add text at the end of the file
 
-* `replace(search: string | number, text: string, name?: string): this`: Replace line with a given text
-* `replaceLast(search: string | number, text: string, name?: string): this`: Like `replace`, but using `last`
+- `replace(search: string | number, text: string, name?: string): this`: Replace line with a given text
+- `replaceLast(search: string | number, text: string, name?: string): this`: Like `replace`, but using `last`
 
 * `remove(search: string | number): this`: Remove line (`search` method is called to resolve line number)
 * `removeLast(search: string | number): this`: Like `remove`, but using `last`
@@ -196,11 +193,15 @@ import testHelper from 'helpers/testHelper';
 
 ## Downloading generators
 
-By default Samba looks for a GitHub repository to download. If you want to use another service provider, please check the [download-git-repo examples](https://github.com/flipxfx/download-git-repo#examples)
+You may not have to write all your generators yourself. Samba comes with a handy tool for downloading generators from GitHub.
 
 ```
 sb download generator owner/path
 ```
+
+If you want to a service provider other then GitHub, please check the [download-git-repo examples](https://github.com/flipxfx/download-git-repo#examples)
+
+### Selecting directory to download from
 
 Samba looks for a `samba/` folder in the repository root. If none is found it defaults to the repository root. You may also set a custom directory to start Samba's search with `--dir`.
 
