@@ -9,7 +9,7 @@
 
 <!-- [![Test Coverage](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/test_coverage)](https://codeclimate.com/github/pedsmoreira/samba/test_coverage) -->
 
-# Why Samba?
+## Why Samba?
 
 ✅ Perfect for creating new modules, components and even new projects
 
@@ -19,19 +19,21 @@
 
 ✅ Simple & Powerful API
 
-# Requirements
+# Getting Started
+
+## Requirements
 
 * [NodeJS](https://nodejs.org/en/) installed
 
 🎩 If your project does not use NodeJS don't worry! Samba's API is very simple and you'll only need NodeJS installed to run the commands, no need to change your project setup.
 
-# Install
+## Install
 
 ```sh
 npm install -g samba
 ```
 
-# Getting Started
+## Command structure
 
 Samba has a very simple structure.
 
