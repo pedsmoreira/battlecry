@@ -16,6 +16,24 @@
 * ✅ Plug'n play customizable generators
 * ✅ Simple & Powerful API
 
+## Articles
+
+## Examples
+
+Each example can be downloadable with `sb download generator examples/example_name_here`
+
+1.  [multiple-files-component](./examples/multiple-files-component): Copy multiple templates in one
+2.  [aliases](./examples/aliases): Add your own aliases
+3.  [helpers](./examples/aliases): Use helpers to share methods across generators
+4.  [texts](./examples/multiple-files-component): Examples of text handling
+5.  [call-other-generators](./examples/call-other-generators): Use one generator to call multiple generators in a clean fashion
+6.  [exec](./examples/aliases): Execute a command line
+7.  [load](./examples/aliases): Load generators from a folder other than `samba/`
+
+Advanced examples
+
+1.  [advanced-crud](./examples/advanced-crud): Make multiple operations in one line
+
 # Getting Started
 
 ## Requirements

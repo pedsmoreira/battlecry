@@ -2,16 +2,19 @@
 
 import chalk from 'chalk';
 
+const INDENTATION = '   ';
+
 class Log {
   indentation: string = '';
   hasEmptyLine: boolean = false;
 
   addIndentation() {
-    this.indentation += '  ';
+    this.indentation += INDENTATION;
   }
 
   removeIndentation() {
-    if (this.indentation.length) this.indentation = this.indentation.substring(0, this.indentation.length - 2);
+    if (this.indentation.length)
+      this.indentation = this.indentation.substring(0, this.indentation.length - INDENTATION.length);
   }
 
   log(chalker: Function, message: string) {
@@ -30,6 +33,10 @@ class Log {
 
   error(message: string) {
     this.log(chalk.red, message);
+  }
+
+  errorStack(message: string) {
+    this.log(chalk.rgb(200, 160, 160), message);
   }
 
   emptyLine() {

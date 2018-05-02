@@ -58,8 +58,16 @@ export default class Generator {
     log.success(`🥁  Playing: ${methodName} ${this.name}`);
     log.addIndentation();
 
-    const response = method.bind(this)();
-    if (response) await response;
+    try {
+      const response = method.bind(this)();
+      if (response) await response;
+    } catch (err) {
+      log.error(`❌  Error: ${err.message}`);
+      log.emptyLine();
+      log.errorStack(err.stack);
+      log.emptyLine();
+      process.exit();
+    }
 
     log.removeIndentation();
     log.emptyLine();

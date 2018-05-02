@@ -166,7 +166,7 @@ export default class File {
 
   remove(search: string | number): this {
     const lines = this.lines;
-    delete lines[this.search(search)];
+    lines.splice(this.search(search), 1);
 
     this.lines = lines;
     return this;
