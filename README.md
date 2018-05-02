@@ -154,6 +154,12 @@ In some cases you may wanna call command lines directly.
 
 # File API
 
+## Creating a new File instance
+
+In most cases you'll use the file helpers on the generator. But if you need to create it manually:
+
+* `constructor(path: string)`
+
 ## Cool shortcuts
 
 * `get binary(): boolean`: Check if it's a binary or text file
