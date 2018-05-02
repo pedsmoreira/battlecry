@@ -22,18 +22,16 @@ Each example can be downloaded with `sb download generator examples/example_name
 
 1.  [args](./examples/args): Working with arguments
 2.  [options](./examples/options): Working with options
-3.  [WIP] - [multiple-files-component](./examples/multiple-files-component): Working with multiple files
-4.  [WIP] - [aliases](./examples/aliases): Creating your own aliases
+3.  [WIP] - [multiple-templates](./examples/multiple-files): Working with multiple template files
+4.  [aliases](./examples/aliases): Creating your own method aliases
 5.  [WIP] - [helpers](./examples/helpers): Using helpers to share methods across generators
-6.  [WIP] - [texts](./examples/texts): Handling texts
-7.  [WIP] - [binaries](./examples/texts): Handling binaries (such as images)
-8.  [WIP] - [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
-9.  [WIP] - [exec](./examples/exec): Executing a command line
-10. [WIP] - [load](./examples/load): Loading generators from a folder other than `samba/`
+6.  [WIP] - [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
+7.  [WIP] - [exec](./examples/exec): Executing a command line
+8.  [WIP] - [load](./examples/load): Loading generators from a folder other than `samba/`
 
 Advanced examples
 
-10. [WIP] - [advanced-crud](./examples/advanced-crud): Make magical CRUDs
+9.  [WIP] - [advanced-crud](./examples/advanced-crud): Make magical CRUDs
 
 # Getting Started
 
@@ -154,6 +152,8 @@ In some cases you may wanna call command lines directly.
 
 # File API
 
+Both text files and binaries (such as images) are supported out of the box.
+
 ## Creating a new File instance
 
 In most cases you'll use the file helpers on the generator. But if you need to create it manually:
@@ -204,6 +204,8 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 
 * `remove(search: string | number): this`: Remove line (`search` method is called to resolve line number)
 * `removeLast(search: string | number): this`: Like `remove`, but using `last`
+
+_Note_: If you attempt to use any text helper in a binary file (such as an image), samba will throw an error.
 
 # Miscellaneous
 
