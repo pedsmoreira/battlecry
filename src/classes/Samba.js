@@ -9,6 +9,7 @@ import pkg from '../../package.json';
 import Generator from './Generator';
 
 import log from '../helpers/log';
+import displayError from '../helpers/displayError';
 
 export default class Samba {
   executed: boolean;
@@ -19,12 +20,16 @@ export default class Samba {
   load(path: string) {
     this.setup(path);
     glob.sync(`${path}/generators/*/*.generator.js`).forEach(path => {
-      // $FlowFixMe
-      const generatorClass = require(path).default;
-      const name = basename(path, '.generator.js');
+      try {
+        // $FlowFixMe
+        const generatorClass = require(path).default;
+        const name = basename(path, '.generator.js');
 
-      if (!generatorClass) return log.warn(`Skipping generator ${basename(path)} - missing export default`);
-      this.generators[name] = this.createGenerator(name, path, generatorClass);
+        if (!generatorClass) return log.warn(`Skipping generator ${basename(path)} - missing export default`);
+        this.generators[name] = this.createGenerator(name, path, generatorClass);
+      } catch (error) {
+        displayError(error);
+      }
     });
   }
 

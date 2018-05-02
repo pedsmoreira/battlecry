@@ -148,7 +148,11 @@ export default class File {
     return this.after(this.last(search), text, name);
   }
 
-  add(text: string, name?: string): this {
+  prepend(text: string, name?: string): this {
+    return this.before(0, text, name);
+  }
+
+  append(text: string, name?: string): this {
     return this.before(this.lines.length, text, name);
   }
 

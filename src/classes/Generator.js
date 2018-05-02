@@ -8,9 +8,10 @@ import { execSync } from 'child_process';
 
 import File from './File';
 import Samba from './Samba';
-import namedCasex from '../helpers/namedCasex';
 import GeneratorMethod, { type MethodConfig } from './GeneratorMethod';
 
+import namedCasex from '../helpers/namedCasex';
+import displayError from '../helpers/displayError';
 import log from '../helpers/log';
 
 type Args = { [name: string]: string | string[] };
@@ -61,12 +62,8 @@ export default class Generator {
     try {
       const response = method.bind(this)();
       if (response) await response;
-    } catch (err) {
-      log.error(`❌  Error: ${err.message}`);
-      log.emptyLine();
-      log.errorStack(err.stack);
-      log.emptyLine();
-      process.exit();
+    } catch (error) {
+      displayError(error);
     }
 
     log.removeIndentation();

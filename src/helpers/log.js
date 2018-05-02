@@ -22,6 +22,10 @@ class Log {
     console.log(chalker(this.indentation + message));
   }
 
+  default(message: string) {
+    return this.log(() => message, message);
+  }
+
   success(message: string) {
     this.log(chalk.green, message);
   }
@@ -33,10 +37,6 @@ class Log {
 
   error(message: string) {
     this.log(chalk.red, message);
-  }
-
-  errorStack(message: string) {
-    this.log(chalk.rgb(200, 160, 160), message);
   }
 
   emptyLine() {

@@ -6,21 +6,21 @@ export type OptionProperties = {
   [name: string]: {
     description: string,
     arg?: 'required' | 'optional',
-    shortcut?: string
+    alias?: string
   }
 };
 
 export default class OptionBuilder {
   name: string;
   description: string;
-  shortcut: string;
+  alias: string;
   arg: ?('required' | 'optional');
 
   constructor(name: string, properties: Object) {
     this.name = name;
     this.description = properties.description;
     this.arg = properties.arg;
-    this.shortcut = properties.shortcut || name[0];
+    this.alias = properties.alias || name[0];
   }
 
   get commanderArg(): string {
@@ -31,11 +31,11 @@ export default class OptionBuilder {
   }
 
   build() {
-    return `-${this.shortcut}, --${this.name} ${this.commanderArg}`;
+    return `-${this.alias}, --${this.name} ${this.commanderArg}`;
   }
 
   help() {
-    let optionText = chalk.blueBright(`    -${this.shortcut} --${this.name}`);
+    let optionText = chalk.blueBright(`    -${this.alias} --${this.name}`);
 
     if (this.arg === 'required') {
       optionText += chalk.cyanBright(` value`);

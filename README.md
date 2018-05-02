@@ -16,23 +16,24 @@
 * ✅ Plug'n play customizable generators
 * ✅ Simple & Powerful API
 
-## Articles
-
 ## Examples
 
-Each example can be downloadable with `sb download generator examples/example_name_here`
+Each example can be downloaded with `sb download generator examples/example_name_here`.
 
-1.  [multiple-files-component](./examples/multiple-files-component): Copy multiple templates in one
-2.  [aliases](./examples/aliases): Add your own aliases
-3.  [helpers](./examples/aliases): Use helpers to share methods across generators
-4.  [texts](./examples/multiple-files-component): Examples of text handling
-5.  [call-other-generators](./examples/call-other-generators): Use one generator to call multiple generators in a clean fashion
-6.  [exec](./examples/aliases): Execute a command line
-7.  [load](./examples/aliases): Load generators from a folder other than `samba/`
+1.  [args](./examples/args): Working with arguments
+2.  [options](./examples/options): Working with options
+3.  [WIP][multiple-files-component](./examples/multiple-files-component): Working with multiple files
+4.  [WIP][aliases](./examples/aliases): Creating your own aliases
+5.  [WIP][helpers](./examples/helpers): Using helpers to share methods across generators
+6.  [WIP][texts](./examples/texts): Handling texts
+7.  [WIP][binaries](./examples/texts): Handling binaries (such as images)
+8.  [WIP][call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
+9.  [WIP][exec](./examples/exec): Executing a command line
+10. [WIP][load](./examples/load): Loading generators from a folder other than `samba/`
 
 Advanced examples
 
-1.  [advanced-crud](./examples/advanced-crud): Make multiple operations in one line
+10. [WIP][advanced-crud](./examples/advanced-crud): Make magical CRUDs
 
 # Getting Started
 
@@ -115,7 +116,7 @@ config = {
     [name: string]: {
       description: string,
       arg?: 'required' | 'optional', // An option may receive an argument
-      shortcut?: string // Defaults to the first letter of the option name
+      alias?: string // Defaults to the first letter of the option name
     }
   },
   args?: string, // name ...surnames?
@@ -189,7 +190,8 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 - `after(search: number | string, text: string, name?: string): this`: Add text after given line
 - `afterLast(search: number | string, text: string, name?: string): this`: Like `after`, but using `last`
 
-* `add(text: string, name?: string): this`: Add text at the end of the file
+* `prepend(text: string, name?: string): this`: Add text at the beginning of the file
+* `append(text: string, name?: string): this`: Add text at the end of the file
 
 - `replace(search: string | number, text: string, name?: string): this`: Replace line with a given text
 - `replaceLast(search: string | number, text: string, name?: string): this`: Like `replace`, but using `last`
