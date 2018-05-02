@@ -9,26 +9,29 @@
 
 <!-- [![Test Coverage](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/test_coverage)](https://codeclimate.com/github/pedsmoreira/samba/test_coverage) -->
 
-## Why Samba?
+# Why Samba?
 
 ✅ Perfect for creating new modules, components and even new projects
+
 ✅ Use it with all languages and frameworks
+
 ✅ Plug'n play customizable generators
+
 ✅ Simple & Powerful API
 
-## Requirements
+# Requirements
 
 * [NodeJS](https://nodejs.org/en/) installed
 
 🎩 If your project does not use NodeJS don't worry! Samba's API is very simple and you'll only need NodeJS installed to run the commands, no need to change your project setup.
 
-## Install
+# Install
 
 ```sh
 npm install -g samba
 ```
 
-## Getting Started
+# Getting Started
 
 Samba has a very simple structure.
 
@@ -36,7 +39,7 @@ Samba has a very simple structure.
 
 Samba can be used through both `samba` and it's short verion `sb`.
 
-### Initialize Samba on you project
+## Initialize Samba on you project
 
 With Samba installed, go to your project folder and run:
 
@@ -51,11 +54,11 @@ This will perform four actions:
 * Create a generator called `component`
 * Play the just created `component` with the arg `test-abc`
 
-You should now be able to see a file called `it-worked/components/test-abc.txt`. This file was created using the generator at `samba/generators/component.generator.js` folder. Check out the generator to see how it works.
+You should now be able to see a file called `it-worked/components/test-abc.txt`. This file was created using the generator at `samba/generators/component.generator.js` folder.
 
 _Note_: Samba uses ES6 with lots of polyfill, so most things should ✨ _just work_ ✨ on your generator class.
 
-### Help
+## Help
 
 If you need to check how your methods are registered, you can do so with:
 
@@ -63,21 +66,19 @@ If you need to check how your methods are registered, you can do so with:
 sb --help
 ```
 
-### Casex naming
+## Casex naming
 
-This project uses [Casex](https://github.com/pedsmoreira/casex), an open source library designed to be an `All in one function for transforming word casings`. You may see many functions that can optinally receive `name?: string`. This means that all occurrences of the `__name__` pattern will be substituted using `casex`.
+This project uses [Casex](https://github.com/pedsmoreira/casex), an open source library designed to be an `All in one function for transforming word casings`. You may see many functions that can optinally receive `name?: string`. This means that all occurrences of the `__name__` pattern will be substituted using `casex` if the `name` parameter is provided.
 
 Here are a few examples of how it works, considering you're using the name `John Doe`:
 
-* `__name__`: `johndoe`
-* `__naMe__`: `johnDoe`
-* `__NaMe__`: `JohnDoe`
-* `__na-me__`: `john-doe`
-* `__na me__`: `john doe`
+* `__name__`: johndoe
+* `__naMe__`: johnDoe
+* `__NaMe__`: JohnDoe
+* `__na-me__`: john-doe
+* `__na me__`: john doe
 
-🎩 This may sound complicated, but get started, play with Samba and check out a few examples. I'm sure you'll get the hang of it
-
-### Creating your own generators
+## Creating your own generators
 
 ```bash
 sb g generator your_generator_name_here
@@ -85,9 +86,9 @@ sb g generator your_generator_name_here
 
 This command will create a `samba/generators/component`
 
-### Generator API
+# Generator API
 
-### Configuring your methods
+## Configuring your methods
 
 Each generator must have a `config` variable defining all samba methods.
 
@@ -105,7 +106,7 @@ config = {
 }
 ```
 
-#### File helpers
+## File helpers
 
 * `files(pattern: string, name?: string): File[]`: Get files that match `pattern`
 * `file(pattern: string, name?: string): File`: Get first file that matches `pattern`
@@ -118,7 +119,7 @@ As you may have noticed, most of these methods return one or an array of File(s)
 
 _Note: Samba performs all IO operations are performed synchronously_
 
-### Helpers to call other generators
+## Helpers to call other generators
 
 There may be cases when you may want to call multiple generators from one generators. Samba provides nice helpers for you to accomplish that in you `Generator` class.
 
@@ -127,15 +128,15 @@ There may be cases when you may want to call multiple generators from one genera
 * `setOptions(options: Object): this`: Setup generator options to be consumed when `play` is called
 * `play(methodName: string)`: Play a generator method
 
-### Executing command line directly
+## Executing command line directly
 
 In some cases you may wanna call command lines directly.
 
 * `exec(command: string): string | Buffer`: Execute command line
 
-### File API
+# File API
 
-#### Cool shortcuts
+## Cool shortcuts
 
 * `get binary(): boolean`: Check if it's a binary or text file
 * `get exists(): boolean`: Check if the file exists
@@ -143,13 +144,13 @@ In some cases you may wanna call command lines directly.
 * `get dirname(): string`: Get file directory path
 * `get extension(): string`: Get file extension
 
-#### Persistence
+## Persistence
 
 * `save(): void`: Save file changes on it's current path
 * `saveAs(path: string, name?: string): File`: Save file on a different path
 * `delete(): void`: Delete file
 
-#### Text helpers
+## Text helpers
 
 Lot's of `text` helpers receive `search: number | string`. This means that if a number is provided it assumes it as being a line number, otherwise it wil search for a line with the given string or throw an error.
 
@@ -179,7 +180,9 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 * `remove(search: string | number): this`: Remove line (`search` method is called to resolve line number)
 * `removeLast(search: string | number): this`: Like `remove`, but using `last`
 
-### Sharing helpers across generators
+# Miscellaneous
+
+## Sharing helpers across generators
 
 It's not uncommon to have multiple generators share similar helpers. To facilitate you doing that, you can include files from your samba directory directly, without navigating with `..`.
 
@@ -189,7 +192,7 @@ If you have a `testHelper.js` file under `samba/helpers/testHelper.js` for insta
 import testHelper from 'helpers/testHelper';
 ```
 
-### Downloading generators
+## Downloading generators
 
 By default Samba looks for a GitHub repository to download. If you want to use another service provider, please check the [download-git-repo examples](https://github.com/flipxfx/download-git-repo#examples)
 
@@ -203,9 +206,9 @@ Samba looks for a `samba/` folder in the repository root. If none is found it de
 sb download generator owner/path --dir test-samba
 ```
 
-### Customizing your samba-setup.js
+## Customizing your samba-setup.js
 
-#### Loading generators from other folders
+### Loading generators from other folders
 
 ```js
 export default function setup(samba) {
@@ -213,7 +216,7 @@ export default function setup(samba) {
 }
 ```
 
-#### Adding new aliases
+### Adding new aliases
 
 ```js
 export default function setup(samba) {
@@ -222,7 +225,7 @@ export default function setup(samba) {
 }
 ```
 
-## Resources
+# Resources
 
 * [Contributing Guide](./CONTRIBUTING.md)
 * [Code of Conduct](./CODE_OF_CONDUCT.md)
