@@ -26,7 +26,7 @@ Each example can be downloaded with `sb download generator examples/example_name
 
 1.  [args](./examples/args): Working with arguments
 2.  [options](./examples/options): Working with options
-3.  [WIP] - [multiple-templates](./examples/multiple-files): Working with multiple template files
+3.  [multiple-templates](./examples/multiple-files): Working with multiple template files
 4.  [aliases](./examples/aliases): Creating your own method aliases
 5.  [helpers](./examples/helpers): Using helpers to share methods across generators
 6.  [WIP] - [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
