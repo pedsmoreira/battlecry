@@ -29,7 +29,7 @@ Each example can be downloaded with `sb download generator examples/example_name
 3.  [multiple-templates](./examples/multiple-files): Working with multiple template files
 4.  [aliases](./examples/aliases): Creating your own method aliases
 5.  [helpers](./examples/helpers): Using helpers to share methods across generators
-6.  [WIP] - [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
+6.  [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
 7.  [WIP] - [exec](./examples/exec): Executing a command line
 8.  [WIP] - [load](./examples/load): Loading generators from a folder other than `samba/`
 
