@@ -11,10 +11,12 @@ import log from '../helpers/log';
 
 export default class File {
   path: string;
+  name: ?string;
   __text: string;
 
-  constructor(path: string) {
+  constructor(path: string, name?: string) {
     this.path = path;
+    this.name = name;
   }
 
   static glob(pattern: string, name?: string): File[] {
@@ -32,7 +34,7 @@ export default class File {
    */
 
   get binary(): boolean {
-    if (this.extension === '.log') return false;
+    if (!this.exists || this.extension === '.log') return false;
     return !fileChecker.isTextSync(this.path);
   }
 
@@ -52,11 +54,11 @@ export default class File {
     return extname(this.path);
   }
 
-  save(): void {
-    this.saveAs(this.path);
+  save(): this {
+    return this.saveAs(this.path, this.name);
   }
 
-  saveAs(path: string, name?: string): File {
+  saveAs(path: string, name?: ?string): File {
     if (path.endsWith('/')) path += this.filename;
     path = namedCasex(path, name);
 
@@ -88,9 +90,15 @@ export default class File {
     return lines.join('\r\n');
   }
 
+  readText() {
+    this.text = this.exists ? fs.readFileSync(this.path, 'utf8') : '';
+  }
+
   get text(): string {
     if (this.binary) throw new Error('Attempting to treat binary file as text');
-    return this.__text || fs.readFileSync(this.path, 'utf8');
+
+    if (!this.__text) this.readText();
+    return this.__text;
   }
 
   set text(text: string): void {

@@ -30,7 +30,7 @@ Each example can be downloaded with `sb download generator examples/example_name
 4.  [aliases](./examples/aliases): Creating your own method aliases
 5.  [helpers](./examples/helpers): Using helpers to share methods across generators
 6.  [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
-7.  [WIP] - [exec](./examples/exec): Executing a command line
+7.  [exec](./examples/exec): Executing a command line
 8.  [WIP] - [load](./examples/load): Loading generators from a folder other than `samba/`
 
 Advanced examples
@@ -162,7 +162,7 @@ Both text files and binaries (such as images) are supported out of the box.
 
 In most cases you'll use the file helpers on the generator. But if you need to create it manually:
 
-* `constructor(path: string)`
+* `constructor(path: string, name?: string)`
 
 ## Cool shortcuts
 
