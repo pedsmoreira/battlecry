@@ -1,6 +1,6 @@
 {
   "name": "samba",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A simple and customizable scaffolding tool for all languages and frameworks",
   "main": "src/index.js",
   "repository": "https://pedsmoreira@github.com/pedsmoreira/samba.git",
