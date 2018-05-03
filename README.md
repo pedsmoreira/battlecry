@@ -31,7 +31,7 @@ Each example can be downloaded with `sb download generator examples/example_name
 5.  [helpers](./examples/helpers): Using helpers to share methods across generators
 6.  [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
 7.  [exec](./examples/exec): Executing a command line
-8.  [WIP] - [load](./examples/load): Loading generators from a folder other than `samba/`
+8.  [load](./examples/load): Loading generators from a folder other than `samba/`
 
 Advanced examples
 
@@ -252,6 +252,8 @@ export default function setup(samba) {
 ```
 
 ### Adding new aliases
+
+By default Samba comes with two aliases: `g: generate` and `d: destroy`. You can both override these aliases and/or create new ones.
 
 ```js
 export default function setup(samba) {
