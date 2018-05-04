@@ -19,6 +19,13 @@
 * ✅ Use it with all languages and frameworks
 * ✅ Plug'n play customizable generators
 * ✅ Simple & Powerful API
+* ✅ Next generation naming with [casex](https://github.com/pedsmoreira/casex)
+
+### Why not just use [Yeoman](http://yeoman.io/)?
+
+Yeoman is a great tool for creating new projects, but when it comes to updating ongoing projects, I think there's a lot of room for improvement. If you want to use a framework with a strict set of libraries and requirements you can probably find a Yeoman generator that suits you, but you won't be able to customize these generators with ease.
+
+In my experience, the farther you go on a project, the more you'll need to shape your generators to fit it. Each project has it's own requirements and it's only fair that it get it's own generators. With Samba you can create your own or download generators to give you a nice quickstart, and when you need to customize them, it's very easy to do so and you can share the changes with your whole team.
 
 ## Examples
 
@@ -88,7 +95,7 @@ sb --help
 
 ## Casex naming
 
-This project uses [Casex](https://github.com/pedsmoreira/casex), an open source library designed to be an `All in one function for transforming word casings`. You may see many functions that can optinally receive `name?: string`. This means that all occurrences of the `__name__` pattern will be substituted using `casex` if the `name` parameter is provided.
+This project uses [casex](https://github.com/pedsmoreira/casex), an open source library designed to be an `All in one function for transforming word casings`. You may see many functions that can optinally receive `name?: string`. This means that all occurrences of the `__name__` pattern will be substituted using `casex` if the `name` parameter is provided.
 
 Here are a few examples of how it works, considering you're using the name `John Doe`:
 
