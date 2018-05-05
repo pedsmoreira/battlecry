@@ -137,7 +137,7 @@ config = {
 
 * `files(pattern: string, name?: string): File[]`: Get files that match `pattern`
 * `file(pattern: string, name?: string): File`: Get first file that matches `pattern`
-* `delete(path: string): void`: Delete a file or directory
+* `delete(path: string, name?: string): void`: Delete a file or directory
 
 - `templates(pattern?: string): File[]`: Get files inside the generator's `templates/` subdirectory
 - `template(pattern: string): File`: Get first file that matches the pattern
@@ -198,8 +198,8 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 * `replaceText(search: string | RegExp, replace: string, name?: string): this`: Replace one text ocurrence
 * `replaceAllText(search: string, replace: string, name?: string): this`: Replace all text occurrences
 
-- `search(search: string | number): number`: Get line number of the first line including `search`
-- `last(search: string | number): number`: Like `search`, but starting from the last line
+- `search(search: string | number, name?: string): number`: Get line number of the first line including `search`
+- `last(search: string | number, name?: string): number`: Like `search`, but starting from the last line
 
 * `before(search: string | number, text: string, name?: string): this`: Add text before given line
 * `beforeLast(search: string | number, text: string, name?: string): this`: Like `before`, but using `last`
@@ -213,8 +213,8 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 - `replace(search: string | number, text: string, name?: string): this`: Replace line with a given text
 - `replaceLast(search: string | number, text: string, name?: string): this`: Like `replace`, but using `last`
 
-* `remove(search: string | number): this`: Remove line (`search` method is called to resolve line number)
-* `removeLast(search: string | number): this`: Like `remove`, but using `last`
+* `remove(search: string | number, name?: string): this`: Remove line (`search` method is called to resolve line number)
+* `removeLast(search: string | number, name?: string): this`: Like `remove`, but using `last`
 
 _Note_: If you attempt to use any text helper in a binary file (such as an image), samba will throw an error.
 

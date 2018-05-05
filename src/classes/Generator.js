@@ -5,6 +5,7 @@ import { join, basename, dirname } from 'path';
 import chalk from 'chalk';
 import program from 'commander';
 import { execSync } from 'child_process';
+import rimraf from 'rimraf';
 
 import File from './File';
 import Samba from './Samba';
@@ -85,11 +86,10 @@ export default class Generator {
     return File.glob(pattern, name);
   }
 
-  delete(path: string): void {
-    const isDirectory = fs.lstatSync(path).isDirectory();
-
-    if (isDirectory) fs.rmdir(path);
-    else fs.unlink(path);
+  delete(path: string, name?: string): void {
+    path = namedCasex(path, name);
+    rimraf.sync(path);
+    log.success(`🔥  Path deleted: ${path}`);
   }
 
   /*

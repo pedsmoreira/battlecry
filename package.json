@@ -45,6 +45,7 @@
     "download-git-repo": "^1.0.2",
     "glob": "^7.1.2",
     "istextorbinary": "^2.2.1",
+    "rimraf": "^2.6.2",
     "tmp": "^0.0.33"
   },
   "devDependencies": {

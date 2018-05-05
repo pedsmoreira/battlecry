@@ -122,9 +122,11 @@ export default class File {
     return this.replaceText(new RegExp(search, 'g'), replace, name);
   }
 
-  search(search: string | number, lines: string[] = this.lines): number {
+  search(search: string | number, name?: string): number {
     if (typeof search === 'number') return search;
 
+    search = namedCasex(search, name);
+    const lines = this.lines;
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       if (line.indexOf(search) !== -1) return i;
@@ -133,8 +135,17 @@ export default class File {
     throw new Error(`'${search}' not found on file ${this.path}`);
   }
 
-  last(search: string | number, lines: string[] = this.lines): number {
-    return lines.length - this.search(search, lines.reverse()) - 1;
+  last(search: string | number, name?: string): number {
+    if (typeof search === 'number') return search;
+
+    search = namedCasex(search, name);
+    const lines = this.lines;
+    for (let i = lines.length - 1; i >= 0; i--) {
+      const line = lines[i];
+      if (line.indexOf(search) !== -1) return i;
+    }
+
+    throw new Error(`'${search}' not found on file ${this.path}`);
   }
 
   before(search: string | number, text: string, name?: string): this {
@@ -177,15 +188,15 @@ export default class File {
     return this.replace(this.last(search), text, name);
   }
 
-  remove(search: string | number): this {
+  remove(search: string | number, name?: string): this {
     const lines = this.lines;
-    lines.splice(this.search(search), 1);
+    lines.splice(this.search(search, name), 1);
 
     this.lines = lines;
     return this;
   }
 
-  removeLast(search: string | number): this {
-    return this.remove(this.last(search));
+  removeLast(search: string | number, name?: string): this {
+    return this.remove(this.last(search, name));
   }
 }
