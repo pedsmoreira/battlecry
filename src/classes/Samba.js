@@ -2,7 +2,7 @@
 
 import program from 'commander';
 import glob from 'glob';
-import { join, basename, dirname } from 'path';
+import { basename } from 'path';
 import fs from 'fs';
 import pkg from '../../package.json';
 
