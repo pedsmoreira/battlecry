@@ -7,4 +7,11 @@ describe('namedCasex', () => {
 
     expect(namedCasex(text, 'john-doe')).toEqual(transformedText);
   });
+
+  it('transforms array into multiline text', () => {
+    const text = ['Hi', 'my name is __Na Me__'];
+    const transformedText = 'Hi\r\nmy name is John Doe';
+
+    expect(namedCasex(text, 'john-doe')).toEqual(transformedText);
+  });
 });

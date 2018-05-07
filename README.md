@@ -201,17 +201,17 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 - `search(search: string | number, name?: string): number`: Get line number of the first line including `search`
 - `last(search: string | number, name?: string): number`: Like `search`, but starting from the last line
 
-* `before(search: string | number, text: string, name?: string): this`: Add text before given line
-* `beforeLast(search: string | number, text: string, name?: string): this`: Like `before`, but using `last`
+* `before(search: string | number, text: string | string[], name?: string): this`: Add text before given line
+* `beforeLast(search: string | number, text: string | string[], name?: string): this`: Like `before`, but using `last`
 
-- `after(search: number | string, text: string, name?: string): this`: Add text after given line
-- `afterLast(search: number | string, text: string, name?: string): this`: Like `after`, but using `last`
+- `after(search: number | string, text: string | string[], name?: string): this`: Add text after given line
+- `afterLast(search: number | string, text: string | string[], name?: string): this`: Like `after`, but using `last`
 
-* `prepend(text: string, name?: string): this`: Add text at the beginning of the file
-* `append(text: string, name?: string): this`: Add text at the end of the file
+* `prepend(text: string | string[], name?: string): this`: Add text at the beginning of the file
+* `append(text: string | string[], name?: string): this`: Add text at the end of the file
 
-- `replace(search: string | number, text: string, name?: string): this`: Replace line with a given text
-- `replaceLast(search: string | number, text: string, name?: string): this`: Like `replace`, but using `last`
+- `replace(search: string | number, text: string | string[], name?: string): this`: Replace line with a given text
+- `replaceLast(search: string | number, text: string | string[], name?: string): this`: Like `replace`, but using `last`
 
 * `remove(search: string | number, name?: string): this`: Remove line (`search` method is called to resolve line number)
 * `removeLast(search: string | number, name?: string): this`: Like `remove`, but using `last`

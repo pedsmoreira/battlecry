@@ -148,7 +148,7 @@ export default class File {
     throw new Error(`'${search}' not found on file ${this.path}`);
   }
 
-  before(search: string | number, text: string, name?: string): this {
+  before(search: string | number, text: string | string[], name?: string): this {
     const lines = this.lines;
     lines.splice(this.search(search), 0, namedCasex(text, name));
 
@@ -156,27 +156,27 @@ export default class File {
     return this;
   }
 
-  beforeLast(search: string | number, text: string, name?: string): this {
+  beforeLast(search: string | number, text: string | string[], name?: string): this {
     return this.before(this.last(search), text, name);
   }
 
-  after(search: number | string, text: string, name?: string): this {
+  after(search: number | string, text: string | string[], name?: string): this {
     return this.before(this.search(search) + 1, text, name);
   }
 
-  afterLast(search: number | string, text: string, name?: string): this {
+  afterLast(search: number | string, text: string | string[], name?: string): this {
     return this.after(this.last(search), text, name);
   }
 
-  prepend(text: string, name?: string): this {
+  prepend(text: string | string[], name?: string): this {
     return this.before(0, text, name);
   }
 
-  append(text: string, name?: string): this {
+  append(text: string | string[], name?: string): this {
     return this.before(this.lines.length, text, name);
   }
 
-  replace(search: string | number, text: string, name?: string): this {
+  replace(search: string | number, text: string | string[], name?: string): this {
     const lines = this.lines;
     lines[this.search(search)] = namedCasex(text, name);
 
@@ -184,7 +184,7 @@ export default class File {
     return this;
   }
 
-  replaceLast(search: string | number, text: string, name?: string): this {
+  replaceLast(search: string | number, text: string | string[], name?: string): this {
     return this.replace(this.last(search), text, name);
   }
 
