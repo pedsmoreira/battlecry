@@ -23,7 +23,8 @@ export default class File {
     const files = [];
 
     glob.sync(namedCasex(pattern, name)).forEach(path => {
-      if (basename(path).includes('.')) files.push(new File(path));
+      const isDirectory = fs.lstatSync(path).isDirectory();
+      if (!isDirectory) files.push(new File(path));
     });
 
     return files;
@@ -115,7 +116,7 @@ export default class File {
   }
 
   get lines(): string[] {
-    return this.text.split(/\r?\n/) || [];
+    return this.text.split(/\r?\n/);
   }
 
   set lines(lines: string[]): void {

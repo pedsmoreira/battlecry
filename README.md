@@ -6,8 +6,7 @@
 [![Build Status](https://travis-ci.org/pedsmoreira/samba.svg?branch=master)](https://travis-ci.org/pedsmoreira/samba)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/maintainability)](https://codeclimate.com/github/pedsmoreira/samba/maintainability)
-
-<!-- [![Test Coverage](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/test_coverage)](https://codeclimate.com/github/pedsmoreira/samba/test_coverage) -->
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/test_coverage)](https://codeclimate.com/github/pedsmoreira/samba/test_coverage)
 
 <p align="center">
   <img src="./docs/screencast.gif" g/>
@@ -184,6 +183,8 @@ In most cases you'll use the file helpers on the generator. But if you need to c
 * `save(): void`: Save file changes on it's current path
 * `saveAs(path: string, name?: string): File`: Save file on a different path
 * `delete(): void`: Delete file
+
+_Tip_: When using `saveAs`, you can end the path with `/` and samba will add the current filename.
 
 ## Text helpers
 

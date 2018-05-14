@@ -5,6 +5,7 @@
 
 # testing
 /coverage
+/tests/tmp
 
 # build
 /build
