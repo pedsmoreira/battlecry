@@ -55,7 +55,8 @@ export default class File {
   }
 
   save(): this {
-    return this.saveAs(this.path, this.name);
+    this.saveAs(this.path, this.name);
+    return this;
   }
 
   saveAs(path: string, name?: ?string): File {
@@ -75,6 +76,14 @@ export default class File {
     else log.success(`☑️  File updated: ${path}`);
 
     return new File(path);
+  }
+
+  move(path: string, name?: ?string): this {
+    this.delete();
+
+    this.path = path;
+    this.name = name;
+    return this.save();
   }
 
   delete(): void {
