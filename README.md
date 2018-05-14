@@ -8,6 +8,12 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/maintainability)](https://codeclimate.com/github/pedsmoreira/samba/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/test_coverage)](https://codeclimate.com/github/pedsmoreira/samba/test_coverage)
 
+## What is Samba?
+
+Samba is a cross-plataform tool for automating repetitive software development tasks.
+
+Designed to boost developers' performance, Samba provides an interface for creating simple and customizable commands that can perform any type of action. Since most of the time developers need to `create`, `copy`, `move`, `edit` or `delete` text files, Samba already comes with file helpers that make templating a breeze.
+
 <p align="center">
   <img src="./docs/screencast.gif" g/>
 </p>
@@ -15,6 +21,7 @@
 ## Why Samba?
 
 * ✅ Perfect for creating new modules, components and even new projects
+* ✅ Easy to share with your team through your favorite version control system
 * ✅ Use it with all languages and frameworks
 * ✅ Plug'n play customizable generators
 * ✅ Simple & Powerful API
