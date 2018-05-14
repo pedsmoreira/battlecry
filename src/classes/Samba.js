@@ -4,6 +4,8 @@ import program from 'commander';
 import glob from 'glob';
 import { basename } from 'path';
 import fs from 'fs';
+import chalk from 'chalk';
+
 import pkg from '../../package.json';
 
 import Generator from './Generator';
@@ -81,8 +83,23 @@ export default class Samba {
     });
   }
 
+  about() {
+    log.emptyLine();
+    log.default('Contributors:');
+    log.emptyLine();
+
+    log.success(`🇧🇷  Pedro S. Moreira`);
+    log.addIndentation();
+    log.log(chalk.blueBright, '🌎  http://pedrosm.com/');
+    log.log(chalk.yellow, '💻  https://github.com/pedsmoreira');
+
+    log.emptyLine();
+    process.exit();
+  }
+
   get transmutedArgv(): string[] {
     const [node, bin, method, generator, ...rest] = process.argv;
+    if (['--about', '-A'].includes(method)) this.about();
     if (['--help', '-h', '--version', '-V'].includes(method)) return process.argv;
 
     const aliasedMethod = this.aliases[method] || method;
@@ -95,7 +112,8 @@ export default class Samba {
     program
       // $FlowFixMe
       .version(pkg.version)
-      .usage('<method> <generator> [args]')
+      .usage('<method> <generator> [args] [options]')
+      .option('-A, --about', 'output info about Samba contributors')
       .on('--help', () => this.help())
       .parse(this.transmutedArgv);
 
