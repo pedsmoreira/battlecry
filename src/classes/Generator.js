@@ -107,7 +107,7 @@ export default class Generator {
     return this.files(join(...values));
   }
 
-  template(pattern: string): File {
+  template(pattern?: string): File {
     return this.templates(pattern)[0];
   }
 
