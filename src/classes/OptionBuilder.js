@@ -2,6 +2,8 @@
 
 import chalk from 'chalk';
 
+import log from '../helpers/log';
+
 export type OptionProperties = {
   [name: string]: {
     description: string,
@@ -43,6 +45,6 @@ export default class OptionBuilder {
       optionText += chalk.hex('#99C')(` value?`);
     }
 
-    console.log(`${optionText} \t${chalk.hex('#AAA')(this.description)}`);
+    log.default(`${optionText} \t${chalk.hex('#AAA')(this.description)}`);
   }
 }

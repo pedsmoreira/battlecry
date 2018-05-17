@@ -23,7 +23,7 @@ class Log {
   }
 
   default(message: string) {
-    return this.log(() => message, message);
+    return this.log(chalkedMessage => chalkedMessage, message);
   }
 
   success(message: string) {

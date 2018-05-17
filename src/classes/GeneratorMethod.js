@@ -74,7 +74,7 @@ export default class GeneratorMethod {
   }
 
   help(): void {
-    console.log();
+    log.emptyLine();
     this.helpTitle();
 
     this.options.forEach(option => option.help());
@@ -83,11 +83,11 @@ export default class GeneratorMethod {
   helpTitle() {
     const { args, description } = this.config;
 
-    let text = `  sb ${chalk.green(this.alias || this.name)}`;
-    text += ` ${chalk.yellow(this.generator.name)} ${args || ''}`;
+    const name = chalk.green(this.alias || this.name);
+    const generatorName = chalk.yellow(this.generator.name);
+    let text = `sb ${name} ${generatorName} ${args || ''}`;
 
-    console.log(text);
-
-    if (description) console.log(chalk.hex('#AAA')(`    ${description}`));
+    log.default(text);
+    if (description) log.log(chalk.hex('#AAA'), description);
   }
 }

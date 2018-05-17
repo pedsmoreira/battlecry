@@ -159,8 +159,10 @@ export default class Generator {
    */
 
   help() {
-    console.log(chalk.white(`🥁  ${this.name}`));
+    log.default(chalk.white(`🥁  ${this.name}`));
+    log.addIndentation();
     this.methods.forEach(method => method.help());
+    log.removeIndentation();
   }
 
   /*

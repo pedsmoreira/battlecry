@@ -79,7 +79,7 @@ export default class Samba {
   help() {
     Object.keys(this.generators).forEach(name => {
       this.generators[name].help();
-      console.log();
+      log.emptyLine();
     });
   }
 
