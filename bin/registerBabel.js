@@ -4,13 +4,11 @@ const fs = require('fs');
 const babelRc = JSON.parse(fs.readFileSync(`${__dirname}/../.babelrc`, 'utf8'));
 
 function ignore(filename) {
-  const sambaFolder = dirname(__dirname);
-  const inSambaFolder = filename.startsWith(sambaFolder);
+  if (filename.includes(`samba/node_modules/`)) return true;
+
   const inNodeModules = filename.includes('node_modules/');
-
-  if (!inNodeModules || !inSambaFolder) return false;
-
-  return !filename.startsWith(`${sambaFolder}/src`) && !filename.startsWith(`${sambaFolder}/samba`);
+  const inSambaFolder = filename.includes('samba/');
+  return inNodeModules && !inSambaFolder;
 }
 
 function buildPath(type, name) {
