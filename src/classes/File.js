@@ -11,12 +11,10 @@ import log from '../helpers/log';
 
 export default class File {
   path: string;
-  name: ?string;
   __text: string;
 
   constructor(path: string, name?: string) {
-    this.path = path;
-    this.name = name;
+    this.path = namedCasex(path, name);
   }
 
   static glob(pattern: string, name?: string): File[] {
@@ -56,7 +54,7 @@ export default class File {
   }
 
   save(): this {
-    this.saveAs(this.path, this.name);
+    this.saveAs(this.path);
     return this;
   }
 
@@ -82,8 +80,7 @@ export default class File {
   move(path: string, name?: ?string): this {
     this.delete();
 
-    this.path = path;
-    this.name = name;
+    this.path = namedCasex(path, name);
     return this.save();
   }
 

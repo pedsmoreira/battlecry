@@ -11,7 +11,7 @@ describe('File', () => {
   beforeEach(() => {
     textFile = new File('');
     textFile.lines = ['a', 'b', 'c', 'a'];
-  })
+  });
 
   afterAll(() => {
     rimraf.sync(tmpPath);
@@ -94,11 +94,11 @@ describe('File', () => {
 
   describe('#save', () => {
     it('calls saveAs with file path and name', () => {
-      const file = new File('path', 'name');
+      const file = new File('path/__naMe__', 'test-name');
       file.saveAs = jest.fn();
 
       file.save();
-      expect(file.saveAs).toHaveBeenCalledWith('path', 'name');
+      expect(file.saveAs).toHaveBeenCalledWith('path/testName');
     });
   });
 
@@ -176,7 +176,6 @@ describe('File', () => {
       const realNewPath = `${tmpPath}/moved-abc.txt`;
       file.move(newPath, 'abc');
 
-      expect(file.name).toEqual('abc');
       expect(new File(realNewPath).exists).toBeTruthy();
       expect(new File(path).exists).toBeFalsy();
     });
@@ -204,7 +203,7 @@ describe('File', () => {
     });
 
     it('returns lines joined by \r\n', () => {
-      expect(File.joinLines(['a', 'b', 'c'])).toEqual('a\r\nb\r\nc')
+      expect(File.joinLines(['a', 'b', 'c'])).toEqual('a\r\nb\r\nc');
     });
   });
 
@@ -253,7 +252,7 @@ describe('File', () => {
 
     it('returns an empty array if text is empty', () => {
       const file = new File('');
-      expect(file.text)
+      expect(file.text);
     });
   });
 
