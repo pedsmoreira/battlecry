@@ -2,7 +2,7 @@
 
 require('./registerBabel');
 
-const Samba = require(`${__dirname}/../src`).Samba;
+const Samba = require(`samba`).Samba;
 const samba = new Samba();
 
 samba.load(`${__dirname}/../samba`);

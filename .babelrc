@@ -8,6 +8,15 @@
       {
         "legacy": true
       }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["/"],
+        "alias": {
+          "samba": "/src"
+        }
+      }
     ]
   ]
 }
