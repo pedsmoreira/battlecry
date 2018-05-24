@@ -85,7 +85,7 @@ export default class Samba {
 
   about() {
     log.emptyLine();
-    log.default('Contributors:');
+    log.default('Creator:');
     log.emptyLine();
 
     log.success(`🇧🇷  Pedro S. Moreira`);

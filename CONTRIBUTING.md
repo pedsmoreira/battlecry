@@ -13,15 +13,15 @@ We'd love to have your contribution added to Samba. If you decide to do so, plea
 
 ## Development
 
-* `npm start` will watch for changes and build the files
+Go to the `samba` folder you cloned and:
+
+* `npm uninstall -g samba` if you have `samba` already installed globally
+* `npm link` will link the `samba` and `sb` commanda globally
+* `npm link samba` will link the `require('samba')`
 
 ## Running Tests
 
 * `npm run test` will run jest
-
-## Building
-
-* `npm run build`
 
 ## Code Style
 
