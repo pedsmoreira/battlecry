@@ -1,20 +1,12 @@
 {
-  "presets": ["@babel/preset-flow", "@babel/preset-env"],
+  "presets": ["@babel/preset-flow", "@babel/preset-env", ["@babel/preset-stage-0", { "decoratorsLegacy": true }]],
   "plugins": [
-    "@babel/plugin-transform-async-to-generator",
-    "@babel/plugin-proposal-class-properties",
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        "legacy": true
-      }
-    ],
     [
       "module-resolver",
       {
-        "root": ["/"],
+        "root": ["."],
         "alias": {
-          "samba": "/src"
+          "samba": "./src"
         }
       }
     ]
