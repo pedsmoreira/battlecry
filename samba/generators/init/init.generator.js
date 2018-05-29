@@ -1,4 +1,4 @@
-// $Flow
+// $flow
 
 import { Generator } from 'samba';
 
