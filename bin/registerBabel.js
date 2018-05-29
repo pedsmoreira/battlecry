@@ -4,6 +4,8 @@ const fs = require('fs');
 const babelRc = JSON.parse(fs.readFileSync(`${__dirname}/../.babelrc`, 'utf8'));
 
 function ignore(filename) {
+  // Fix for paths on Windows
+  filename = filename.replace(/\\(\\?)/g, '/');
   if (filename.includes(`samba/node_modules/`)) return true;
 
   const inNodeModules = filename.includes('node_modules/');

@@ -2,7 +2,8 @@
 
 require('./registerBabel');
 
-const Samba = require('samba').Samba;
+// samba is not linked yet for this file on Windows
+const Samba = require(`${__dirname}/../src`).Samba;
 const samba = new Samba();
 
 samba.load(`${__dirname}/../samba`);
