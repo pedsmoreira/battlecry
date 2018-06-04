@@ -18,6 +18,8 @@ Designed to boost developers' performance, Battlecry provides an interface for c
   <img src="./docs/screencast.gif" />
 </p>
 
+_Note: Battlecry got renamed from Samba to avoid confusions with the Samba Linux Software_
+
 ## Why Battlecry?
 
 * ✅ Perfect for creating new modules, components and even new projects
