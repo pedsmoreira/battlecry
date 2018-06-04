@@ -1,4 +1,4 @@
-import { File } from 'samba';
+import { File } from 'battlecry';
 import rimraf from 'rimraf';
 import fs from 'fs';
 

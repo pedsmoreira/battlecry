@@ -1,18 +1,24 @@
 {
-  "name": "samba",
-  "version": "0.1.8",
+  "name": "battlecry",
+  "version": "0.2.0",
+  "keywords": [
+    "generate",
+    "scaffold",
+    "templates",
+    "boilerplate"
+  ],
   "description": "A simple and customizable scaffolding tool for all languages and frameworks",
   "main": "src/index.js",
-  "repository": "https://pedsmoreira@github.com/pedsmoreira/samba.git",
+  "repository": "https://pedsmoreira@github.com/pedsmoreira/battlecry.git",
   "author": "Pedro S. Moreira <pedsmoreira@gmail.com>",
   "license": "MIT",
   "bin": {
-    "sb": "./bin/samba.js",
-    "samba": "./bin/samba.js"
+    "cry": "./bin/battlecry.js",
+    "battlecry": "./bin/battlecry.js"
   },
   "files": [
     "bin",
-    "samba",
+    "battlecry",
     "src",
     ".babelrc"
   ],

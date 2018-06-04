@@ -8,7 +8,7 @@ import { execSync } from 'child_process';
 import rimraf from 'rimraf';
 
 import File from './File';
-import Samba from './Samba';
+import Battlecry from './Battlecry';
 import GeneratorMethod, { type MethodConfig } from './GeneratorMethod';
 
 import namedCasex from '../helpers/namedCasex';
@@ -28,7 +28,7 @@ export default class Generator {
 
   name: string;
   path: string;
-  samba: Samba;
+  battlecry: Battlecry;
   config: { [method: string]: MethodConfig };
 
   get methods(): GeneratorMethod[] {
@@ -116,7 +116,7 @@ export default class Generator {
    */
 
   generator(name: string): Generator {
-    return this.samba.generator(name);
+    return this.battlecry.generator(name);
   }
 
   setOptions(options: Options): this {

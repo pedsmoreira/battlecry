@@ -8,12 +8,12 @@ export default function dd(error: Error) {
   log.error(`❌  Error: ${error.message}`);
   log.emptyLine();
 
-  const file = new File('samba-error.log');
+  const file = new File('battlecry-error.log');
   file.text = error.stack;
   file.save();
 
   log.emptyLine();
-  log.default('🗄  Please check the file samba-error.log for the full stack');
+  log.default('🗄  Please check the file battlecry-error.log for the full stack');
   log.emptyLine();
   process.exit();
 }

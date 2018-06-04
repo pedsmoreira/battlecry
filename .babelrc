@@ -7,7 +7,7 @@
       "module-resolver",
       {
         "alias": {
-          "samba": "./src"
+          "battlecry": "./src"
         }
       }
     ]

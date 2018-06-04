@@ -3,5 +3,5 @@
 To download this example:
 
 ```bash
-sb download generator pedsmoreira/samba --dir examples/call-other-generators
+cry download generator pedsmoreira/battlecry --dir examples/call-other-generators
 ```

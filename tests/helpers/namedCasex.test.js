@@ -1,4 +1,4 @@
-import { namedCasex } from 'samba';
+import { namedCasex } from 'battlecry';
 
 describe('namedCasex', () => {
   it('replaces all __name__ occurrences', () => {

@@ -1,4 +1,4 @@
-import { Generator } from 'samba';
+import { Generator } from 'battlecry';
 
 describe('Generator', () => {
   it('', () => {

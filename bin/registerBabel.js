@@ -6,11 +6,11 @@ const babelRc = JSON.parse(fs.readFileSync(`${__dirname}/../.babelrc`, 'utf8'));
 function ignore(filename) {
   // Fix for paths on Windows
   filename = filename.replace(/\\(\\?)/g, '/');
-  if (filename.includes(`samba/node_modules/`)) return true;
+  if (filename.includes(`battlecry/node_modules/`)) return true;
 
   const inNodeModules = filename.includes('node_modules/');
-  const inSambaFolder = filename.includes('samba/');
-  return inNodeModules && !inSambaFolder;
+  const inBattlecryFolder = filename.includes('battlecry/');
+  return inNodeModules && !inBattlecryFolder;
 }
 
 function buildPath(type, name) {
@@ -25,9 +25,9 @@ function buildModuleResolver() {
   return [
     buildPath('plugin', 'module-resolver'),
     {
-      root: [`${process.cwd()}/samba`],
+      root: [`${process.cwd()}/battlecry`],
       alias: {
-        samba: `${__dirname}/..`
+        battlecry: `${__dirname}/..`
       }
     }
   ];

@@ -25,7 +25,7 @@ export default class GeneratorMethod {
   }
 
   get alias(): ?string {
-    return this.generator.samba.alias(this.name);
+    return this.generator.battlecry.alias(this.name);
   }
 
   get config(): MethodConfig {
@@ -55,7 +55,7 @@ export default class GeneratorMethod {
     const method = this;
 
     return function() {
-      method.generator.samba.executed = true;
+      method.generator.battlecry.executed = true;
 
       method.generator
         .setArgsArray(method.name, this.parent.args)
@@ -85,7 +85,7 @@ export default class GeneratorMethod {
 
     const name = chalk.green(this.alias || this.name);
     const generatorName = chalk.yellow(this.generator.name);
-    let text = `sb ${name} ${generatorName} ${args || ''}`;
+    let text = `cry ${name} ${generatorName} ${args || ''}`;
 
     log.default(text);
     if (description) log.log(chalk.hex('#AAA'), description);

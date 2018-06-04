@@ -1,6 +1,6 @@
 # Contributing
 
-We'd love to have your contribution added to Samba. If you decide to do so, please follow the
+We'd love to have your contribution added to Battlecry. If you decide to do so, please follow the
 [code of conduct](CODE_OF_CONDUCT.md)
 
 ## Prerequisites
@@ -13,11 +13,11 @@ We'd love to have your contribution added to Samba. If you decide to do so, plea
 
 ## Development
 
-Go to the `samba` folder you cloned and:
+Go to the `battlecry` folder you cloned and:
 
-* `npm uninstall -g samba` if you have `samba` already installed globally
-* `npm link` will link the `samba` and `sb` commanda globally
-* `npm link samba` will link the `require('samba')`
+* `npm uninstall -g battlecry` if you have `battlecry` already installed globally
+* `npm link` will link the `battlecry` and `cry` commanda globally
+* `npm link battlecry` will link the `require('battlecry')`
 
 ## Running Tests
 

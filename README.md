@@ -1,24 +1,24 @@
-# 🥁 samba
+# 🥁 battlecry
 
 > A simple and customizable scaffolding tool for all languages and frameworks
 
-[![npm version](https://img.shields.io/npm/v/samba.svg)](https://www.npmjs.org/package/samba)
-[![Build Status](https://travis-ci.org/pedsmoreira/samba.svg?branch=master)](https://travis-ci.org/pedsmoreira/samba)
+[![npm version](https://img.shields.io/npm/v/battlecry.svg)](https://www.npmjs.org/package/battlecry)
+[![Build Status](https://travis-ci.org/pedsmoreira/battlecry.svg?branch=master)](https://travis-ci.org/pedsmoreira/battlecry)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![Maintainability](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/maintainability)](https://codeclimate.com/github/pedsmoreira/samba/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/test_coverage)](https://codeclimate.com/github/pedsmoreira/samba/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/maintainability)](https://codeclimate.com/github/pedsmoreira/battlecry/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1b10d18cd15953369c3f/test_coverage)](https://codeclimate.com/github/pedsmoreira/battlecry/test_coverage)
 
-## What is Samba?
+## What is Battlecry?
 
-Samba is a cross-platform tool for automating repetitive software development tasks.
+Battlecry is a cross-platform tool for automating repetitive software development tasks.
 
-Designed to boost developers' performance, Samba provides an interface for creating simple and customizable commands that can perform any type of action. Since most of the time developers need to `create`, `copy`, `move`, `edit` or `delete` text files, Samba already comes with file helpers that make templating a breeze.
+Designed to boost developers' performance, Battlecry provides an interface for creating simple and customizable commands that can perform any type of action. Since most of the time developers need to `create`, `copy`, `move`, `edit` or `delete` text files, Battlecry already comes with file helpers that make templating a breeze.
 
 <p align="center">
   <img src="./docs/screencast.gif" />
 </p>
 
-## Why Samba?
+## Why Battlecry?
 
 * ✅ Perfect for creating new modules, components and even new projects
 * ✅ Easy to share with your team through your favorite version control system
@@ -31,11 +31,11 @@ Designed to boost developers' performance, Samba provides an interface for creat
 
 Yeoman is a great tool for creating new projects, but when it comes to updating ongoing projects, I think there's a lot of room for improvement. If you want to use a framework with a strict set of libraries and requirements you can probably find a Yeoman generator that suits you, but you won't be able to customize these generators with ease.
 
-In my experience, the farther you go on a project, the more you'll need to shape your generators to fit it. Each project has it's own requirements and it's only fair that it get it's own generators. With Samba you can create your own or download generators to give you a nice quickstart, and when you need to customize them, it's very easy to do so and you can share the changes with your whole team.
+In my experience, the farther you go on a project, the more you'll need to shape your generators to fit it. Each project has it's own requirements and it's only fair that it get it's own generators. With Battlecry you can create your own or download generators to give you a nice quickstart, and when you need to customize them, it's very easy to do so and you can share the changes with your whole team.
 
 ## Examples
 
-Each example can be downloaded with `sb download generator examples/example_name_here`.
+Each example can be downloaded with `cry download generator examples/example_name_here`.
 
 1.  [args](./examples/args): Working with arguments
 2.  [options](./examples/options): Working with options
@@ -44,7 +44,7 @@ Each example can be downloaded with `sb download generator examples/example_name
 5.  [helpers](./examples/helpers): Using helpers to share methods across generators
 6.  [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
 7.  [exec](./examples/exec): Executing a command line
-8.  [load](./examples/load): Loading generators from a folder other than `samba/`
+8.  [load](./examples/load): Loading generators from a folder other than `battlecry/`
 
 Advanced examples
 
@@ -56,47 +56,47 @@ Advanced examples
 
 * [NodeJS](https://nodejs.org/en/) installed
 
-🎩 If your project does not use NodeJS don't worry! Samba's API is very simple and you'll only need NodeJS installed to run the commands, no need to change your project setup.
+🎩 If your project does not use NodeJS don't worry! Battlecry's API is very simple and you'll only need NodeJS installed to run the commands, no need to change your project setup.
 
 ## Install
 
 ```sh
-npm install -g samba
+npm install -g battlecry
 ```
 
 ## Command structure
 
-Samba has a very simple structure.
+Battlecry has a very simple structure.
 
-`sb <method> <generator> arguments --options`
+`cry <method> <generator> arguments --options`
 
-Samba can be used through both `samba` and it's short verion `sb`.
+Battlecry can be used through both `battlecry` and it's short verion `cry`.
 
-## Initialize Samba on you project
+## Initialize Battlecry on you project
 
-With Samba installed, go to your project folder and run:
+With Battlecry installed, go to your project folder and run:
 
 ```bash
-sb g init
+cry g init
 ```
 
 This will perform four actions:
 
-* Create a `samba` folder on the root of your project
-* Add a `samba/samba-setup.js` that you can use to add special configurations
+* Create a `battlecry` folder on the root of your project
+* Add a `battlecry/battlecry-setup.js` that you can use to add special configurations
 * Create a generator called `component`
 * Play the just created `component` with the arg `test-abc`
 
-You should now be able to see a file called `it-worked/components/test-abc.txt`. This file was created using the generator at `samba/generators/component.generator.js` folder.
+You should now be able to see a file called `it-worked/components/test-abc.txt`. This file was created using the generator at `battlecry/generators/component.generator.js` folder.
 
-_Note_: Samba uses ES6 with lots of polyfill, so most things should ✨ _just work_ ✨ on your generator class.
+_Note_: Battlecry uses ES6 with lots of polyfill, so most things should ✨ _just work_ ✨ on your generator class.
 
 ## Help
 
 If you need to check how your methods are registered, you can do so with:
 
 ```bash
-sb --help
+cry --help
 ```
 
 ## Casex naming
@@ -114,16 +114,16 @@ Here are a few examples of how it works, considering you're using the name `John
 ## Creating your own generators
 
 ```bash
-sb g generator your_generator_name_here
+cry g generator your_generator_name_here
 ```
 
-This command will create a `samba/generators/your_generator_name_here`
+This command will create a `battlecry/generators/your_generator_name_here`
 
 # Generator API
 
 ## Configuring your methods
 
-Each generator must have a `config` variable defining all samba methods.
+Each generator must have a `config` variable defining all battlecry methods.
 
 ```js
 config = {
@@ -150,11 +150,11 @@ config = {
 
 As you may have noticed, most of these methods return one or an array of File(s). For more details about the `File` class API, please check the [File API](#File API) section below.
 
-_Note: Samba performs all IO operations are performed synchronously_
+_Note: Battlecry performs all IO operations are performed synchronously_
 
 ## Helpers to call other generators
 
-There may be cases when you may want to call multiple generators from one generators. Samba provides nice helpers for you to accomplish that in you `Generator` class.
+There may be cases when you may want to call multiple generators from one generators. Battlecry provides nice helpers for you to accomplish that in you `Generator` class.
 
 * `generator(name: string): Generator`: Get a new generator instance by name
 * `setArgs(args: Object): this`: Setup generator arguments to be consumed when `play` is called
@@ -191,7 +191,7 @@ In most cases you'll use the file helpers on the generator. But if you need to c
 * `saveAs(path: string, name?: string): File`: Save file on a different path
 * `delete(): void`: Delete file
 
-_Tip_: When using `saveAs`, you can end the path with `/` and samba will add the current filename.
+_Tip_: When using `saveAs`, you can end the path with `/` and battlecry will add the current filename.
 
 ## Text helpers
 
@@ -224,15 +224,15 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 * `remove(search: string | number, name?: string): this`: Remove line (`search` method is called to resolve line number)
 * `removeLast(search: string | number, name?: string): this`: Like `remove`, but using `last`
 
-_Note_: If you attempt to use any text helper in a binary file (such as an image), samba will throw an error.
+_Note_: If you attempt to use any text helper in a binary file (such as an image), battlecry will throw an error.
 
 # Miscellaneous
 
 ## Sharing helpers across generators
 
-It's not uncommon to have multiple generators share similar helpers. To facilitate you doing that, you can include files from your samba directory directly, without navigating with `..`.
+It's not uncommon to have multiple generators share similar helpers. To facilitate you doing that, you can include files from your battlecry directory directly, without navigating with `..`.
 
-If you have a `testHelper.js` file under `samba/helpers/testHelper.js` for instance, you could include it as:
+If you have a `testHelper.js` file under `battlecry/helpers/testHelper.js` for instance, you could include it as:
 
 ```javascript
 import testHelper from 'helpers/testHelper';
@@ -240,40 +240,40 @@ import testHelper from 'helpers/testHelper';
 
 ## Downloading generators
 
-You may not have to write all your generators yourself. Samba comes with a handy tool for downloading generators from GitHub.
+You may not have to write all your generators yourself. Battlecry comes with a handy tool for downloading generators from GitHub.
 
 ```
-sb download generator owner/path
+cry download generator owner/path
 ```
 
 If you want to a service provider other then GitHub, please check the [download-git-repo examples](https://github.com/flipxfx/download-git-repo#examples)
 
 ### Selecting directory to download from
 
-Samba looks for a `samba/` folder in the repository root. If none is found it defaults to the repository root. You may also set a custom directory to start Samba's search with `--dir`.
+Battlecry looks for a `battlecry/` folder in the repository root. If none is found it defaults to the repository root. You may also set a custom directory to start Battlecry's search with `--dir`.
 
 ```
-sb download generator owner/path --dir test-samba
+cry download generator owner/path --dir test-battlecry
 ```
 
-## Customizing your samba-setup.js
+## Customizing your battlecry-setup.js
 
 ### Loading generators from other folders
 
 ```js
-export default function setup(samba) {
-  samba.load('node_modules/samba-generatores-from-node-modules');
+export default function setup(battlecry) {
+  battlecry.load('node_modules/battlecry-generatores-from-node-modules');
 }
 ```
 
 ### Adding new aliases
 
-By default Samba comes with two aliases: `g: generate` and `d: destroy`. You can both override these aliases and/or create new ones.
+By default Battlecry comes with two aliases: `g: generate` and `d: destroy`. You can both override these aliases and/or create new ones.
 
 ```js
-export default function setup(samba) {
-  samba.aliases.s = 'strike';
-  // You can now use `sb s component` and it will be translated to `sb strike component`
+export default function setup(battlecry) {
+  battlecry.aliases.s = 'strike';
+  // You can now use `cry s component` and it will be translated to `cry strike component`
 }
 ```
 
