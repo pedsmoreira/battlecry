@@ -142,10 +142,6 @@ This command will create a `battlecry/generators/your_generator_name_here`
 
 # Generator API
 
-## Exports
-
-This is the list of method and classes that you can import from BattleCry
-
 ## Configuring your methods
 
 Each generator must have a `config` variable defining all BattleCry methods.
@@ -301,6 +297,25 @@ export default function setup(battlecry) {
   // You can now use `cry s component` and it will be translated to `cry strike component`
 }
 ```
+
+## Advanced
+
+### Exports
+
+This is the list of method and classes that you can import from BattleCry:
+
+* ArgBuilder
+* File
+* Generator
+* GeneratorMethod
+* OptionBuilder
+* Battlecry
+* log
+* namedCasex
+* applyPluralization
+* extractPluraizedPattern
+* casex
+* pluralize
 
 # Resources
 
