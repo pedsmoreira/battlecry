@@ -18,7 +18,7 @@ Designed to boost developers' performance, Battlecry provides an interface for c
   <img src="./docs/screencast.gif" />
 </p>
 
-_Note: Battlecry got renamed from Samba to avoid confusions with the Samba Linux Software_
+_Note: Battlecry got renamed from Samba to avoid confusions with the Samba Linux software_
 
 ## Why Battlecry?
 
@@ -74,9 +74,9 @@ Battlecry has a very simple structure.
 
 Battlecry can be used through both `battlecry` and it's short verion `cry`.
 
-## Initialize Battlecry on you project
+## Initialize BattleCry on you project
 
-With Battlecry installed, go to your project folder and run:
+With BattleCry installed, go to your project folder and run:
 
 ```bash
 cry g init
@@ -91,7 +91,7 @@ This will perform four actions:
 
 You should now be able to see a file called `it-worked/components/test-abc.txt`. This file was created using the generator at `battlecry/generators/component.generator.js` folder.
 
-_Note_: Battlecry uses ES6 with lots of polyfill, so most things should ✨ _just work_ ✨ on your generator class.
+_Note_: BattleCry uses ES6 with lots of polyfill, so most things should ✨ _just work_ ✨ on your generator class.
 
 ## Help
 
@@ -113,6 +113,25 @@ Here are a few examples of how it works, considering you're using the name `John
 * `__na-me__`: john-doe
 * `__na me__`: john doe
 
+### Pluralization and singularization
+
+BattleCry provides pluralization and singularization out of the box with [pluralize](https://github.com/blakeembrey/pluralize).
+
+To use this feature, instead of `__name__`, use `_name_`, with one underscore. Here are a few examples of how it works:
+
+* Regulars: `user`
+  * `_name_`: user
+  * `_name_s`: users
+* Irregulars: `person`
+  * `_name_`: person
+  * `_name_s`: people
+* Composed names: `user name`
+  * `_na me_`: user name
+  * `_na me_s`: user names
+* Names in the plural: `users`
+  * `_na me_`: user
+  * `_na me_s`: users
+
 ## Creating your own generators
 
 ```bash
@@ -123,9 +142,13 @@ This command will create a `battlecry/generators/your_generator_name_here`
 
 # Generator API
 
+## Exports
+
+This is the list of method and classes that you can import from BattleCry
+
 ## Configuring your methods
 
-Each generator must have a `config` variable defining all battlecry methods.
+Each generator must have a `config` variable defining all BattleCry methods.
 
 ```js
 config = {
@@ -152,11 +175,11 @@ config = {
 
 As you may have noticed, most of these methods return one or an array of File(s). For more details about the `File` class API, please check the [File API](#File API) section below.
 
-_Note: Battlecry performs all IO operations are performed synchronously_
+_Note: BattleCry performs all IO operations synchronously_
 
 ## Helpers to call other generators
 
-There may be cases when you may want to call multiple generators from one generators. Battlecry provides nice helpers for you to accomplish that in you `Generator` class.
+There may be cases when you may want to call multiple generators from one generators. BattleCry provides nice helpers for you to accomplish that in you `Generator` class.
 
 * `generator(name: string): Generator`: Get a new generator instance by name
 * `setArgs(args: Object): this`: Setup generator arguments to be consumed when `play` is called
@@ -193,7 +216,7 @@ In most cases you'll use the file helpers on the generator. But if you need to c
 * `saveAs(path: string, name?: string): File`: Save file on a different path
 * `delete(): void`: Delete file
 
-_Tip_: When using `saveAs`, you can end the path with `/` and battlecry will add the current filename.
+_Tip_: When using `saveAs`, you can end the path with `/` and BattleCry will add the current filename.
 
 ## Text helpers
 
@@ -226,15 +249,15 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 * `remove(search: string | number, name?: string): this`: Remove line (`search` method is called to resolve line number)
 * `removeLast(search: string | number, name?: string): this`: Like `remove`, but using `last`
 
-_Note_: If you attempt to use any text helper in a binary file (such as an image), battlecry will throw an error.
+_Note_: If you attempt to use any text helper in a binary file (such as an image), BattleCry will throw an error.
 
 # Miscellaneous
 
 ## Sharing helpers across generators
 
-It's not uncommon to have multiple generators share similar helpers. To facilitate you doing that, you can include files from your battlecry directory directly, without navigating with `..`.
+It's not uncommon to have multiple generators share similar helpers. To facilitate you doing that, you can include files from your BattleCry directory directly, without navigating with `..`.
 
-If you have a `testHelper.js` file under `battlecry/helpers/testHelper.js` for instance, you could include it as:
+If you have a `testHelper.js` file under `BattleCry/helpers/testHelper.js` for instance, you could include it as:
 
 ```javascript
 import testHelper from 'helpers/testHelper';
@@ -242,7 +265,7 @@ import testHelper from 'helpers/testHelper';
 
 ## Downloading generators
 
-You may not have to write all your generators yourself. Battlecry comes with a handy tool for downloading generators from GitHub.
+You may not have to write all your generators yourself. BattleCry comes with a handy tool for downloading generators from GitHub.
 
 ```
 cry download generator owner/path
@@ -252,7 +275,7 @@ If you want to a service provider other then GitHub, please check the [download-
 
 ### Selecting directory to download from
 
-Battlecry looks for a `battlecry/` folder in the repository root. If none is found it defaults to the repository root. You may also set a custom directory to start Battlecry's search with `--dir`.
+BattleCry looks for a `battlecry/` folder in the repository root. If none is found it defaults to the repository root. You may also set a custom directory to start BattleCry's search with `--dir`.
 
 ```
 cry download generator owner/path --dir test-battlecry
@@ -270,7 +293,7 @@ export default function setup(battlecry) {
 
 ### Adding new aliases
 
-By default Battlecry comes with two aliases: `g: generate` and `d: destroy`. You can both override these aliases and/or create new ones.
+By default BattleCry comes with two aliases: `g: generate` and `d: destroy`. You can both override these aliases and/or create new ones.
 
 ```js
 export default function setup(battlecry) {
