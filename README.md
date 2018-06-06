@@ -167,7 +167,7 @@ config = {
 * `delete(path: string, name?: string): void`: Delete a file or directory
 
 - `templates(pattern?: string): File[]`: Get files inside the generator's `templates/` subdirectory
-- `template(pattern: string): File`: Get first file that matches the pattern
+- `template(pattern?: string): File`: Get first file that matches the pattern
 
 As you may have noticed, most of these methods return one or an array of File(s). For more details about the `File` class API, please check the [File API](#File API) section below.
 
