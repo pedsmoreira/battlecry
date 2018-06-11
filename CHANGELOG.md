@@ -1,3 +1,7 @@
+# 0.2.3
+
+* Fix issue with `__name__S` (capitalized S)
+
 # 0.2.2
 
 * Added pluralization and singularization

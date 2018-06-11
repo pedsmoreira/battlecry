@@ -16,8 +16,8 @@ describe('namedCasex', () => {
   });
 
   it('does not pluralize __name__', () => {
-    const text = 'One __name__, two __name__s';
-    const transformedText = 'One person, two persons';
+    const text = 'One __name__, two __name__s, three __name__S';
+    const transformedText = 'One person, two persons, three personS';
 
     expect(namedCasex(text, 'person')).toEqual(transformedText);
   });
