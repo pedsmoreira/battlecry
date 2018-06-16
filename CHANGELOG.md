@@ -1,3 +1,7 @@
+# 0.2.4
+
+* `_name_S` now outputs `userS`
+
 # 0.2.3
 
 * Fix issue with `__name__S` (capitalized S)
