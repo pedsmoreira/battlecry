@@ -45,6 +45,13 @@ describe('namedCasex', () => {
     expect(namedCasex(text, 'people')).toEqual(transformedText);
   });
 
+  it('only pluralizes _name_ followed by lowercase s', () => {
+    const text = 'I am a _name_s _name_S _name__s';
+    const transformedText = 'I am a people personS person_s';
+
+    expect(namedCasex(text, 'person')).toEqual(transformedText);
+  });
+
   it('pluralizes and singularizes composed _name_', () => {
     const text = 'Create new _na me_s on the current _na me_';
     const transformedText = 'Create new user folders on the current user folder';

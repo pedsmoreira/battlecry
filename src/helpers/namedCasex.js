@@ -6,7 +6,9 @@ import pluralize from 'pluralize';
 import File from '../classes/File';
 
 function resolveMatch(match) {
-  const hasS = match.toLowerCase().endsWith('s');
+  if (match.endsWith('S')) match = match.substring(0, match.length - 1);
+
+  const hasS = match.endsWith('s');
   const singularMatch = hasS ? match.substring(0, match.length - 1) : match;
 
   const doubleStart = singularMatch.startsWith('__');
