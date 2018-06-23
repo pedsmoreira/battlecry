@@ -277,6 +277,16 @@ describe('File', () => {
     });
   });
 
+  describe('#replaceNames', () => {
+    it('replaces all occurrences casex naming', () => {
+      textFile.prepend('__name__');
+      textFile.append('__na-me__');
+
+      textFile.replaceNames('cool-name');
+      expect(textFile.lines).toEqual(['coolname', 'a', 'b', 'c', 'a', 'cool-name']);
+    });
+  });
+
   describe('#search', () => {
     it('returns line number of the first encounter', () => {
       expect(textFile.search('a')).toBe(0);
