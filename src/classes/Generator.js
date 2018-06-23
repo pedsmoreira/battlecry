@@ -52,23 +52,24 @@ export default class Generator {
    */
 
   async play(methodName: string): Promise<*> {
-    // $FlowFixMe
-    const method: Function = this[methodName];
-    if (!method) this.throwMethodNotImplemented(method);
-
-    log.emptyLine();
-    log.success(`🥁  Playing: ${methodName} ${this.name}`);
-    log.addIndentation();
-
     try {
+      // $FlowFixMe
+      const method: Function = this[methodName];
+      if (!method) this.throwMethodNotImplemented(methodName);
+
+      log.emptyLine();
+      log.success(`🥁  Playing: ${methodName} ${this.name}`);
+      log.addIndentation();
+
       const response = method.bind(this)();
       if (response) await response;
+
+      log.removeIndentation();
+      log.emptyLine();
     } catch (error) {
+      // Async/await must be wrapped by a try catch
       dd(error);
     }
-
-    log.removeIndentation();
-    log.emptyLine();
   }
 
   /*
@@ -135,8 +136,13 @@ export default class Generator {
 
     const args = {};
     argsConfig.split(' ').forEach((argString, index) => {
+      const value = values[index];
+
+      const isVariadic = argString.includes('...');
+      if (isVariadic && (!value || !value.length)) return;
+
       const argName = argString.replace('?', '').replace(/[.?]/g, '');
-      args[argName] = values[index];
+      args[argName] = value;
     });
 
     return this.setArgs(args);

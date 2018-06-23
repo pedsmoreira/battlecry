@@ -11,7 +11,6 @@ import pkg from '../../package.json';
 import Generator from './Generator';
 
 import log from '../helpers/log';
-import dd from '../helpers/dd';
 
 export default class Battlecry {
   executed: boolean;
@@ -22,16 +21,12 @@ export default class Battlecry {
   load(path: string) {
     this.setup(path);
     glob.sync(`${path}/generators/*/*.generator.js`).forEach(path => {
-      try {
-        // $FlowFixMe
-        const generatorClass = require(path).default;
-        const name = basename(path, '.generator.js');
+      // $FlowFixMe
+      const generatorClass = require(path).default;
+      const name = basename(path, '.generator.js');
 
-        if (!generatorClass) return log.warn(`Skipping generator ${basename(path)} - missing export default`);
-        this.generators[name] = this.createGenerator(name, path, generatorClass);
-      } catch (error) {
-        dd(error);
-      }
+      if (!generatorClass) return log.warn(`Skipping generator ${basename(path)} - missing export default`);
+      this.generators[name] = this.createGenerator(name, path, generatorClass);
     });
   }
 
@@ -40,15 +35,11 @@ export default class Battlecry {
     const setupExists = fs.existsSync(`${setupPath}`);
 
     if (setupExists) {
-      try {
-        // $FlowFixMe
-        const fn: Function = require(setupPath).default;
+      // $FlowFixMe
+      const fn: Function = require(setupPath).default;
 
-        if (fn) fn(this);
-        else log.warn(`Skipping battlecry-setup.js in folder ${basename(path)} - empty file`);
-      } catch (error) {
-        dd(error);
-      }
+      if (fn) fn(this);
+      else log.warn(`Skipping battlecry-setup.js in folder ${basename(path)} - empty file`);
     }
   }
 
