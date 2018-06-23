@@ -129,6 +129,11 @@ export default class File {
     return this.replaceText(new RegExp(search, 'g'), replace, name);
   }
 
+  replaceNames(name: string): this {
+    this.text = namedCasex(this.text, name);
+    return this;
+  }
+
   search(search: string | number, name?: string): number {
     if (typeof search === 'number') return search;
 
