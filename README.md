@@ -226,6 +226,7 @@ Lot's of `text` helpers receive `search: number | string`. This means that if a 
 
 * `replaceText(search: string | RegExp, replace: string, name?: string): this`: Replace one text ocurrence
 * `replaceAllText(search: string, replace: string, name?: string): this`: Replace all text occurrences
+* `replaceNames(name: string): this`: Replace casex namings
 
 - `search(search: string | number, name?: string): number`: Get line number of the first line including `search`
 - `last(search: string | number, name?: string): number`: Like `search`, but starting from the last line
@@ -298,24 +299,45 @@ export default function setup(battlecry) {
 }
 ```
 
-## Advanced
+## [Advanced] Using namedCasex outside of the helper methods
 
-### Exports
+Sometimes you may need to apply casex namings separetely. This usually happens when you want to apply casex naming to two different values
+in the same line or piece of text.
 
-This is the list of method and classes that you can import from BattleCry:
+```js
+import { namedCasex } from 'battlecry';
 
-* ArgBuilder
-* File
-* Generator
-* GeneratorMethod
-* OptionBuilder
-* Battlecry
-* log
-* namedCasex
-* applyPluralization
-* extractPluraizedPattern
-* casex
-* pluralize
+namedCasex(text: string, name?: string);
+```
+
+## [Advanced] Other exports
+
+Battlecry exports a few internal methods and libraries that it uses.
+
+You can import them in case you need to so something that can't be covered by file or generator helpers.
+
+* Libraries
+
+  * [casex](https://github.com/pedsmoreira/casex)
+  * [pluralize](https://github.com/blakeembrey/pluralize)
+
+- Battlecry display helpers
+  * [log](https://github.com/pedsmoreira/battlecry/blob/master/src/helpers/log.js)
+  * [dd](https://github.com/pedsmoreira/battlecry/blob/master/src/helpers/dd.js)
+
+* Battlecry classes
+
+  * [Battlecry](https://github.com/pedsmoreira/battlecry/blob/master/src/classes/Battlecry.js)
+  * [ArgBuilder](https://github.com/pedsmoreira/battlecry/blob/master/src/classes/ArgBuilder.js)
+  * [File](https://github.com/pedsmoreira/battlecry/blob/master/src/classes/File.js)
+  * [Generator](https://github.com/pedsmoreira/battlecry/blob/master/src/classes/Generator.js)
+  * [GeneratorMethod](https://github.com/pedsmoreira/battlecry/blob/master/src/classes/GeneratorMethod.js)
+  * [OptionBuilder](https://github.com/pedsmoreira/battlecry/blob/master/src/classes/OptionBuilder.js)
+
+* `namedCasex` internal methods:
+
+  * [applyPluralization](https://github.com/pedsmoreira/battlecry/blob/master/src/helpers/namedCasex.js#L23)
+  * [extractPluralizedPattern](https://github.com/pedsmoreira/battlecry/blob/master/src/helpers/namedCasex.js#L30)
 
 # Resources
 

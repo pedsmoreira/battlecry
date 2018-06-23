@@ -1,3 +1,9 @@
+# 0.3
+
+* Variadic optional arguments (`...arg?`) become null instead of an empty array when no values are given
+* Added `replaceNames` file text helper
+* Fixed typo in `extractPluralizedPattern` method
+
 # 0.2.4
 
 * `_name_S` now outputs `userS`
