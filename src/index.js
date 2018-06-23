@@ -11,7 +11,7 @@ import OptionBuilder from './classes/OptionBuilder';
 import Battlecry from './classes/Battlecry';
 
 import log from './helpers/log';
-import namedCasex, { applyPluralization, extractPluraizedPattern } from './helpers/namedCasex';
+import namedCasex, { applyPluralization, extractPluralizedPattern } from './helpers/namedCasex';
 
 export {
   ArgBuilder,
@@ -23,7 +23,7 @@ export {
   log,
   namedCasex,
   applyPluralization,
-  extractPluraizedPattern,
+  extractPluralizedPattern,
   casex,
   pluralize
 };

@@ -27,7 +27,7 @@ export function applyPluralization(name: string, match: string) {
   return isPlural ? pluralize.plural(name) : pluralize.singular(name);
 }
 
-export function extractPluraizedPattern(match: string) {
+export function extractPluralizedPattern(match: string) {
   if (match.startsWith('__')) return match.substring(2, match.length - 2);
 
   const hasModifier = !match.endsWith('_');
@@ -47,7 +47,7 @@ export default function namedCasex(text: string | string[], name: ?string) {
     match = resolveMatch(match);
 
     // $FlowFixMe
-    const casexedName = casex(applyPluralization(name, match), extractPluraizedPattern(match));
+    const casexedName = casex(applyPluralization(name, match), extractPluralizedPattern(match));
 
     const index = newStr.indexOf(match, pos);
     newStr = newStr.substring(0, index) + casexedName + newStr.substring(index + match.length);
