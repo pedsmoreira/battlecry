@@ -31,6 +31,6 @@ it will get formatted automatically once you commit.
 ## Releasing
 
 ```sh
-npm version <newversion> -m "Releasing %s"
+npm version <patch|minor|major>
 npm publish
 ```
