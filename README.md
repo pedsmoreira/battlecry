@@ -162,16 +162,22 @@ config = {
 
 ## File helpers
 
-* `files(pattern: string, name?: string): File[]`: Get files that match `pattern`
-* `file(pattern: string, name?: string): File`: Get first file that matches `pattern`
+* `files(pattern: string, name?: ?string, globOptions?: Object): File[]`: Get files that match `pattern`
+* `file(pattern: string, name?: ?string, globOptions?: Object): File`: Get first file that matches `pattern`
 * `delete(path: string, name?: string): void`: Delete a file or directory
 
-- `templates(pattern?: string): File[]`: Get files inside the generator's `templates/` subdirectory
-- `template(pattern?: string): File`: Get first file that matches the pattern
+- `templates(pattern?: string, globOptions?: Object): File[]`: Get files inside the generator's `templates/` subdirectory
+- `template(pattern?: string, globOptions?: Object): File`: Get first file that matches the pattern
 
 As you may have noticed, most of these methods return one or an array of File(s). For more details about the `File` class API, please check the [File API](#File API) section below.
 
 _Note: BattleCry performs all IO operations synchronously_
+
+### [Advanced] Glob Options
+
+By default BattleCry lists all files except for `.DS_Store` _(created on OSX)_.
+
+If you need to provide custom `globOptions`, please refer to the list of options is available on the node-glob _(this is the library used to do globbing on BattleCry)_ repository: https://github.com/isaacs/node-glob#options
 
 ## Helpers to call other generators
 
@@ -298,6 +304,18 @@ export default function setup(battlecry) {
   // You can now use `cry s component` and it will be translated to `cry strike component`
 }
 ```
+
+### Updating default globOptions
+
+BattleCry values convention over configuration, so it comes with the following optinos by default: `{ dot: true, ignore: ['**/.DS_Store'] }`. This means that files starting with `.`, such as `.babelrc` will be included on your list _(if it matches the pattern provided)_.
+
+```js
+export default function setup(battlecry) {
+  battlecry.globOptions({ dot: false, nocase: false });
+}
+```
+
+_For a complete list of options available, please refer to https://github.com/isaacs/node-glob#options._
 
 ## [Advanced] Using namedCasex outside of the helper methods
 

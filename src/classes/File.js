@@ -1,11 +1,11 @@
 // @flow
 
 import fs from 'fs';
-import glob from 'glob';
 import mkdirp from 'mkdirp';
 import { basename, dirname, extname } from 'path';
 import fileChecker from 'istextorbinary';
 
+import glob from '../helpers/glob';
 import namedCasex from '../helpers/namedCasex';
 import log from '../helpers/log';
 
@@ -17,10 +17,10 @@ export default class File {
     this.path = namedCasex(path, name);
   }
 
-  static glob(pattern: string, name?: string): File[] {
+  static glob(pattern: string, name?: ?string, options?: Object): File[] {
     const files = [];
 
-    glob.sync(namedCasex(pattern, name)).forEach(path => {
+    glob(namedCasex(pattern, name), options).forEach(path => {
       const isDirectory = fs.lstatSync(path).isDirectory();
       if (!isDirectory) files.push(new File(path));
     });

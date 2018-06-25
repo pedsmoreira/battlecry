@@ -10,6 +10,7 @@ import GeneratorMethod from './classes/GeneratorMethod';
 import OptionBuilder from './classes/OptionBuilder';
 import Battlecry from './classes/Battlecry';
 
+import dd from './helpers/dd';
 import log from './helpers/log';
 import namedCasex, { applyPluralization, extractPluralizedPattern } from './helpers/namedCasex';
 
@@ -20,6 +21,7 @@ export {
   GeneratorMethod,
   OptionBuilder,
   Battlecry,
+  dd,
   log,
   namedCasex,
   applyPluralization,

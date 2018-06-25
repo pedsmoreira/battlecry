@@ -1,7 +1,10 @@
 export default function setup(battlecry) {
-  // You may load additional generators here
+  // Load additional generators here
   // battlecry.load('node_modules/battlecry-generatores-from-node-modules');
   //
-  // And define new aliases
+  // Define new aliases
   // battlecry.aliases.s = 'strike';
+  //
+  // [ADVANCED] Define specific glob options
+  // battlecry.globOptions({ dot: false, nocase: false });
 }

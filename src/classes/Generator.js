@@ -76,15 +76,15 @@ export default class Generator {
    * File Helpers
    */
 
-  file(pattern: string, name?: string): File {
-    const files = this.files(pattern, name);
+  file(pattern: string, name?: ?string, globOptions?: Object): File {
+    const files = this.files(pattern, name, globOptions);
     if (!files.length) throw new Error(`No file found for ${namedCasex(pattern, name)}`);
 
     return files[0];
   }
 
-  files(pattern: string, name?: string): File[] {
-    return File.glob(pattern, name);
+  files(pattern: string, name?: ?string, globOptions?: Object): File[] {
+    return File.glob(pattern, name, globOptions);
   }
 
   delete(path: string, name?: string): void {
@@ -101,15 +101,15 @@ export default class Generator {
     return join(dirname(this.path), 'templates');
   }
 
-  templates(pattern?: string): File[] {
+  templates(pattern?: string, globOptions?: Object): File[] {
     const values = [this.templatesPath, '**'];
     if (pattern) values.push(pattern);
 
-    return this.files(join(...values));
+    return this.files(join(...values), null, globOptions);
   }
 
-  template(pattern?: string): File {
-    return this.templates(pattern)[0];
+  template(pattern?: string, globOptions?: Object): File {
+    return this.templates(pattern, globOptions)[0];
   }
 
   /*

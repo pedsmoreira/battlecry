@@ -1,7 +1,6 @@
 // @flow
 
 import program from 'commander';
-import glob from 'glob';
 import { basename } from 'path';
 import fs from 'fs';
 import chalk from 'chalk';
@@ -10,6 +9,7 @@ import pkg from '../../package.json';
 
 import Generator from './Generator';
 
+import glob, { defaultOptions as defaultGlobOptions } from '../helpers/glob';
 import log from '../helpers/log';
 
 export default class Battlecry {
@@ -20,7 +20,7 @@ export default class Battlecry {
 
   load(path: string) {
     this.setup(path);
-    glob.sync(`${path}/generators/*/*.generator.js`).forEach(path => {
+    glob(`${path}/generators/*/*.generator.js`).forEach(path => {
       // $FlowFixMe
       const generatorClass = require(path).default;
       const name = basename(path, '.generator.js');
@@ -48,6 +48,11 @@ export default class Battlecry {
     const index = values.indexOf(method);
 
     return index !== -1 ? Object.keys(this.aliases)[index] : null;
+  }
+
+  globOptions(globOptions: Object): Object {
+    Object.assign(defaultGlobOptions, globOptions);
+    return defaultGlobOptions;
   }
 
   generator(name: string): Generator {
