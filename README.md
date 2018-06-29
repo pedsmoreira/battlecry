@@ -29,11 +29,7 @@ _Note: Battlecry got renamed from Samba to avoid confusions with the Samba Linux
 * ✅ Simple & Powerful API
 * ✅ Next generation naming with [casex](https://github.com/pedsmoreira/casex)
 
-### Why not just use [Yeoman](http://yeoman.io/)?
-
-Yeoman is a great tool for creating new projects, but when it comes to updating ongoing projects, I think there's a lot of room for improvement. If you want to use a framework with a strict set of libraries and requirements you can probably find a Yeoman generator that suits you, but you won't be able to customize these generators with ease.
-
-In my experience, the farther you go on a project, the more you'll need to shape your generators to fit it. Each project has it's own requirements and it's only fair that it get it's own generators. With Battlecry you can create your own or download generators to give you a nice quickstart, and when you need to customize them, it's very easy to do so and you can share the changes with your whole team.
+The farther you go on a project, the more likely you are to have a custom architecture and need your own generators to fit it. Each project has it's own requirements and it's only fair that it get it's own generators. With Battlecry you can create your own or download generators to give you a nice quickstart, and when you need to customize them, it's very easy to do so and you can share the changes with your whole team.
 
 ## Examples
 
