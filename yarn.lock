@@ -1126,9 +1126,9 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
 
-casex@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/casex/-/casex-0.0.3.tgz#fe0ec50b3d24387e05d8aca0fe37fbecece4a41a"
+casex@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/casex/-/casex-1.0.0.tgz#2e478828286edf9663b3c234def4ada0646d63d9"
 
 caw@^2.0.0:
   version "2.0.1"

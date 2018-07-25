@@ -1,3 +1,7 @@
+# 0.3.2
+
+* Update `casex` to 1.0.0 to support numbers.
+
 # 0.3.1
 
 * Add globOptions to generator file helpers

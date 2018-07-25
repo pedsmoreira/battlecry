@@ -60,10 +60,17 @@ describe('namedCasex', () => {
     expect(namedCasex(text, 'user_folders')).toEqual(transformedText);
   });
 
-  it('understand when _na_me_ is part of the replaced content', () => {
+  it('understands when _na_me_ is part of the replaced content', () => {
     const text = 'My name is _na_me_ _na_me_ _na_me_';
     const transformedText = 'My name is a_na_me_b a_na_me_b a_na_me_b';
 
     expect(namedCasex(text, 'a_na_me_b')).toEqual(transformedText);
+  });
+
+  it('replaces __name__ with numbers accordingly', () => {
+    const text = 'Hi, my name is __Na Me__';
+    const transformedText = 'Hi, my name is John1 Doe2';
+
+    expect(namedCasex(text, 'john1-doe2')).toEqual(transformedText);
   });
 });
