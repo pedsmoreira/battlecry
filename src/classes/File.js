@@ -3,7 +3,7 @@
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import { basename, dirname, extname } from 'path';
-import fileChecker from 'istextorbinary';
+import isBinaryFile from 'isbinaryfile';
 
 import glob from '../helpers/glob';
 import namedCasex from '../helpers/namedCasex';
@@ -33,8 +33,7 @@ export default class File {
    */
 
   get binary(): boolean {
-    if (!this.exists || this.extension === '.log') return false;
-    return !fileChecker.isTextSync(this.path);
+    return this.exists && isBinaryFile.sync(this.path);
   }
 
   get exists(): boolean {
