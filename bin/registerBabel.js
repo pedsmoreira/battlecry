@@ -1,5 +1,5 @@
 require('babel-polyfill');
-const { dirname, join } = require('path');
+const { dirname } = require('path');
 const fs = require('fs');
 const babelRc = JSON.parse(fs.readFileSync(`${__dirname}/../.babelrc`, 'utf8'));
 
@@ -14,16 +14,8 @@ function ignore(filename) {
 }
 
 function buildPath(type, name) {
-  /* 
-   When it's running locally, the executable is inside "$ROOT/node_modules/.bin/cry|battlecry".
-   Globally it's only "/bin/cry|battlecry"
-  */
-  const isLocal = process.argv.some(arg => arg.includes('.bin'));
-
-  const localPath = join(__dirname, `../../babel-${type}-${name}`);
-  const globalPath = join(__dirname, `/../node_modules/babel-${type}-${name}`);
-
-  return isLocal ? localPath : globalPath;
+  const pkg = `babel-${type}-${name}`;
+  return dirname(require.resolve(`${pkg}/package.json`));
 }
 
 function buildPresets() {
