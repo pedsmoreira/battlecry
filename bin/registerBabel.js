@@ -1,5 +1,5 @@
 require('babel-polyfill');
-const dirname = require('path').dirname;
+const { dirname } = require('path');
 const fs = require('fs');
 const babelRc = JSON.parse(fs.readFileSync(`${__dirname}/../.babelrc`, 'utf8'));
 
@@ -14,7 +14,8 @@ function ignore(filename) {
 }
 
 function buildPath(type, name) {
-  return `${__dirname}/../node_modules/babel-${type}-${name}`;
+  const pkg = `babel-${type}-${name}`;
+  return dirname(require.resolve(`${pkg}/package.json`));
 }
 
 function buildPresets() {
