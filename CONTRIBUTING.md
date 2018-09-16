@@ -16,7 +16,7 @@ We'd love to have your contribution added to Battlecry. If you decide to do so, 
 Go to the `battlecry` folder you cloned and:
 
 * `npm uninstall -g battlecry` if you have `battlecry` already installed globally
-* `npm link` will link the `battlecry` and `cry` commanda globally
+* `npm link` will link the `battlecry` and `cry` commands globally
 * `npm link battlecry` will link the `require('battlecry')`
 
 ## Running Tests
