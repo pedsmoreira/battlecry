@@ -1,6 +1,14 @@
-# Summary
+# Table of Contents
 
-* [Introduction](/README.md)
-  * [Configuring your methods](/README.md#why-battlecry)
+## Introduction
+
+* [Overview](/README.md)
+* [Why Battlecry](/README.md#why-battlecry)
+
+## Casex Naming
+
 * [Casex Naming](/docs/casex-naming.md)
+
+## Generator
+
 * [Generator](/docs/generator.md)
