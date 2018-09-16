@@ -58,8 +58,16 @@ Advanced examples
 
 ## Install
 
+Install globally
+
 ```sh
 npm install -g battlecry
+```
+
+Or just for a project
+
+```sh
+npm install --save-dev battlecry
 ```
 
 ## Command structure
