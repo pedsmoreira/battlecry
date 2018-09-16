@@ -15,7 +15,7 @@ Battlecry is a cross-platform tool for automating repetitive software developmen
 Designed to boost developers' performance, Battlecry provides an interface for creating simple and customizable commands that can perform any type of action. Since most of the time developers need to `create`, `copy`, `move`, `edit` or `delete` text files, Battlecry already comes with file helpers that make templating a breeze.
 
 <p align="center">
-  <img src="./docs/screencast.gif" />
+  <img src="./assets/screencast.gif" />
 </p>
 
 _Note: Battlecry got renamed from Samba to avoid confusions with the Samba Linux software_
