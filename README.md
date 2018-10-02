@@ -31,6 +31,12 @@ _Note: Battlecry got renamed from Samba to avoid confusions with the Samba Linux
 
 The farther you go on a project, the more likely you are to have a custom architecture and need your own generators to fit it. Each project has it's own requirements and it's only fair that it get it's own generators. With Battlecry you can create your own or download generators to give you a nice quickstart, and when you need to customize them, it's very easy to do so and you can share the changes with your whole team.
 
+## Who uses Battlecry?
+
+Check out the list of companies using Battlecry. And if you're using it too, please consider adding your company to the list :)
+
+https://github.com/pedsmoreira/battlecry/issues/10
+
 ## Examples
 
 Each example can be downloaded with `cry download generator examples/example_name_here`.
