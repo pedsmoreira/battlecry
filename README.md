@@ -33,7 +33,7 @@ The farther you go on a project, the more likely you are to have a custom archit
 
 ## Who uses Battlecry?
 
-Check out the list of companies using Battlecry. And if you're using it too, please consider adding your company to the list :)
+Check out the list of companies using Battlecry. If you're using it too, please consider adding your company to the list :)
 
 https://github.com/pedsmoreira/battlecry/issues/10
 
