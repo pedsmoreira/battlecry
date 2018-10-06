@@ -224,8 +224,9 @@ In most cases you'll use the file helpers on the generator. But if you need to c
 
 ## Persistence
 
-* `save(): void`: Save file changes on it's current path
+* `save(): this`: Save file changes on it's current path
 * `saveAs(path: string, name?: string): File`: Save file on a different path
+* `move(path: string, name?: ?string): this`: Move file to a different path
 * `delete(): void`: Delete file
 
 _Tip_: When using `saveAs`, you can end the path with `/` and BattleCry will add the current filename.
