@@ -1,5 +1,6 @@
 import { File } from 'battlecry';
 import rimraf from 'rimraf';
+import { EOL } from 'os';
 import fs from 'fs';
 
 const tmpPath = `${__dirname}/File-tmp`;
@@ -203,7 +204,7 @@ describe('File', () => {
     });
 
     it('returns lines joined by \r\n', () => {
-      expect(File.joinLines(['a', 'b', 'c'])).toEqual('a\r\nb\r\nc');
+      expect(File.joinLines(['a', 'b', 'c'])).toEqual(`a${EOL}b${EOL}c`);
     });
   });
 
@@ -259,7 +260,7 @@ describe('File', () => {
   describe('#lines=', () => {
     it('sets text joined by \r\n', () => {
       textFile.lines = [1, 'b', 3];
-      expect(textFile.text).toEqual('1\r\nb\r\n3');
+      expect(textFile.text).toEqual(`1${EOL}b${EOL}3`);
     });
   });
 

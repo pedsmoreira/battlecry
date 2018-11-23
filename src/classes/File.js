@@ -3,6 +3,7 @@
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import { basename, dirname, extname } from 'path';
+import { EOL } from 'os';
 import isBinaryFile from 'isbinaryfile';
 
 import glob from '../helpers/glob';
@@ -93,7 +94,7 @@ export default class File {
    */
 
   static joinLines(lines: string[]): string {
-    return lines.join('\r\n');
+    return lines.join(EOL);
   }
 
   readText() {

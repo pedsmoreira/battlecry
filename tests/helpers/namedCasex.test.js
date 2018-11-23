@@ -1,4 +1,5 @@
 import { namedCasex } from 'battlecry';
+import { EOL } from 'os';
 
 describe('namedCasex', () => {
   it('replaces all __name__ occurrences', () => {
@@ -10,7 +11,7 @@ describe('namedCasex', () => {
 
   it('transforms array into multiline text', () => {
     const text = ['Hi', 'my name is __Na Me__'];
-    const transformedText = 'Hi\r\nmy name is John Doe';
+    const transformedText = `Hi${EOL}my name is John Doe`;
 
     expect(namedCasex(text, 'john-doe')).toEqual(transformedText);
   });
