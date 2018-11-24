@@ -1,6 +1,10 @@
+# 0.3.4
+
+* Use EOL instead of \r\n - [PR by @Jimmerz28](https://github.com/pedsmoreira/battlecry/pull/12)
+
 # 0.3.3
 
-* Battlecry now works locally (npm install --save battlecry)
+* Battlecry now works locally (npm install --save battlecry) - [PR by @raulfdm](https://github.com/pedsmoreira/battlecry/pull/6)
 
 # 0.3.2
 
