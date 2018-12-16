@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "dev": "docsify serve docs",
+    "copy:readme": "node scripts/copy-readme.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:ci": "npm run test:coverage",
