@@ -27,7 +27,7 @@
   <a href="https://battlecry.pedrosm.com">Documentation</a>
 </h4>
 
-## Additional Resources
+### Additional Resources
 
 * [Contributing Guide](./CONTRIBUTING.md)
 * [Code of Conduct](./CODE_OF_CONDUCT.md)
