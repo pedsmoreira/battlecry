@@ -23,6 +23,7 @@
     ".babelrc"
   ],
   "scripts": {
+    "dev": "docsify serve docs",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:ci": "npm run test:coverage",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
+    "docsify-cli": "^4.3.0",
     "flow-bin": "^0.69.0",
     "flow-typed": "^2.4.0",
     "husky": "^0.14.3",
