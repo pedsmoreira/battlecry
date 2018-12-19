@@ -9,3 +9,8 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a2c3f76f8d99cfe9ef1c/test_coverage)](https://codeclimate.com/github/pedsmoreira/battlecry/test_coverage)
 
 ## [Docs](https://battlecry.pedrosm.com)
+
+# Additional Resources
+
+* [Contributing Guide](./CONTRIBUTING.md)
+* [Code of Conduct](./CODE_OF_CONDUCT.md)

@@ -49,12 +49,3 @@ Each example can be downloaded with `cry download generator examples/example_nam
 6.  [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
 7.  [exec](./examples/exec): Executing a command line
 8.  [load](./examples/load): Loading generators from a folder other than `battlecry/`
-
-Advanced examples
-
-9.  [WIP] - [advanced-crud](./examples/advanced-crud): Make magical CRUDs
-
-# Resources
-
-* [Contributing Guide](./CONTRIBUTING.md)
-* [Code of Conduct](./CODE_OF_CONDUCT.md)
