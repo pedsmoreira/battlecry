@@ -41,11 +41,11 @@ https://github.com/pedsmoreira/battlecry/issues/10
 
 Each example can be downloaded with `cry download generator examples/example_name_here`.
 
-1.  [args](./examples/args): Working with arguments
-2.  [options](./examples/options): Working with options
-3.  [multiple-templates](./examples/multiple-templates): Working with multiple template files
-4.  [aliases](./examples/aliases): Creating your own method aliases
-5.  [helpers](./examples/helpers): Using helpers to share methods across generators
-6.  [call-other-generators](./examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
-7.  [exec](./examples/exec): Executing a command line
-8.  [load](./examples/load): Loading generators from a folder other than `battlecry/`
+1.  [args](https://github.com/pedsmoreira/battlecry/tree/master/examples/args): Working with arguments
+2.  [options](https://github.com/pedsmoreira/battlecry/tree/master/examples/options): Working with options
+3.  [multiple-templates](https://github.com/pedsmoreira/battlecry/tree/master/examples/multiple-templates): Working with multiple template files
+4.  [aliases](https://github.com/pedsmoreira/battlecry/tree/master/examples/aliases): Creating your own method aliases
+5.  [helpers](https://github.com/pedsmoreira/battlecry/tree/master/examples/helpers): Using helpers to share methods across generators
+6.  [call-other-generators](https://github.com/pedsmoreira/battlecry/tree/master/examples/call-other-generators): Using one generator to call multiple generators in a clean fashion
+7.  [exec](https://github.com/pedsmoreira/battlecry/tree/master/examples/exec): Executing a command line
+8.  [load](https://github.com/pedsmoreira/battlecry/tree/master/examples/load): Loading generators from a folder other than `battlecry/`
