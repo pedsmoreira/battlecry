@@ -10,7 +10,7 @@
 
 ## [Docs](https://battlecry.pedrosm.com)
 
-# Additional Resources
+## Additional Resources
 
 * [Contributing Guide](./CONTRIBUTING.md)
 * [Code of Conduct](./CODE_OF_CONDUCT.md)
