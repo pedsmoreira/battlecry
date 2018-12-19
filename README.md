@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="./docs/assets/logo.svg" width="160">
+  <a href="https://battlecry.pedrosm.com">
+    <img src="./docs/assets/logo.svg" alt="" width="160">
+  </a>
 </p>
 
 <h1 align="center">Battlecry</h1>
