@@ -1,0 +1,12 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 35 80 50" enable-background="new 0 0 100 100" xml:space="preserve">
+    <g>
+        <path fill="#000000" d="M18.987,47.334c-1.475,0-2.671,1.196-2.671,2.671c0,1.475,1.196,2.671,2.671,2.671h6.563   c1.475,0,2.671-1.196,2.671-2.671c0-1.475-1.196-2.671-2.671-2.671H18.987z"/>
+        <circle fill="#000000" cx="32.584" cy="60.683" r="2.673"/>
+        <path fill="#000000" d="M58.85,36.655h-6.461h-9.295c-0.038-0.002-0.073-0.011-0.111-0.011H29.667   c-1.475,0-2.671,1.196-2.671,2.671c0,1.475,1.196,2.671,2.671,2.671h11.872h1.443h2.602c1.344,0,2.433,1.196,2.433,2.671   s-1.089,2.671-2.433,2.671h-4.045v0h-6.426c-1.475,0-2.671,1.196-2.671,2.671v0c0,1.475,1.196,2.671,2.671,2.671h6.563   c0,0,0,0,0.001,0h4.2c1.344,0,2.433,1.196,2.433,2.671s-1.09,2.671-2.433,2.671h-4.337v0h-0.452c-1.475,0-2.671,1.196-2.671,2.671   c0,1.475,1.196,2.671,2.671,2.671h0.452h12.827h4.484v-0.023h2.209h0h0.305c7.363,0,13.332-5.969,13.332-13.332v0   c0-7.363-5.969-13.332-13.332-13.332h-0.305v-0.012H58.85z"/>
+    </g>
+
+    <text x="0" y="75" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Marie Van den Broeck</text>
+    <text x="0" y="80" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text>
+</svg>
