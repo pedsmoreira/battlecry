@@ -25,9 +25,8 @@
 
 <h3 align="center">
   <a href="https://battlecry.pedrosm.com">Documentation</a>
-</h4>
-
-### Additional Resources
-
-* [Contributing Guide](./CONTRIBUTING.md)
-* [Code of Conduct](./CODE_OF_CONDUCT.md)
+   | 
+  <a href="https://github.com/pedsmoreira/battlecry/blob/master/CONTRIBUTING.md">Contributing</a>
+   | 
+  <a href="https://github.com/pedsmoreira/battlecry/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+</h3>
