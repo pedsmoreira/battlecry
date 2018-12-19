@@ -1,10 +1,8 @@
 <p align="center">
   <a href="https://battlecry.pedrosm.com">
-    <img src="./docs/assets/logo.svg" alt="" width="160">
+    <img src="./docs/assets/logo-text.png" alt="Battlecry" width="256">
   </a>
 </p>
-
-<h1 align="center">Battlecry</h1>
 
 <p align="center">A simple and customizable scaffolding tool for all languages and frameworks</p>
 
