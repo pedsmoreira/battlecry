@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<p align="center">A simple and customizable scaffolding tool for all languages and frameworks</p>
+<p align="center">Open source scaffolding CLI for everyone</p>
 
 <p align="center">
   <a href="https://www.npmjs.org/package/battlecry">
