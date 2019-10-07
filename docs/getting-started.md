@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* [NodeJS](https://nodejs.org/en/) installed
+- [NodeJS](https://nodejs.org/en/) installed
 
 🎩 If your project does not use NodeJS don't worry! Battlecry's API is very simple and you'll only need NodeJS installed to run the commands, no need to change your project setup.
 
@@ -11,13 +11,13 @@
 Install globally
 
 ```sh
-npm install -g battlecry
+npm install -g battlecry@0.3.6
 ```
 
 Or just for a project
 
 ```sh
-npm install --save-dev battlecry
+npm install --save-dev battlecry0.3.6
 ```
 
 ## Command structure
@@ -38,10 +38,10 @@ cry g init
 
 This will perform four actions:
 
-* Create a `battlecry` folder on the root of your project
-* Add a `battlecry/battlecry-setup.js` that you can use to add special configurations
-* Create a generator called `component`
-* Play the just created `component` with the arg `test-abc`
+- Create a `battlecry` folder on the root of your project
+- Add a `battlecry/battlecry-setup.js` that you can use to add special configurations
+- Create a generator called `component`
+- Play the just created `component` with the arg `test-abc`
 
 You should now be able to see a file called `it-worked/components/test-abc.txt`. This file was created using the generator at `battlecry/generators/component.generator.js` folder.
 

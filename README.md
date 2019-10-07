@@ -28,3 +28,7 @@
    | 
   <a href="https://github.com/pedsmoreira/battlecry/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
 </h3>
+
+### Disclaimer:
+
+The lastest version of Battlecry v1 is undocumented, when installing please run `npm install battlecry@0.3.6`.
