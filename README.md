@@ -31,4 +31,4 @@
 
 ### Disclaimer:
 
-The lastest version of Battlecry v1 is undocumented, when installing please run `npm install battlecry@0.3.6`.
+This package is no longer maintained. I suggest using [Gluegun](https://github.com/infinitered/gluegun)
