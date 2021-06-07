@@ -28,7 +28,3 @@
    | 
   <a href="https://github.com/pedsmoreira/battlecry/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
 </h3>
-
-### Disclaimer:
-
-This package is no longer maintained. I suggest using [Gluegun](https://github.com/infinitered/gluegun)
